@@ -1,6 +1,6 @@
 // noisegen.cpp
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -34,7 +34,14 @@ double noise::GradientNoise3D (double x, double y, double z, int ix, int iy,
   // Randomly generate a gradient vector given the input (x, y, z)
   // coordinates.  This implementation generates a random number and
   // uses it as an index into a normalized vector lookup table.
-  int vectorIndex = IntValueNoise3D (ix, iy, iz, seed) & 0x7ff;
+  // jas20040710 modified
+  // There's now only 256 vectors, which makes it cache-friendly.  Also, for
+  // whatever weird reason, the lower bits of the noise are not "random"
+  // enough but the higher bits are.  XOR the high bits onto the low bits.
+  // Looks much better :-)
+  int vectorIndex = IntValueNoise3D (ix, iy, iz, seed);
+  vectorIndex ^= (vectorIndex >> 16);
+  vectorIndex &= 0xff;
   double xvGradient = g_randomVectors[(vectorIndex << 2)    ];
   double yvGradient = g_randomVectors[(vectorIndex << 2) + 1];
   double zvGradient = g_randomVectors[(vectorIndex << 2) + 2];
@@ -57,12 +64,13 @@ int noise::IntValueNoise3D (int x, int y, int z, int seed)
 {
   // All integer numbers you see (except the bit flags) are primes and must
   // remain prime in order for this noise function to work correctly.
-  int n = (x + y * 31337 + z * 263 + seed * 1013) & 0x7fffffff;
+  int n = (x * 5 + y * 31337 + z * 263 + seed * 1013) & 0x7fffffff;
   n = (n << 13) ^ n;
   return (n * (n * n * 60493 + 19990303) + 1376312589) & 0x7fffffff;
 }
 
-double noise::SmoothGradientNoise3D (double x, double y, double z, int seed)
+double noise::SmoothGradientNoise3D (double x, double y, double z, int seed,
+  NoiseQuality noiseQuality)
 {
   // Determine the integer coordinates of the eight points surrounding the
   // (x, y, z) point.
@@ -75,9 +83,26 @@ double noise::SmoothGradientNoise3D (double x, double y, double z, int seed)
 
   // Map the difference between the integer and floating-point coordinates
   // to an S-curve to produce a smoother noise value.
-  double xs = SCurve (x - (double)x0);
-  double ys = SCurve (y - (double)y0);
-  double zs = SCurve (z - (double)z0);
+  // jas20040710 modified
+  // Now selectes between different noise qualities.
+  double xs, ys, zs;
+  switch (noiseQuality) {
+    case QUALITY_FAST:
+      xs = (x - (double)x0);
+      ys = (y - (double)y0);
+      zs = (z - (double)z0);
+      break;
+    case QUALITY_STD:
+      xs = SCurve3 (x - (double)x0);
+      ys = SCurve3 (y - (double)y0);
+      zs = SCurve3 (z - (double)z0);
+      break;
+    case QUALITY_BEST:
+      xs = SCurve5 (x - (double)x0);
+      ys = SCurve5 (y - (double)y0);
+      zs = SCurve5 (z - (double)z0);
+      break;
+  }
 
   // Now calculate the gradient noise values at these eight points and perform
   // trilinear interpolation.
@@ -96,10 +121,12 @@ double noise::SmoothGradientNoise3D (double x, double y, double z, int seed)
   n1   = GradientNoise3D (x, y, z, x1, y1, z1, seed);
   ix1  = LinearInterp (n0, n1, xs);
   iy1  = LinearInterp (ix0, ix1, ys);
+
   return LinearInterp (iy0, iy1, zs);
 }
 
-double noise::SmoothValueNoise3D (double x, double y, double z, int seed)
+double noise::SmoothValueNoise3D (double x, double y, double z, int seed,
+  NoiseQuality noiseQuality)
 {
   // Determine the integer coordinates of the eight points surrounding the
   // (x, y, z) point.
@@ -112,9 +139,26 @@ double noise::SmoothValueNoise3D (double x, double y, double z, int seed)
 
   // Map the difference between the integer and floating-point coordinates
   // to an S-curve to produce a smoother noise value.
-  double xs = SCurve (x - (double)x0);
-  double ys = SCurve (y - (double)y0);
-  double zs = SCurve (z - (double)z0);
+  // jas20040710 modified
+  // Now selectes between different noise qualities.
+  double xs, ys, zs;
+  switch (noiseQuality) {
+    case QUALITY_FAST:
+      xs = (x - (double)x0);
+      ys = (y - (double)y0);
+      zs = (z - (double)z0);
+      break;
+    case QUALITY_STD:
+      xs = SCurve3 (x - (double)x0);
+      ys = SCurve3 (y - (double)y0);
+      zs = SCurve3 (z - (double)z0);
+      break;
+    case QUALITY_BEST:
+      xs = SCurve5 (x - (double)x0);
+      ys = SCurve5 (y - (double)y0);
+      zs = SCurve5 (z - (double)z0);
+      break;
+  }
 
   // Now calculate the noise values at these eight points and perform
   // trilinear interpolation.

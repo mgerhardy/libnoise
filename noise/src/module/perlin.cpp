@@ -1,6 +1,6 @@
 // perlin.cpp
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -22,18 +22,18 @@
 // off every 'zig'.)
 //
 
-#include "../noisegen.h"
 #include "perlin.h"
 
 using namespace noise::module;
 
 Perlin::Perlin ():
   Module (GetSourceModuleCount ()),
-  m_octaveCount (DEFAULT_PERLIN_OCTAVE_COUNT),
-  m_frequency   (DEFAULT_PERLIN_FREQUENCY   ),
-  m_lacunarity  (DEFAULT_PERLIN_LACUNARITY  ),
-  m_persistence (DEFAULT_PERLIN_PERSISTENCE ),
-  m_seed        (DEFAULT_PERLIN_SEED)
+  m_octaveCount  (DEFAULT_PERLIN_OCTAVE_COUNT),
+  m_frequency    (DEFAULT_PERLIN_FREQUENCY   ),
+  m_lacunarity   (DEFAULT_PERLIN_LACUNARITY  ),
+  m_noiseQuality (DEFAULT_PERLIN_QUALITY     ),
+  m_persistence  (DEFAULT_PERLIN_PERSISTENCE ),
+  m_seed         (DEFAULT_PERLIN_SEED)
 {
 }
 
@@ -59,8 +59,10 @@ double Perlin::GetValue (double x, double y, double z) const
 
     // Get the noise value from the (x, y, z) position and add it to the final
     // result.
+    // jas20040710 modified
+    // Added noise quality.
     seed = (m_seed + curOctave) & 0xffffffff;
-    signal = SmoothGradientNoise3D (nx, ny, nz, seed);
+    signal = SmoothGradientNoise3D (nx, ny, nz, seed, m_noiseQuality);
     value += signal * curPersistence;
 
     // Prepare the next octave.

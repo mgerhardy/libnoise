@@ -1,6 +1,6 @@
 // noisegen.h
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -33,6 +33,36 @@ namespace noise
 
   /// @addtogroup libnoise
   /// @{
+
+  /// Enumerates the noise quality.
+  enum NoiseQuality
+  {
+
+    /// Generates noise quickly.
+    ///
+    /// When this noise type is used as a bump map source, there are
+    /// noticeable "creasing" artifacts in the resulting image.  This is
+    /// because the derivative of this noise function is discontinuous at
+    /// integer boundaries.
+    QUALITY_FAST = 0,
+
+    /// Generates standard-quality noise.
+    ///
+    /// When this noise type is used as a bump map source, there are some
+    /// minor "creasing" artifacts in the resulting image.  This is because
+    /// the second derivative of this noise function is discontinuous at
+    /// integer boundaries.
+    QUALITY_STD = 1,
+
+    /// Generates the best-quality noise.
+    ///
+    /// Produces no "creasing" artifacts when noise is used as a bump map
+    /// source, but it is twice as slow as standard quality.  This is because
+    /// the first and second derivatives of this noise function are continuous
+    /// at integer boundaries.
+    QUALITY_BEST = 2
+
+  };
 
   /// Returns a floating-point gradient noise value.
   ///
@@ -123,7 +153,8 @@ namespace noise
   ///
   /// For an explanation of the difference between gradient noise and value
   /// noise, see the comments for the GradientNoise3D() function.
-  double SmoothGradientNoise3D (double x, double y, double z, int seed = 0);
+  double SmoothGradientNoise3D (double x, double y, double z, int seed = 0,
+    NoiseQuality noiseQuality = QUALITY_STD);
 
   /// Returns a smoothly-interpolated noise value.
   ///
@@ -136,7 +167,8 @@ namespace noise
   ///
   /// For an explanation of the difference between gradient noise and value
   /// noise, see the comments for the GradientNoise3D() function.
-  double SmoothValueNoise3D (double x, double y, double z, int seed = 0);
+  double SmoothValueNoise3D (double x, double y, double z, int seed = 0,
+    NoiseQuality noiseQuality = QUALITY_STD);
 
   /// Returns a floating-point noise value.
   ///

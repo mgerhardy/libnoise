@@ -53,9 +53,11 @@ double Select::GetValue (double x, double y, double z) const
       // Selector is near the lower end of the selector, within the smooth
       // curve. Interpolate between the first input module's value and the
       // second input module's value.
+      // jas20040710 modified
+      // SCurve() now is called SCurve3() since now there is a quintic one.
       double lowerCurve = (m_lowerBound - m_edgeFalloff);
       double upperCurve = (m_lowerBound + m_edgeFalloff);
-      alpha = SCurve (
+      alpha = SCurve3 (
         (selectorValue - lowerCurve) / (upperCurve - lowerCurve));
       return LinearInterp (m_pSourceModule[0]->GetValue (x, y, z),
         m_pSourceModule[1]->GetValue (x, y, z),
@@ -70,9 +72,11 @@ double Select::GetValue (double x, double y, double z) const
       // Selector is near the upper end of the selector, within the smooth
       // curve. Interpolate between the first input module's value and the
       // second input module's value.
+      // jas20040710 modified
+      // SCurve() now is called SCurve3() since now there is a quintic one.
       double lowerCurve = (m_upperBound - m_edgeFalloff);
       double upperCurve = (m_upperBound + m_edgeFalloff);
-      alpha = SCurve (
+      alpha = SCurve3 (
         (selectorValue - lowerCurve) / (upperCurve - lowerCurve));
       return LinearInterp (m_pSourceModule[1]->GetValue (x, y, z),
         m_pSourceModule[0]->GetValue (x, y, z),

@@ -1,6 +1,6 @@
 // perlin.h
 //
-// Version 0.1.3 - 2004-03-04
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -53,6 +53,9 @@ namespace noise
 
     /// Default persistence for the ModulePerlin noise module.
     const double DEFAULT_PERLIN_PERSISTENCE = 0.5;
+
+    /// Default noise quality for the RidgedMulti noise module.
+    const noise::NoiseQuality DEFAULT_PERLIN_QUALITY = QUALITY_STD;
 
     /// Default noise seed for the ModulePerlin noise module.
     const int DEFAULT_PERLIN_SEED = 0;
@@ -193,6 +196,17 @@ namespace noise
           return m_lacunarity;
         }
 
+        /// Returns the quality of the Perlin noise.
+        ///
+        /// @returns The quality of the Perlin noise.
+        ///
+        /// See noise::NoiseQuality for definitions of the various noise
+        /// qualities.
+        noise::NoiseQuality GetNoiseQuality () const
+        {
+          return m_noiseQuality;
+        }
+
         /// Returns the number of octaves used to generate the Perlin noise.
         ///
         /// @returns The number of octaves used to generate the Perlin noise.
@@ -251,6 +265,17 @@ namespace noise
           m_lacunarity = lacunarity;
         }
 
+        /// Sets the quality of the Perlin noise.
+        ///
+        /// @param noiseQuality The quality of the Perlin noise.
+        ///
+        /// See noise::NoiseQuality for definitions of the various noise
+        /// qualities.
+        void SetNoiseQuality (noise::NoiseQuality noiseQuality)
+        {
+          m_noiseQuality = noiseQuality;
+        }
+
         /// Sets the number of octaves used to generate the Perlin noise.
         ///
         /// @param octaveCount The number of octaves used to generate the
@@ -304,6 +329,9 @@ namespace noise
 
         /// Frequency multiplier between successive octaves.
         double m_lacunarity;
+
+        /// Quality of the noise.
+        noise::NoiseQuality m_noiseQuality;
 
         /// Total number of octaves that are used to generate the Perlin
         /// noise.

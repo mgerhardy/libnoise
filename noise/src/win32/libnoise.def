@@ -4,8 +4,6 @@ EXPORTS
   ?LatLonToXYZ@noise@@YAXNNAAN00@Z @ 1
   ?GradientNoise3D@noise@@YANNNNHHHH@Z @ 2
   ?IntValueNoise3D@noise@@YAHHHHH@Z @ 3
-  ?SmoothGradientNoise3D@noise@@YANNNNH@Z @ 4
-  ?SmoothValueNoise3D@noise@@YANNNNH@Z @ 5
   ?ValueNoise3D@noise@@YANHHHH@Z @ 6
   ??0Add@module@noise@@QAE@XZ @ 9
   ?GetValue@Add@module@noise@@UBENNNN@Z @ 10
@@ -100,7 +98,6 @@ EXPORTS
   ?GetFrequency@Turbulence@module@noise@@QBENXZ @ 105
   ?GetSeed@Turbulence@module@noise@@QBEHXZ @ 106
   ?GetValue@Turbulence@module@noise@@UBENNNN@Z @ 107
-  ?SetFrequency@Turbulence@module@noise@@QAEXN@Z @ 108
   ?SetSeed@Turbulence@module@noise@@QAEXH@Z @ 109
   ??1Perlin@module@noise@@QAE@XZ @ 110
   ?GetSourceModuleCount@Turbulence@module@noise@@UBEHXZ @ 115
@@ -145,3 +142,5 @@ EXPORTS
   ??_7Turbulence@module@noise@@6B@ @ 154
   ??_7Voronoi@module@noise@@6B@ @ 155
   ??_7Abs@module@noise@@6B@ @ 156
+  ?SmoothGradientNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 157
+  ?SmoothValueNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 158

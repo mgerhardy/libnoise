@@ -1,6 +1,6 @@
 // turbulence.h
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -48,6 +48,9 @@ namespace noise
     /// Default power for the Turbulence noise module.
     const double DEFAULT_TURBULENCE_POWER = 1.0;
 
+    /// Default roughness for the Turbulence noise module.
+    const int DEFAULT_TURBULENCE_ROUGHNESS = 3;
+
     /// Default noise seed for the Turbulence noise module.
     const int DEFAULT_TURBULENCE_SEED = DEFAULT_PERLIN_SEED;
 
@@ -56,21 +59,26 @@ namespace noise
     ///
     /// @image html moduleturbulence.png
     ///
-    /// <i>Turbulence</i> is the pseudo-random displacement of the input
-    /// point.  This noise module's GetValue() method randomly displaces the
+    /// @a Turbulence is the pseudo-random displacement of the input point.
+    /// This noise module's GetValue() method randomly displaces the
     /// ( @a x, @a y, @a z ) coordinates of the input point before retrieving
     /// the value from the source module at that point.  To control the
-    /// turbulence, an application can modify its <i>frequency</i> and its
-    /// <i>power</i>.
+    /// turbulence, an application can modify its @a frequency, its @a power,
+    /// and its @a roughness.
     ///
-    /// The <i>frequency</i> determines how rapidly the coordinates of the
-    /// input point changes by displacement.  To specify the frequency, call
-    /// the SetFrequency() method.
+    /// The @a frequency of the turbulence determines how rapidly the
+    /// displacement amount changes.  To specify the frequency, call the
+    /// SetFrequency() method.
     ///
-    /// The <i>power</i> determines the scale of the displacement of the input
-    /// point.  The power is a scaling value applied to each of the @a x,
-    /// @a y, and @a z coordinates of the input point.  To specify the power,
-    /// call the SetPower() method.
+    /// The @a power of the turbulence determines the scaling factor that is
+    /// applied to the displacement amount.  To specify the power, call the
+    /// SetPower() method.
+    ///
+    /// The @a roughness determines the roughness of the changes to the
+    /// displacement amount.  Low values smoothly change the displacement
+    /// amount.  High values roughly change the displacement amount, which
+    /// produce more "kinky" changes.  To specify the roughness, call the
+    /// SetRoughness() method.
     ///
     /// Use of this noise module may require some trial and error.  Assuming
     /// you are using a Perlin or Voronoi noise module as the source module,
@@ -116,6 +124,8 @@ namespace noise
         ///    
         /// The default power is set to ::DEFAULT_TURBULENCE_POWER.
         ///
+        /// The default roughness is set to ::DEFAULT_TURBULENCE_ROUGHNESS.
+        ///
         /// The default seed value is set to ::DEFAULT_TURBULENCE_SEED.
         Turbulence ();
 
@@ -123,19 +133,32 @@ namespace noise
         ///
         /// @returns The frequency of the turbulence.
         ///
-        /// The frequency determines how rapidly the coordinates of the input
-        /// point changes by displacement.
+        /// The frequency of the turbulence determines how rapidly the
+        /// displacement amount changes.
         double GetFrequency () const;
 
         /// Returns the power of the turbulence.
         ///
         /// @returns The power of the turbulence.
         ///
-        /// The power determines the scale of the displacement of the input
-        /// point.
+        /// The power of the turbulence determines the scaling factor that is
+        /// applied to the displacement amount.
         double GetPower () const
         {
           return m_power;
+        }
+
+        /// Returns the roughness of the turbulence.
+        ///
+        /// @returns The roughness of the turbulence.
+        ///
+        /// The @a roughness determines the roughness of the changes to the
+        /// displacement amount.  Low values smoothly change the displacement
+        /// amount.  High values roughly change the displacement amount, which
+        /// produce more "kinky" changes.
+        int GetRoughnessCount () const
+        {
+          return m_xDistortModule.GetOctaveCount ();
         }
 
         /// Returns the seed value of the internal noise modules used to
@@ -155,19 +178,45 @@ namespace noise
         ///
         /// @param frequency The frequency of the turbulence.
         ///
-        /// The frequency determines how rapidly the coordinates of the input
-        /// point changes by displacement.
-        void SetFrequency (double frequency);
+        /// The frequency of the turbulence determines how rapidly the
+        /// displacement amount changes.
+        void SetFrequency (double frequency)
+        {
+          // Set the frequency of each ModulePerlin noise modules.
+          m_xDistortModule.SetFrequency (frequency);
+          m_yDistortModule.SetFrequency (frequency);
+          m_zDistortModule.SetFrequency (frequency);
+        }
 
         /// Sets the power of the turbulence.
         ///
         /// @param power The power of the turbulence.
         ///
-        /// The power determines the scale of the displacement of the input
-        /// point.
+        /// The power of the turbulence determines the scaling factor that is
+        /// applied to the displacement amount.
         void SetPower (double power)
         {
           m_power = power;
+        }
+
+        /// Sets the roughness of the turbulence.
+        ///
+        /// @param roughness The roughness of the turbulence.
+        ///
+        /// The @a roughness determines the roughness of the changes to the
+        /// displacement amount.  Low values smoothly change the displacement
+        /// amount.  High values roughly change the displacement amount, which
+        /// produce more "kinky" changes.
+        ///
+        /// Internally, there are three Perlin modules that displace the input
+        /// point; one for the @a x, one for the @a y, and one for the @a z
+        /// coordinate.  The roughness value is equal to the number of octaves
+        /// used by the Perlin modules.
+        void SetRoughness (int roughness)
+        {
+          m_xDistortModule.SetOctaveCount (roughness);
+          m_yDistortModule.SetOctaveCount (roughness);
+          m_zDistortModule.SetOctaveCount (roughness);
         }
 
         /// Sets the seed value of the internal noise modules used to displace

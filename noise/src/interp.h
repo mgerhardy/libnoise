@@ -1,6 +1,6 @@
 // interp.h
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -70,19 +70,40 @@ namespace noise
     return ((1.0 - a) * n0) + (a * n1);
   }
 
-  /// Maps a value onto an S-curve.
+  /// Maps a value onto a cubic S-curve.
   ///
   /// @param a The value to map onto the S-curve.
   ///
   /// @returns The mapped value.
   ///
-  /// The S-curve has the following formula:
-  /// <i>a' = 3a<sup>2</sup> - 2a<sup>3</sup></i>
-  ///
   /// @a a should lie between @b 0.0 to @b 1.0, inclusive.
-  inline double SCurve (double a)
+  ///
+  /// The derivitive of a cubic S-curve is zero at @a a = @b 0.0 and @a a =
+  /// @b 1.0
+  inline double SCurve3 (double a)
   {
     return (a * a * (3.0 - 2.0 * a));
+  }
+
+  /// Maps a value onto a quintic S-curve.
+  ///
+  /// @param a The value to map onto the S-curve.
+  ///
+  /// @returns The mapped value.
+  ///
+  /// @a a should lie between @b 0.0 to @b 1.0, inclusive.
+  ///
+  /// The first derivitive of a quintic S-curve is zero at @a a = @b 0.0 and
+  /// @a a = @b 1.0
+  ///
+  /// The second derivitive of a quintic S-curve is zero at @a a = @b 0.0 and
+  /// @a a = @b 1.0
+  inline double SCurve5 (double a)
+  {
+    double a3 = a * a * a;
+    double a4 = a3 * a;
+    double a5 = a4 * a;
+    return (6.0 * a5) - (15.0 * a4) + (10.0 * a3);
   }
 
   // @}

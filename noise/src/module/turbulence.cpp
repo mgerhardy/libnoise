@@ -1,6 +1,6 @@
 // turbulence.cpp
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -32,6 +32,7 @@ Turbulence::Turbulence ():
 {
   SetSeed (DEFAULT_TURBULENCE_SEED);
   SetFrequency (DEFAULT_TURBULENCE_FREQUENCY);
+  SetRoughness (DEFAULT_TURBULENCE_ROUGHNESS); // jas20040710 added
 }
 
 double Turbulence::GetFrequency () const
@@ -59,14 +60,6 @@ double Turbulence::GetValue (double x, double y, double z) const
   // Retrieve the value at the offsetted input coordinates instead of the
   // original input coordinates
   return m_pSourceModule[0]->GetValue (xDistort, yDistort, zDistort);
-}
-
-void Turbulence::SetFrequency (double frequency)
-{
-  // Set the frequency of each ModulePerlin noise modules.
-  m_xDistortModule.SetFrequency (frequency);
-  m_yDistortModule.SetFrequency (frequency);
-  m_zDistortModule.SetFrequency (frequency);
 }
 
 void Turbulence::SetSeed (int seed)

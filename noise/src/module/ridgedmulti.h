@@ -1,6 +1,6 @@
 // ridgedmulti.h
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -50,6 +50,9 @@ namespace noise
 
     /// Default number of octaves for the RidgedMulti noise module.
     const int DEFAULT_RIDGED_OCTAVE_COUNT = 6;
+
+    /// Default noise quality for the RidgedMulti noise module.
+    const noise::NoiseQuality DEFAULT_RIDGED_QUALITY = QUALITY_STD;
 
     /// Default noise seed for the RidgedMulti noise module.
     const int DEFAULT_RIDGED_SEED = 0;
@@ -154,6 +157,17 @@ namespace noise
           return m_lacunarity;
         }
 
+        /// Returns the quality of the ridged multifractal noise function.
+        ///
+        /// @returns The quality of the ridged multifractal noise function.
+        ///
+        /// See noise::NoiseQuality for definitions of the various noise
+        /// qualities.
+        noise::NoiseQuality GetNoiseQuality () const
+        {
+          return m_noiseQuality;
+        }
+
         /// Returns the number of octaves used to generate the ridged
         /// multifractal noise.
         ///
@@ -205,6 +219,18 @@ namespace noise
           m_lacunarity = lacunarity;
         }
 
+        /// Sets the quality of the ridged multifractal noise function.
+        ///
+        /// @param noiseQuality The quality of the ridged multifractal noise
+        /// function.
+        ///
+        /// See noise::NoiseQuality for definitions of the various noise
+        /// qualities.
+        void SetNoiseQuality (noise::NoiseQuality noiseQuality)
+        {
+          m_noiseQuality = noiseQuality;
+        }
+
         /// Sets the number of octaves used to generate the ridged
         /// mutlifractal noise.
         ///
@@ -246,6 +272,9 @@ namespace noise
 
         /// Frequency multiplier between successive octaves.
         double m_lacunarity;
+
+        /// Quality of the noise.
+        noise::NoiseQuality m_noiseQuality;
 
         /// Total number of octaves that are used to generate the ridged
         /// multifractal noise.

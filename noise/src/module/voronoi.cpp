@@ -1,6 +1,6 @@
 // voronoi.cpp
 //
-// Version 0.1.3 - 2004-06-03
+// Version 0.1.4 - 2004-07-10
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -23,7 +23,6 @@
 //
 
 #include "../mathconsts.h"
-#include "../noisegen.h"
 #include "voronoi.h"
 
 using namespace noise::module;

@@ -28,8 +28,9 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../exception.h"
 #include "../basictypes.h"
+#include "../exception.h"
+#include "../noisegen.h"
 
 namespace noise
 {
