@@ -51,9 +51,30 @@ double Turbulence::GetValue (double x, double y, double z) const
 
   // Get the values from the three ModulePerlin noise modules and add each
   // value to each coordinate of the input point.
-  double xDistort = x + (m_xDistortModule.GetValue (x, y, z) * m_power);
-  double yDistort = y + (m_yDistortModule.GetValue (x, y, z) * m_power);
-  double zDistort = z + (m_zDistortModule.GetValue (x, y, z) * m_power);
+  // jas20040821 modified
+  // Added some offsets to the coordinates of the input points.  This prevents
+  // the distortion modules from returning zero if the (x, y, z) coordinates,
+  // when multiplied by the frequency, are near an integer boundary.  This is
+  // due to a property of gradient noise, which returns zero at integer
+  // boundaries.
+  double x0, y0, z0;
+  double x1, y1, z1;
+  double x2, y2, z2;
+  x0 = x + (12414.0 / 65536.0);
+  y0 = y + (65124.0 / 65536.0);
+  z0 = z + (31337.0 / 65536.0);
+  x1 = x + (26519.0 / 65536.0);
+  y1 = y + (18128.0 / 65536.0);
+  z1 = z + (60493.0 / 65536.0);
+  x2 = x + (53820.0 / 65536.0);
+  y2 = y + (11213.0 / 65536.0);
+  z2 = z + (44845.0 / 65536.0);
+  double xDistort = x + (m_xDistortModule.GetValue (x0, y0, z0)
+    * m_power);
+  double yDistort = y + (m_yDistortModule.GetValue (x1, y1, z1)
+    * m_power);
+  double zDistort = z + (m_zDistortModule.GetValue (x2, y2, z2)
+    * m_power);
 
   // Retrieve the value at the offsetted input coordinates instead of the
   // original input coordinates
