@@ -43,10 +43,10 @@ namespace noise
     {
 
       /// The input value.
-      double m_inputValue;
+      double inputValue;
 
       /// The output value that is mapped from the input value.
-      double m_outputValue;
+      double outputValue;
 
     };
 

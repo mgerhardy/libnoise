@@ -60,11 +60,11 @@ int Curve::FindInsertionPos (double inputValue)
 {
   int insertionPos;
   for (insertionPos = 0; insertionPos < m_controlPointCount; insertionPos++) {
-    if (inputValue < m_pControlPoints[insertionPos].m_inputValue) {
+    if (inputValue < m_pControlPoints[insertionPos].inputValue) {
       // We found the array index in which to insert the new control point.
       // Exit now.
       break;
-    } else if (inputValue == m_pControlPoints[insertionPos].m_inputValue) {
+    } else if (inputValue == m_pControlPoints[insertionPos].inputValue) {
       // Each control point is required to contain a unique input value, so
       // throw an exception.
       throw EX_INVALID_PARAM;
@@ -85,7 +85,7 @@ double Curve::GetValue (double x, double y, double z) const
   // larger than the value from the source module.
   int indexPos;
   for (indexPos = 0; indexPos < m_controlPointCount; indexPos++) {
-    if (sourceModuleValue < m_pControlPoints[indexPos].m_inputValue) {
+    if (sourceModuleValue < m_pControlPoints[indexPos].inputValue) {
       break;
     }
   }
@@ -102,20 +102,20 @@ double Curve::GetValue (double x, double y, double z) const
   // smallest input value of the control point array), get the corresponding
   // output value of the nearest control point and exit now.
   if (index1 == index2) {
-    return m_pControlPoints[index1].m_outputValue;
+    return m_pControlPoints[index1].outputValue;
   }
   
   // Compute the alpha value used for cubic interpolation.
-  double input0 = m_pControlPoints[index1].m_inputValue;
-  double input1 = m_pControlPoints[index2].m_inputValue;
+  double input0 = m_pControlPoints[index1].inputValue;
+  double input1 = m_pControlPoints[index2].inputValue;
   double alpha = (sourceModuleValue - input0) / (input1 - input0);
 
   // Now perform the cubic interpolation given the alpha value.
   return CubicInterp (
-    m_pControlPoints[index0].m_outputValue,
-    m_pControlPoints[index1].m_outputValue,
-    m_pControlPoints[index2].m_outputValue,
-    m_pControlPoints[index3].m_outputValue,
+    m_pControlPoints[index0].outputValue,
+    m_pControlPoints[index1].outputValue,
+    m_pControlPoints[index2].outputValue,
+    m_pControlPoints[index3].outputValue,
     alpha);
 }
 
@@ -140,6 +140,6 @@ void Curve::InsertAtPos (int insertionPos, double inputValue,
 
   // Now that we've made room for the new control point within the array, add
   // the new control point.
-  m_pControlPoints[insertionPos].m_inputValue  = inputValue ;
-  m_pControlPoints[insertionPos].m_outputValue = outputValue;
+  m_pControlPoints[insertionPos].inputValue  = inputValue ;
+  m_pControlPoints[insertionPos].outputValue = outputValue;
 }
