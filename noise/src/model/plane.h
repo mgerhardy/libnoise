@@ -53,6 +53,9 @@ namespace noise
         /// Constructor.
         Plane ();
 
+        /// Constructor, taking the module to draw noise from.
+        Plane (const module::Module& module);
+
         /// Returns the noise module used to generate the values on the plane
         ///
         /// @returns A reference to the noise module.

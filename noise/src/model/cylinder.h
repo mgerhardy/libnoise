@@ -62,6 +62,9 @@ namespace noise
         /// Constructor.
         Cylinder ();
 
+        /// Constructor, taking the module to draw noise from.
+        Cylinder (const module::Module& module);
+
         /// Returns the noise module used to generate the values on the
         /// surface of the cylinder.
         ///

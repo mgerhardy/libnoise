@@ -23,10 +23,16 @@
 #include "../latlon.h"
 #include "sphere.h"
 
+using namespace noise;
 using namespace noise::model;
 
 Sphere::Sphere ():
   m_pModule (NULL)
+{
+}
+
+Sphere::Sphere (const module::Module& module):
+  m_pModule (&module)
 {
 }
 

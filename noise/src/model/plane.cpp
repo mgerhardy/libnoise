@@ -21,10 +21,16 @@
 
 #include "plane.h"
 
+using namespace noise;
 using namespace noise::model;
 
 Plane::Plane ():
   m_pModule (NULL)
+{
+}
+
+Plane::Plane (const module::Module& module) :
+  m_pModule( &module)
 {
 }
 

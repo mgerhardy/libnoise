@@ -23,9 +23,15 @@
 #include "../mathconsts.h"
 #include "cylinder.h"
 
+using namespace noise;
 using namespace noise::model;
 
 Cylinder::Cylinder (): m_pModule (NULL)
+{
+}
+
+Cylinder::Cylinder (const module::Module& module):
+  m_pModule (&module)
 {
 }
 

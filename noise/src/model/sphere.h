@@ -62,6 +62,9 @@ namespace noise
         /// Constructor.
         Sphere ();
 
+        /// Constructor, taking the module to draw noise from.
+        Sphere (const module::Module& module);
+
         /// Returns the noise module used to generate the values on the
         /// surface of the sphere.
         ///

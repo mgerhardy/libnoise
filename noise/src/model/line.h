@@ -56,6 +56,9 @@ namespace noise
         /// Constructor.
         Line ();
 
+        /// Constructor, taking the module to draw noise from.
+        Line (const module::Module& module);
+
         /// Returns a flag indicating whether the value is to be attenuated
         /// (moved toward @b 0 ) as the ends of the line segment are
         /// approached.
