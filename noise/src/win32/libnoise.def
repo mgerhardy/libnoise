@@ -147,3 +147,4 @@ EXPORTS
   ?GetValue@Billow@module@noise@@UBENNNN@Z @ 160
   ?GetSourceModuleCount@Billow@module@noise@@UBEHXZ @ 161
   ??_7Billow@module@noise@@6B@ @ 163
+  ?CalcSpectralWeights@RidgedMulti@module@noise@@IAEXXZ @ 164

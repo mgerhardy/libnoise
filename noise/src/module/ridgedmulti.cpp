@@ -32,23 +32,48 @@ RidgedMulti::RidgedMulti ():
   m_noiseQuality (DEFAULT_RIDGED_QUALITY     ),
   m_seed         (DEFAULT_RIDGED_SEED)
 {
+  CalcSpectralWeights ();
+}
+
+// jas20040801 added
+// Calculates the spectral weights for each octave.
+void RidgedMulti::CalcSpectralWeights ()
+{
+  // This exponent parameter should be user-defined; it may be exposed in a
+  // subsequent version of libnoise.
+  double h = 1.0;
+
+  double frequency = 1.0;
+  for (int i = 0; i < RIDGED_MAX_OCTAVE; i++) {
+    // Compute weight for each frequency.
+    m_pSpectralWeights[i] = pow (frequency, -h);
+    frequency *= m_lacunarity;
+  }
 }
 
 // Multifractal code originally written by F. Kenton "Doc Mojo" Musgrave,
 // 1998.  Modified by jas for use with libnoise.
+// jas20040801 modified
+// This is modified to use the offset and gain parameters from the original
+// source code.  These parameters may be exposed in a later version of
+// libnoise.
 double RidgedMulti::GetValue (double x, double y, double z) const
 {
   x *= m_frequency;
   y *= m_frequency;
   z *= m_frequency;
-  double value = 0.0;
-  double weight = 1.0;
-  const double offset = 0.75; // Seems to produce the best results.
 
-  // jas20040710 modified
-  // This function was erroneously generating one less octave.
+  double signal = 0.0;
+  double value  = 0.0;
+  double weight = 1.0;
+
+  // These parameters should be user-defined; they may be exposed in a
+  // subsequent version of libnoise.
+  double offset = 1.0;
+  double gain = 2.0;
+
   for (int curOctave = 0; curOctave < m_octaveCount; curOctave++) {
-    
+
     // Make sure that these floating-point values have the same range as a 32-
     // bit integer so that we can pass them to the noise functions.
     double nx, ny, nz;
@@ -56,32 +81,39 @@ double RidgedMulti::GetValue (double x, double y, double z) const
     ny = MakeInt32Range (y);
     nz = MakeInt32Range (z);
 
-    // Get the noise value from the (x, y, z) position and add it to the final
-    // result.
-    // jas20040710 modified
-    // Added noise quality.
+    // Get the noise value.
     int seed = (m_seed + curOctave) & 0x7fffffff;
-    double signal = SmoothGradientNoise3D (nx, ny, nz, seed, m_noiseQuality);
+    signal = SmoothGradientNoise3D (nx, ny, nz, seed, m_noiseQuality);
+
+    // Make the ridges.
     signal = fabs (signal);
     signal = offset - signal;
-    signal *= weight;
-    value += signal;
 
-    // Prepare the next octave.
-    x *= m_lacunarity;
-    y *= m_lacunarity;
-    z *= m_lacunarity;
-    weight = signal;
+    // Square the signal to increase the sharpness of the ridges.
+    signal *= signal;
+
+    // The weighting from the previous octave is applied to the signal.
+    // Larger values have higher weights, producing sharp points along the
+    // ridges.
+    signal *= weight;
+
+    // Weight successive contributions by the previous signal.
+    weight = signal * gain;
     if (weight > 1.0) {
       weight = 1.0;
     }
     if (weight < 0.0) {
       weight = 0.0;
     }
+
+    // Add the signal to the output value.
+    value += (signal * m_pSpectralWeights[curOctave]);
+
+    // Go to the next octave.
+    x *= m_lacunarity;
+    y *= m_lacunarity;
+    z *= m_lacunarity;
   }
 
-  // A value is usually in the 0.0 to 2.0 range.  Apply a bias to get the
-  // value to the -1.0 to +1.0 range like standard Perlin noise.
-  value -= 1.0;
-  return value;
+  return (value * 1.25) - 1.0;
 }
