@@ -1,0 +1,12 @@
+# Paths containing source or headers files
+VPATH+=../src/:../src/model/:../src/module/
+
+# source filenames, one directory per line in the same order as VPATH
+SOURCES=latlon.c noisegen.c \
+        cylinder.c line.c plane.c sphere.c \
+        abs.c add.c blend.c cache.c checkerboard.c clamp.c const.c curve.c cylinders.c displace.c exponent.c invert.c max.c min.c modulebase.c multiply.c perlin.c ridgedmulti.c rotatepoint.c scalebias.c scalepoint.c select.c spheres.c terrace.c turbulence.c voronoi.c
+
+# header filenames, ditto
+HEADERS=basictypes.h exception.h interp.h latlon.h mathconsts.h misc.h noisegen.h noise.h vectortable.h \
+        cylinder.h model.h sphere.h line.h plane.h \
+        abs.h add.h blend.h cache.h checkerboard.h clamp.h const.h curve.h cylinders.h displace.h exponent.h invert.h max.h min.h module.h modulebase.h multiply.h perlin.h ridgedmulti.h rotatepoint.h scalebias.h scalepoint.h select.h spheres.h terrace.h turbulence.h voronoi.h

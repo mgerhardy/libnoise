@@ -1,0 +1,157 @@
+h1 {
+ text-align: center;
+ font-family: verdana,helvetica,sans-serif;
+ background: #99cccc;
+ border-width: thin;
+ border-style: solid none none none;
+ border-color: #000000;
+ padding-bottom: 6pt;
+ margin-top: 18pt;
+}
+
+caption {
+ font-weight: bold
+}
+
+a.qindex {
+}
+
+a.qindexRef {
+}
+
+a.el {
+ text-decoration: none;
+ font-weight: bold
+}
+
+a.elRef {
+ font-weight: bold
+}
+
+a.code {
+ text-decoration: none;
+ font-weight: normal;
+ color: #4444ee
+}
+
+a.codeRef {
+ font-weight: normal;
+ color: #4444ee
+}
+
+a:hover {
+ text-decoration: none;
+ background-color: #ddeeee
+}
+
+dl.el {
+ margin-left: -1cm
+}
+
+div.fragment {
+ width: 100%;
+ border: none;
+ background-color: #ddeeee;
+}
+
+div.ah {
+ background-color: black;
+ font-weight: bold;
+ color: #ffffff;
+ margin-bottom: 3px;
+ margin-top: 3px
+}
+
+div.groupHeader {
+ margin-left: 16px;
+ margin-top: 12px;
+ margin-bottom: 6px;
+ font-weight: bold
+}
+
+div.groupText {
+ margin-left: 16px;
+ font-style: italic;
+}
+
+body {
+ font-family: verdana,helvetica,sans-serif;
+ color: #000000;
+ background: #ffffff;
+}
+
+td {
+ font-family: verdana,helvetica,sans-serif;
+}
+
+td.indexkey {
+ background-color: #ddeeee;
+ font-weight: bold;
+ padding-right: 10px;
+ padding-top: 2px;
+ padding-left: 10px;
+ padding-bottom: 2px;
+ margin-left: 0px;
+ margin-right: 0px;
+ margin-top: 2px;
+ margin-bottom: 2px
+}
+
+td.indexvalue {
+ background-color: #ddeeee;
+ font-style: italic;
+ padding-right: 10px;
+ padding-top: 2px;
+ padding-left: 10px;
+ padding-bottom: 2px;
+ margin-left: 0px;
+ margin-right: 0px;
+ margin-top: 2px;
+ margin-bottom: 2px
+}
+
+td.md {
+ background-color: #ddeeee;
+ font-weight: bold;
+}
+
+td.mdname1 {
+ background-color: #ddeeee;
+ font-weight: bold;
+ color: #602020;
+}
+
+td.mdname {
+ background-color: #ddeeee;
+ font-weight: bold;
+ color: #602020;
+ width: 600px;
+}
+
+span.keyword {
+ color: #008000
+}
+
+span.keywordtype {
+ color: #604020
+}
+
+span.keywordflow {
+ color: #e08000
+}
+
+span.comment {
+ color: #800000
+}
+
+span.preprocessor {
+ color: #806020
+}
+
+span.stringliteral {
+ color: #002080
+}
+
+span.charliteral {
+ color: #008080
+}
