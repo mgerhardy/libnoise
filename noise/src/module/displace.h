@@ -88,8 +88,8 @@ namespace noise
       /// @pre This displacement module has been added to this noise module
       /// via a call to SetSourceModule() or SetXDisplaceModule().
       ///
-      /// @throw noise::Exception
-      /// - @a NO_MODULE: See the preconditions for more information.
+      /// @throw noise::ExceptionNoModule See the preconditions for more
+      /// information.
       ///
       /// The GetValue() method displaces the input value by adding the output
       /// value from this displacement module to the @a x coordinate of the
@@ -98,7 +98,7 @@ namespace noise
       const Module& GetXDisplaceModule () const
       {
         if (m_pSourceModule == NULL || m_pSourceModule[1] == NULL) {
-          throw NO_MODULE;
+          throw noise::ExceptionNoModule ();
         }
         return *(m_pSourceModule[1]);
       }
@@ -110,8 +110,8 @@ namespace noise
       /// @pre This displacement module has been added to this noise module
       /// via a call to SetSourceModule() or SetYDisplaceModule().
       ///
-      /// @throw noise::Exception
-      /// - @a NO_MODULE: See the preconditions for more information.
+      /// @throw noise::ExceptionNoModule See the preconditions for more
+      /// information.
       ///
       /// The GetValue() method displaces the input value by adding the output
       /// value from this displacement module to the @a y coordinate of the
@@ -120,7 +120,7 @@ namespace noise
       const Module& GetYDisplaceModule () const
       {
         if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
-          throw NO_MODULE;
+          throw noise::ExceptionNoModule ();
         }
         return *(m_pSourceModule[2]);
       }
@@ -132,8 +132,8 @@ namespace noise
       /// @pre This displacement module has been added to this noise module
       /// via a call to SetSourceModule() or SetZDisplaceModule().
       ///
-      /// @throw noise::Exception
-      /// - @a NO_MODULE: See the preconditions for more information.
+      /// @throw noise::ExceptionNoModule See the preconditions for more
+      /// information.
       ///
       /// The GetValue() method displaces the input value by adding the output
       /// value from this displacement module to the @a z coordinate of the
@@ -142,7 +142,7 @@ namespace noise
       const Module& GetZDisplaceModule () const
       {
         if (m_pSourceModule == NULL || m_pSourceModule[3] == NULL) {
-          throw NO_MODULE;
+          throw noise::ExceptionNoModule ();
         }
         return *(m_pSourceModule[3]);
       }

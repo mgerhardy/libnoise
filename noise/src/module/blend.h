@@ -82,8 +82,8 @@ namespace noise
         /// @pre A control module has been added to this noise module via a
         /// call to SetSourceModule() or SetControlModule().
         ///
-        /// @throw noise::Exception
-        /// - @a NO_MODULE: See the preconditions for more information.
+        /// @throw noise::ExceptionNoModule See the preconditions for more
+        /// information.
         ///
         /// The control module determines the weight of the blending
         /// operation.  Negative values weigh the blend towards the output
@@ -93,7 +93,7 @@ namespace noise
         const Module& GetControlModule () const
         {
           if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
-            throw NO_MODULE;
+            throw noise::ExceptionNoModule ();
           }
           return *(m_pSourceModule[2]);
         }

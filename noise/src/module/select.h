@@ -105,8 +105,8 @@ namespace noise
         /// @pre A control module has been added to this noise module via a
         /// call to SetSourceModule() or SetControlModule().
         ///
-        /// @throw noise::Exception
-        /// - @a NO_MODULE: See the preconditions for more information.
+        /// @throw noise::ExceptionNoModule See the preconditions for more
+        /// information.
         ///
         /// The control module determines the output value to select.  If the
         /// output value from the control module is within a range of values
@@ -117,7 +117,7 @@ namespace noise
         const Module& GetControlModule () const
         {
           if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
-            throw NO_MODULE;
+            throw noise::ExceptionNoModule ();
           }
           return *(m_pSourceModule[2]);
         }
@@ -178,9 +178,8 @@ namespace noise
         /// @pre The lower bound must be less than or equal to the upper
         /// bound.
         ///
-        /// @throw noise::Exception
-        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
-        ///   preconditions for more information.
+        /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
         ///
         /// If the output value from the control module is within the
         /// selection range, the GetValue() method outputs the value from the
@@ -191,12 +190,6 @@ namespace noise
         /// Sets the control module.
         ///
         /// @param controlModule The control module.
-        ///
-        /// @pre A control module has been added to this noise module via a
-        /// call to SetSourceModule() or SetControlModule().
-        ///
-        /// @throw noise::Exception
-        /// - @a NO_MODULE: See the preconditions for more information.
         ///
         /// The control module determines the output value to select.  If the
         /// output value from the control module is within a range of values

@@ -243,8 +243,8 @@ namespace noise
         /// @pre A source module with the specified index value has been added
         /// to this noise module via a call to SetSourceModule().
         ///
-        /// @throw noise::Exception
-        /// - @a NO_MODULE: See the preconditions for more information.
+        /// @throw noise::ExceptionNoModule See the preconditions for more
+        /// information.
         ///
         /// Each noise module requires the attachment of a certain number of
         /// source modules before an application can call the GetValue()
@@ -254,7 +254,7 @@ namespace noise
           assert (m_pSourceModule != NULL);
           if (index >= GetSourceModuleCount () || index < 0
             || m_pSourceModule[index] != NULL) {
-            throw NO_MODULE;
+            throw noise::ExceptionNoModule ();
           }
           return *(m_pSourceModule[index]);
         }
@@ -277,6 +277,14 @@ namespace noise
         ///
         /// @pre All source modules required by this noise module have been
         /// passed to the SetSourceModule() method.
+        ///
+        /// Before an application can call this method, it must first connect
+        /// all required source modules via the SetSourceModule() method.  If
+        /// these source modules are not connected to this noise module, this
+        /// method raises a debug assertion.
+        ///
+        /// To determine the number of source modules required by this noise
+        /// module, call the GetSourceModuleCount() method.
         virtual double GetValue (double x, double y, double z) const = 0;
 
         /// Connects a source module to this noise module.
@@ -287,9 +295,8 @@ namespace noise
         /// @pre The index value ranges from 0 to one less than the number of
         /// source modules required by this noise module.
         ///
-        /// @throw noise::Exception
-        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
-        ///   preconditions for more information.
+        /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
         ///
         /// A noise module mathematically combines the output values from the
         /// source modules to generate the value returned by GetValue().
@@ -314,7 +321,7 @@ namespace noise
         {
           assert (m_pSourceModule != NULL);
           if (index >= GetSourceModuleCount () || index < 0) {
-            throw INVALID_PARAM;
+            throw noise::ExceptionInvalidParam ();
           }
           m_pSourceModule[index] = &sourceModule;
         }

@@ -65,7 +65,7 @@ int Curve::FindInsertionPos (double inputValue)
     } else if (inputValue == m_pControlPoints[insertionPos].inputValue) {
       // Each control point is required to contain a unique input value, so
       // throw an exception.
-      throw INVALID_PARAM;
+      throw noise::ExceptionInvalidParam ();
     }
   }
   return insertionPos;

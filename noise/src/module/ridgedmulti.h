@@ -247,9 +247,8 @@ namespace noise
         /// @pre The number of octaves ranges from 1 to
         /// noise::module::RIDGED_MAX_OCTAVE.
         ///
-        /// @throw noise::Exception
-        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
-        ///   preconditions for more information.
+        /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
         ///
         /// The number of octaves controls the amount of detail in the
         /// ridged-multifractal noise.
@@ -259,7 +258,7 @@ namespace noise
         void SetOctaveCount (int octaveCount)
         {
           if (octaveCount > RIDGED_MAX_OCTAVE) {
-            throw INVALID_PARAM;
+            throw noise::ExceptionInvalidParam ();
           }
           m_octaveCount = octaveCount;
         }

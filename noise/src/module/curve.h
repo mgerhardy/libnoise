@@ -96,9 +96,8 @@ namespace noise
         ///
         /// @pre No two control points have the same input value.
         ///
-        /// @throw noise::Exception
-        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
-        ///   preconditions for more information.
+        /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
         ///
         /// It does not matter which order these points are added.
         void AddControlPoint (double inputValue, double outputValue);
@@ -149,9 +148,8 @@ namespace noise
         ///
         /// @pre No two control points have the same input value.
         ///
-        /// @throw noise::Exception
-        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
-        ///   preconditions for more information.
+        /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
         ///
         /// By inserting the control point at the returned array index, this
         /// class ensures that the control point array is sorted by input

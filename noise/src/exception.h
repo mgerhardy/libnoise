@@ -29,22 +29,42 @@ namespace noise
   /// @addtogroup libnoise
   /// @{
 
-  /// Defines the exceptions that libnoise can raise.
-  enum Exception
+  /// Abstract base class for libnoise exceptions
+  class Exception
   {
+  };
 
-    /// Unknown exception.
-    UNKNOWN = 0,
+  /// Invalid parameter exception
+  ///
+  /// An invalid parameter was passed to a libnoise function or method.
+  class ExceptionInvalidParam: public Exception
+  {
+  };
 
-    /// An invalid parameter was specified.
-    INVALID_PARAM = 1,
+  /// No module exception
+  ///
+  /// Could not retrieve a source module from a noise module.
+  ///
+  /// @note If one or more required source modules were not connected to a
+  /// specific noise module, and its GetValue() method was called, that
+  /// method will raise a debug assertion instead of this exception.  This
+  /// is done for performance reasons.
+  class ExceptionNoModule: public Exception
+  {
+  };
 
-    /// No noise module was specified.
-    NO_MODULE = 2,
+  /// Out of memory exception
+  ///
+  /// There was not enough memory to perform an action.
+  class ExceptionOutOfMemory: public Exception
+  {
+  };
 
-    /// Out of memory.
-    OUT_OF_MEMORY = 3
-
+  /// Unknown exception
+  ///
+  /// libnoise raised an unknown exception.
+  class ExceptionUnknown: public Exception
+  {
   };
 
   /// @}

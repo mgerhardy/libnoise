@@ -87,9 +87,8 @@ namespace noise
 	      ///
 	      /// @pre No two control points have the same value.
 	      ///
-	      /// @throw noise::Exception
-	      /// - @a INVALID_PARAM: An invalid parameter was specified; see
-        ///   the preconditions for more information.
+	      /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
 	      ///
 	      /// Two or more control points define the terrace-forming curve.  The
         /// start of this curve has a slope of zero; its slope then smoothly
@@ -173,9 +172,8 @@ namespace noise
 	      /// @post The previous control points on the terrace-forming curve are
         /// deleted.
 	      ///
-	      /// @throw noise::Exception
-	      /// - @a INVALID_PARAM: An invalid parameter was specified; see the
-	      ///   preconditions for more information.
+	      /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
 	      ///
 	      /// Two or more control points define the terrace-forming curve.  The
         /// start of this curve has a slope of zero; its slope then smoothly
@@ -193,9 +191,8 @@ namespace noise
 	      ///
 	      /// @pre No two control points have the same value.
 	      ///
-	      /// @throw noise::Exception
-	      /// - @a INVALID_PARAM: An invalid parameter was specified; see the
-	      ///   preconditions for more information.
+	      /// @throw noise::ExceptionInvalidParam An invalid parameter was
+        /// specified; see the preconditions for more information.
 	      ///
 	      /// By inserting the control point at the returned array index, this
         /// class ensures that the control point array is sorted by value.
