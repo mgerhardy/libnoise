@@ -232,8 +232,8 @@ namespace noise
         /// @pre A source module with the specified index value has been added
         /// to this module via a call to SetSourceModule().
         ///
-        /// @throw NoiseEx
-        /// - @a EX_NO_MODULE: See the preconditions for more information.
+        /// @throw noise::Exception
+        /// - @a NO_MODULE: See the preconditions for more information.
         ///
         /// Each noise module requires the attachment of a certain number of
         /// source modules before an application can call the GetValue()
@@ -243,7 +243,7 @@ namespace noise
           assert (m_pSourceModule != NULL);
           if (index >= GetSourceModuleCount () || index < 0
             || m_pSourceModule[index] != NULL) {
-            throw EX_NO_MODULE;
+            throw NO_MODULE;
           }
           return *(m_pSourceModule[index]);
         }
@@ -275,8 +275,8 @@ namespace noise
         /// @pre The index value is between @b 0 and one less than the number
         /// of source modules required by this noise module, inclusive.
         ///
-        /// @throw NoiseEx
-        /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+        /// @throw noise::Exception
+        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
         ///   preconditions for more information.
         ///
         /// A noise module mathematically combines the values from the source
@@ -301,7 +301,7 @@ namespace noise
         {
           assert (m_pSourceModule != NULL);
           if (index >= GetSourceModuleCount () || index < 0) {
-            throw EX_INVALID_PARAM;
+            throw INVALID_PARAM;
           }
           m_pSourceModule[index] = &sourceModule;
         }

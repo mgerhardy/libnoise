@@ -53,13 +53,13 @@ namespace noise
     /// - Source module @b 1 (lower left in the diagram) outputs one of the
     ///   values to blend.
     /// - Source module @b 2 (bottom of the diagram) is known as the
-    ///   <i>blender module</i>.  This module determines the weight of the
+    ///   <i>control module</i>.  This module determines the weight of the
     ///   blending operation.  Negative values weigh the blend towards the
     ///   value from the source module with an index value of @b 0.  Positive
     ///   values weigh the blend towards the value from the source module with
     ///   an index value of @b 1.
     ///
-    /// An application can pass the blender module to the SetBlenderModule()
+    /// An application can pass the control module to the SetControlModule()
     /// method instead of the SetSourceModule() method.  This may make the
     /// application code easier to read.
     ///
@@ -75,25 +75,25 @@ namespace noise
         /// Constructor.
         Blend ();
 
-        /// Returns the blender module.
+        /// Returns the control module.
         ///
-        /// @returns A reference to the blender module.
+        /// @returns A reference to the control module.
         ///
-        /// @pre A blender module has been added to this module via a call to
-        /// SetSourceModule() or SetBlenderModule().
+        /// @pre A control module has been added to this module via a call to
+        /// SetSourceModule() or SetControlModule().
         ///
-        /// @throw NoiseEx
-        /// - @a EX_NO_MODULE: See the preconditions for more information.
+        /// @throw noise::Exception
+        /// - @a NO_MODULE: See the preconditions for more information.
         ///
-        /// The blender module determines the weight of the blending
+        /// The control module determines the weight of the blending
         /// operation.  Negative values weigh the blend towards the value from
         /// the source module with an index value of @b 0.  Positive values
         /// weigh the blend towards the value from the source module with an
         /// index value of @b 1.
-        const Module& GetBlenderModule () const
+        const Module& GetControlModule () const
         {
           if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
-            throw EX_NO_MODULE;
+            throw NO_MODULE;
           }
           return *(m_pSourceModule[2]);
         }
@@ -105,28 +105,28 @@ namespace noise
 
 	      virtual double GetValue (double x, double y, double z) const;
 
-        /// Sets the blender module.
+        /// Sets the control module.
         ///
-        /// @param blenderModule The blender module.
+        /// @param controlModule The control module.
         ///
-        /// The blender module determines the weight of the blending
+        /// The control module determines the weight of the blending
         /// operation.  Negative values weigh the blend towards the value from
         /// the source module with an index value of @b 0.  Positive values
         /// weigh the blend towards the value from the source module with an
         /// index value of @b 1.
         ///
-        /// This method assigns an index value of @b 2 to the blender module.
-        /// Passing the blender module to this method produces the same
-        /// results as passing the blender module to the SetSourceModule()
+        /// This method assigns an index value of @b 2 to the control module.
+        /// Passing the control module to this method produces the same
+        /// results as passing the control module to the SetSourceModule()
         /// method while assigning that module an index value of @b 2.
         ///
-        /// The blender module must exist throughout the lifetime of this
-        /// noise module unless another blender module replaces that blender
+        /// The control module must exist throughout the lifetime of this
+        /// noise module unless another control module replaces that control
         /// module.
-        void SetBlenderModule (const Module& blenderModule)
+        void SetControlModule (const Module& controlModule)
         {
           assert (m_pSourceModule != NULL);
-          m_pSourceModule[2] = &blenderModule;
+          m_pSourceModule[2] = &controlModule;
         }
 
     };

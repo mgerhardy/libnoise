@@ -110,8 +110,8 @@ namespace noise
         /// @pre The lower bound must be less than or equal to the
         /// upper bound.
         ///
-        /// @throw NoiseEx
-        /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+        /// @throw noise::Exception
+        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
         /// preconditions for more information.
         ///
         /// If the value from the source module is less than the lower bound,

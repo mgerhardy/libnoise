@@ -96,8 +96,8 @@ namespace noise
         ///
         /// @pre No two control points have the same input value.
         ///
-        /// @throw NoiseEx
-        /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+        /// @throw noise::Exception
+        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
         ///   preconditions for more information.
         ///
         /// It does not matter which order these points are added.
@@ -149,8 +149,8 @@ namespace noise
         ///
         /// @pre No two control points have the same input value.
         ///
-        /// @throw NoiseEx
-        /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+        /// @throw noise::Exception
+        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
         ///   preconditions for more information.
         ///
         /// By inserting the control point at the returned array index, this

@@ -87,8 +87,8 @@ namespace noise
 	      ///
 	      /// @pre No two control points have the same value.
 	      ///
-	      /// @throw NoiseEx
-	      /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see
+	      /// @throw noise::Exception
+	      /// - @a INVALID_PARAM: An invalid parameter was specified; see
         ///   the preconditions for more information.
 	      ///
 	      /// Two or more control points define the terrace-forming curve.  The
@@ -172,8 +172,8 @@ namespace noise
 	      /// @post The previous control points on the terrace-forming curve are
         /// deleted.
 	      ///
-	      /// @throw NoiseEx
-	      /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+	      /// @throw noise::Exception
+	      /// - @a INVALID_PARAM: An invalid parameter was specified; see the
 	      ///   preconditions for more information.
 	      ///
 	      /// Two or more control points define the terrace-forming curve.  The
@@ -192,8 +192,8 @@ namespace noise
 	      ///
 	      /// @pre No two control points have the same value.
 	      ///
-	      /// @throw NoiseEx
-	      /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+	      /// @throw noise::Exception
+	      /// - @a INVALID_PARAM: An invalid parameter was specified; see the
 	      ///   preconditions for more information.
 	      ///
 	      /// By inserting the control point at the returned array index, this

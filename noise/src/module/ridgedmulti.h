@@ -240,8 +240,8 @@ namespace noise
         /// @pre The number of octaves is between 1 and ::RIDGED_MAX_OCTAVE,
         /// inclusive.
         ///
-        /// @throw NoiseEx
-        /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+        /// @throw noise::Exception
+        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
         ///   preconditions for more information.
         ///
         /// The number of octaves controls the amount of detail in the ridged
@@ -252,7 +252,7 @@ namespace noise
         void SetOctaveCount (int octaveCount)
         {
           if (octaveCount > RIDGED_MAX_OCTAVE) {
-            throw EX_INVALID_PARAM;
+            throw INVALID_PARAM;
           }
           m_octaveCount = octaveCount;
         }

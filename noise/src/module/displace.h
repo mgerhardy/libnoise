@@ -88,8 +88,8 @@ namespace noise
       /// @pre The displacement module has been added to this module via a
       /// call to SetSourceModule() or SetXDisplaceModule().
       ///
-      /// @throw NoiseEx
-      /// - @a EX_NO_MODULE: See the preconditions for more information.
+      /// @throw noise::Exception
+      /// - @a NO_MODULE: See the preconditions for more information.
       ///
       /// The GetValue() method displaces the input point by adding the value
       /// from this displacement module to the @a x coordinate of the input
@@ -97,7 +97,7 @@ namespace noise
       const Module& GetXDisplaceModule () const
       {
         if (m_pSourceModule == NULL || m_pSourceModule[1] == NULL) {
-          throw EX_NO_MODULE;
+          throw NO_MODULE;
         }
         return *(m_pSourceModule[1]);
       }
@@ -109,8 +109,8 @@ namespace noise
       /// @pre The displacement module has been added to this module via a
       /// call to SetSourceModule() or SetYDisplaceModule().
       ///
-      /// @throw NoiseEx
-      /// - @a EX_NO_MODULE: See the preconditions for more information.
+      /// @throw noise::Exception
+      /// - @a NO_MODULE: See the preconditions for more information.
       ///
       /// The GetValue() method displaces the input point by adding the value
       /// from this displacement module to the @a y coordinate of the input
@@ -118,7 +118,7 @@ namespace noise
       const Module& GetYDisplaceModule () const
       {
         if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
-          throw EX_NO_MODULE;
+          throw NO_MODULE;
         }
         return *(m_pSourceModule[2]);
       }
@@ -130,8 +130,8 @@ namespace noise
       /// @pre The displacement module has been added to this module via a
       /// call to SetSourceModule() or SetZDisplaceModule().
       ///
-      /// @throw NoiseEx
-      /// - @a EX_NO_MODULE: See the preconditions for more information.
+      /// @throw noise::Exception
+      /// - @a NO_MODULE: See the preconditions for more information.
       ///
       /// The GetValue() method displaces the input point by adding the value
       /// from this displacement module to the @a z coordinate of the input
@@ -139,7 +139,7 @@ namespace noise
       const Module& GetZDisplaceModule () const
       {
         if (m_pSourceModule == NULL || m_pSourceModule[3] == NULL) {
-          throw EX_NO_MODULE;
+          throw NO_MODULE;
         }
         return *(m_pSourceModule[3]);
       }

@@ -30,20 +30,20 @@ namespace noise
   /// @{
 
   /// Defines the exceptions raised by libnoise.
-  enum NoiseEx
+  enum Exception
   {
 
     /// Unknown exception
-    EX_UNKNOWN = 0,
+    UNKNOWN = 0,
 
     /// An invalid parameter was specified.
-    EX_INVALID_PARAM = 1,
+    INVALID_PARAM = 1,
 
     /// No noise module was specified.
-    EX_NO_MODULE = 2,
+    NO_MODULE = 2,
 
     /// Out of memory.
-    EX_OUT_OF_MEMORY = 3
+    OUT_OF_MEMORY = 3
 
   };
 

@@ -68,7 +68,7 @@ int Terrace::FindInsertionPos (double value)
     } else if (value == m_pControlPoints[insertionPos]) {
       // Each control point is required to contain a unique value, so throw
       // an exception.
-      throw EX_INVALID_PARAM;
+      throw INVALID_PARAM;
     }
   }
   return insertionPos;
@@ -146,7 +146,7 @@ void Terrace::InsertAtPos (int insertionPos, double value)
 void Terrace::MakeControlPoints (int controlPointCount)
 {
   if (controlPointCount < 2) {
-    throw EX_INVALID_PARAM;
+    throw INVALID_PARAM;
   }
 
   ClearAllControlPoints ();

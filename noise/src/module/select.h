@@ -61,8 +61,8 @@ namespace noise
     /// - Source module @b 0 (upper left in the diagram) outputs a value.
     /// - Source module @b 1 (lower left in the diagram) outputs a value.
     /// - Source module @b 2 (bottom of the diagram) is known as the
-    ///   <i>selector module</i>.  This module determines the value to select.
-    ///   If the value from the selector module is within a range of values
+    ///   <i>control module</i>.  This module determines the value to select.
+    ///   If the value from the control module is within a range of values
     ///   known as the <i>selection range</i>, this noise module outputs the
     ///   value from the source module with an index value of @b 1.
     ///   Otherwise, this noise module outputs the value from the source
@@ -71,7 +71,7 @@ namespace noise
     /// To specify the bounds of the selection range, call the SetBounds()
     /// method.
     ///
-    /// An application can pass the selector module to the SetSelectorModule()
+    /// An application can pass the control module to the SetControlModule()
     /// method instead of the SetSourceModule() method.  This may make the
     /// application code easier to read.
     ///
@@ -116,7 +116,7 @@ namespace noise
         ///
         /// @returns The lower bound of the selection range.
         ///
-        /// If the value from the selector module is within the bounds of the
+        /// If the value from the control module is within the bounds of the
         /// selection range, this noise module outputs the value from the
         /// source module with an index value of @b 1.  Otherwise, this noise
         /// module outputs the value from the source module with an index
@@ -126,26 +126,26 @@ namespace noise
           return m_lowerBound;
         }
 
-        /// Returns the selector module.
+        /// Returns the control module.
         ///
-        /// @returns A reference to the selector module.
+        /// @returns A reference to the control module.
         ///
-        /// @pre A selector module has been added to this module via a call to
-        /// SetSourceModule() or SetSelectorModule().
+        /// @pre A control module has been added to this module via a call to
+        /// SetSourceModule() or SetControlModule().
         ///
-        /// @throw NoiseEx
-        /// - @a EX_NO_MODULE: See the preconditions for more information.
+        /// @throw noise::Exception
+        /// - @a NO_MODULE: See the preconditions for more information.
         ///
-        /// The selector module determines the value to select.  If the value
-        /// from the selector module is within a range of values known as the
+        /// The control module determines the value to select.  If the value
+        /// from the control module is within a range of values known as the
         /// <i>selection range</i>, this noise module outputs the value from
         /// the source module with an index value of @b 1.  Otherwise, this
         /// noise module outputs the value from the source module with an
         /// index value of @b 0.
-        const Module& GetSelectorModule () const
+        const Module& GetControlModule () const
         {
           if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
-            throw EX_NO_MODULE;
+            throw NO_MODULE;
           }
           return *(m_pSourceModule[2]);
         }
@@ -159,7 +159,7 @@ namespace noise
         ///
         /// @returns The upper bound.
         ///
-        /// If the value from the selector module is within the bounds of the
+        /// If the value from the control module is within the bounds of the
         /// selection range, this noise module outputs the value from the
         /// source module with an index value of @b 1.  Otherwise, this noise
         /// module outputs the value from the source module with an index
@@ -179,16 +179,47 @@ namespace noise
         /// @pre The lower bound must be less than or equal to the
         /// upper bound.
         ///
-        /// @throw NoiseEx
-        /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+        /// @throw noise::Exception
+        /// - @a INVALID_PARAM: An invalid parameter was specified; see the
         ///   preconditions for more information.
         ///
-        /// If the value from the selector module is within the bounds of the
+        /// If the value from the control module is within the bounds of the
         /// selection range, this noise module outputs the value from the
         /// source module with an index value of @b 1.  Otherwise, this noise
         /// module outputs the value from the source module with an index
         /// value of @b 0.
         void SetBounds (double lowerBound, double upperBound);
+
+        /// Sets the control module.
+        ///
+        /// @param controlModule The control module.
+        ///
+        /// @pre A control module has been added to this module via a call to
+        /// SetSourceModule() or SetControlModule().
+        ///
+        /// @throw noise::Exception
+        /// - @a NO_MODULE: See the preconditions for more information.
+        ///
+        /// The control module determines the value to select.  If the value
+        /// from the control module is within a range of values known as the
+        /// <i>selection range</i>, this noise module outputs the value from
+        /// the source module with an index value of @b 1.  Otherwise, this
+        /// noise module outputs the value from the source module with an
+        /// index value of @b 0.
+        ///
+        /// This method assigns an index value of @b 2 to the control module.
+        /// Passing the control module to this method produces the same
+        /// results as passing the control module to the SetSourceModule()
+        /// method while assigning that module an index value of @b 2.
+        ///
+        /// The control module must exist throughout the lifetime of this
+        /// noise module unless another control module replaces that control
+        /// module.
+        void SetControlModule (const Module& controlModule)
+        {
+          assert (m_pSourceModule != NULL);
+          m_pSourceModule[2] = &controlModule;
+        }
 
         /// Sets the falloff value for the edge transition.
         ///
@@ -204,52 +235,21 @@ namespace noise
         /// and the edge falloff value is @b 0.1, then this module
         /// outputs:
         /// - the value from the source module with an index value
-        ///   of @b 0 if the value from the selector module is less
+        ///   of @b 0 if the value from the control module is less
         ///   than @b 0.4 ( @b 0.5 - @b 0.1 ).
         /// - a linear blend between the values from the two source modules if
-        ///   the value from the selector module is between @b 0.4 ( @b 0.5 -
+        ///   the value from the control module is between @b 0.4 ( @b 0.5 -
         ///   @b 0.1 ) and @b 0.6 ( @b 0.5 + @b 0.1 ).
         /// - the value from the source module with an index value of @b 1 if
-        ///   the value from the selector module is between @b 0.6 ( @b 0.5 +
+        ///   the value from the control module is between @b 0.6 ( @b 0.5 +
         ///   @b 0.1 ) and @b 0.7 ( @b 0.8 - @b 0.1 ).
         /// - a linear blend between the values from the two source modules if
-        ///   the value from the selector module is between @b 0.7 ( @b 0.8 -
+        ///   the value from the control module is between @b 0.7 ( @b 0.8 -
         ///   @b 0.1 ) and @b 0.9 ( @b 0.8 + @b 0.1 ).
         /// - the value from the source module with an index value of @b 0 if
-        ///   the value from the selector module is greater than @b 0.9
+        ///   the value from the control module is greater than @b 0.9
         ///   ( @b 0.8 + @b 0.1 ).
         void SetEdgeFalloff (double edgeFalloff);
-
-        /// Sets the selector module.
-        ///
-        /// @param selectorModule The selector module.
-        ///
-        /// @pre A selector module has been added to this module via a call to
-        /// SetSourceModule() or SetSelectorModule().
-        ///
-        /// @throw NoiseEx
-        /// - @a EX_NO_MODULE: See the preconditions for more information.
-        ///
-        /// The selector module determines the value to select.  If the value
-        /// from the selector module is within a range of values known as the
-        /// <i>selection range</i>, this noise module outputs the value from
-        /// the source module with an index value of @b 1.  Otherwise, this
-        /// noise module outputs the value from the source module with an
-        /// index value of @b 0.
-        ///
-        /// This method assigns an index value of @b 2 to the selector module.
-        /// Passing the selector module to this method produces the same
-        /// results as passing the selector module to the SetSourceModule()
-        /// method while assigning that module an index value of @b 2.
-        ///
-        /// The selector module must exist throughout the lifetime of this
-        /// noise module unless another selector module replaces that selector
-        /// module.
-        void SetSelectorModule (const Module& selectorModule)
-        {
-          assert (m_pSourceModule != NULL);
-          m_pSourceModule[2] = &selectorModule;
-        }
 
       protected:
 
