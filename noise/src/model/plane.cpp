@@ -1,4 +1,4 @@
-// sphere.cpp
+// plane.cpp
 //
 // Copyright (C) 2004 by Owen Jacobson
 //
@@ -29,9 +29,9 @@ Plane::Plane ():
 }
 
 // Told you this was trivial.
-double Plane::GetValue (double x, double z) const {
+double Plane::GetValue (double x, double z) const
+{
   assert (m_pModule != NULL);
   
   return m_pModule->GetValue (x, z, 0);
 }
-

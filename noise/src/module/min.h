@@ -1,7 +1,6 @@
 // min.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -32,47 +31,47 @@ namespace noise
 {
 
   namespace module
+  {
+
+    /// @addtogroup libnoise
+    /// @{
+
+    /// @addtogroup modules
+    /// @{
+
+    /// @addtogroup combinermodules
+    /// @{
+
+    /// Noise module that outputs the smaller of the values from two source
+    /// modules.
+    ///
+    /// @image html modulemin.png
+    ///
+    /// This noise module requires two source modules.
+    class Min: public Module
     {
 
-      /// @addtogroup libnoise
-      /// @{
+      public:
 
-      /// @addtogroup modules
-      /// @{
+        /// Constructor.
+        Min ();
 
-      /// @addtogroup combinermodules
-      /// @{
+        virtual int GetSourceModuleCount () const
+        {
+          return 2;
+        }
 
-      /// Noise module that outputs the smaller of the values from two source
-      /// modules.
-      ///
-      /// @image html modulemin.png
-      ///
-      /// This noise module requires two source modules.
-      class Min: public Module
-	{
+        virtual double GetValue (double x, double y, double z) const;
 
-	public:
+    };
 
-	  /// Constructor.
-	  Min ();
+    /// @}
 
-	  virtual int GetSourceModuleCount () const
-	    {
-	      return 2;
-	    }
+    /// @}
 
-	  virtual double GetValue (double x, double y, double z) const;
+    /// @}
 
-	};
-
-      /// @}
-
-      /// @}
-
-      /// @}
-
-    }
+  }
 
 }
 

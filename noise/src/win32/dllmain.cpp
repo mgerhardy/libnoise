@@ -1,8 +1,8 @@
-// invert.cpp
+// dllmain.cpp
 //
 // Version 0.1.3 - 2004-06-03
 //
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2004 by Jason Bevins    
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -22,18 +22,9 @@
 // off every 'zig'.)
 //
 
-#include "invert.h"
+#include <windows.h>
 
-using namespace noise::module;
-
-Invert::Invert ():
-  Module (GetSourceModuleCount ())
+BOOL WINAPI DllMain (HINSTANCE hInst, ULONG reason, LPVOID lpReserved)
 {
-}
-
-double Invert::GetValue (double x, double y, double z) const
-{
-  assert (m_pSourceModule[0] != NULL);
-
-  return -(m_pSourceModule[0]->GetValue (x, y, z));
+  return TRUE;
 }

@@ -1,7 +1,6 @@
 // add.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -31,7 +30,8 @@
 namespace noise
 {
 
-  namespace module {
+  namespace module
+  {
 
     /// @addtogroup libnoise
     /// @{
@@ -43,35 +43,37 @@ namespace noise
     /// @addtogroup combinermodules
     /// @{
     
-    /// Noise module that outputs the sum of the values from two source modules.
+    /// Noise module that outputs the sum of the values from two source
+    /// modules.
     ///
     /// @image html moduleadd.png
     ///
     /// This noise module requires two source modules.
     class Add: public Module
-      {
-	
+    {
+
       public:
-	
-	/// Constructor.
-	Add ();
-	
-	virtual int GetSourceModuleCount () const
-	  {
-	    return 2;
-	  }
-	
-	virtual double GetValue (double x, double y, double z) const;
-	
-      };
-    
+
+        /// Constructor.
+        Add ();
+
+        virtual int GetSourceModuleCount () const
+        {
+          return 2;
+        }
+
+        virtual double GetValue (double x, double y, double z) const;
+
+    };
+
     /// @}
-    
+
     /// @}
-    
+
     /// @}
-    
+
   }
+
 }
 
 #endif

@@ -1,7 +1,6 @@
 // modulebase.cpp
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed numSourceModules to sourceModuleCount for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -41,4 +40,9 @@ Module::Module (int sourceModuleCount)
   } else {
     m_pSourceModule = NULL;
   }
+}
+
+Module::~Module ()
+{
+  delete[] m_pSourceModule;
 }

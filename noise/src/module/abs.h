@@ -1,7 +1,6 @@
 // abs.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -42,7 +41,7 @@ namespace noise
     /// @defgroup modifiermodules Modifier Modules
     /// @addtogroup modifiermodules
     /// @{
-    
+
     /// Noise module that outputs the absolute value of the value from the
     /// source module.
     ///
@@ -50,28 +49,28 @@ namespace noise
     ///
     /// This noise module requires one source module.
     class Abs: public Module
-      {
+    {
 
       public:
 
-	/// Constructor.
-	Abs ();
+        /// Constructor.
+        Abs ();
 
-	virtual int GetSourceModuleCount () const
-	  {
-	    return 1;
-	  }
+        virtual int GetSourceModuleCount () const
+        {
+          return 1;
+        }
 
-	virtual double GetValue (double x, double y, double z) const;
+        virtual double GetValue (double x, double y, double z) const;
 
-      };
+    };
 
     /// @}
-    
+
     /// @}
-    
+
     /// @}
-    
+
   }
 
 }

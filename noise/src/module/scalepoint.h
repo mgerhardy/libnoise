@@ -1,7 +1,6 @@
 // scalepoint.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -32,184 +31,184 @@ namespace noise
 {
 
   namespace module
+  {
+
+    /// @addtogroup libnoise
+    /// @{
+
+    /// @addtogroup modules
+    /// @{
+
+    /// @addtogroup transformermodules
+    /// @{
+
+    /// Default scaling value applied to the @a x coordinate for the
+    /// ScalePoint noise module.
+    const double DEFAULT_SCALE_POINT_X = 1.0;
+
+    /// Default scaling value applied to the @a y coordinate for the
+    /// ScalePoint noise module.
+    const double DEFAULT_SCALE_POINT_Y = 1.0;
+
+    /// Default scaling value applied to the @a z coordinate for the
+    /// ScalePoint noise module.
+    const double DEFAULT_SCALE_POINT_Z = 1.0;
+
+    /// Noise module that scales the input point and returns the value from
+    /// the source module at that point.
+    ///
+    /// @image html modulescalepoint.png
+    ///
+    /// This module's GetValue() method multiplies the ( @a x, @a y, @a z )
+    /// coordinates of the input point with a scaling value before returning
+    /// the value from the source module at that point.  To set the scaling
+    /// value, call the SetScale() method.  To set the scaling value of the
+    /// individual @a x, @a y, or @a z coordinate, call the SetXScale(),
+    /// SetYScale() or SetZScale() methods, respectively.
+    ///
+    /// This noise module requires one source module.
+    class ScalePoint: public Module
     {
 
-      /// @addtogroup libnoise
-      /// @{
+      public:
 
-      /// @addtogroup modules
-      /// @{
+        /// Constructor.
+        ///
+        /// The default scaling value applied to the @a x coordinate is set to
+        /// ::DEFAULT_SCALE_POINT_X.
+        ///
+        /// The default scaling value applied to the @a y coordinate is set to
+        /// ::DEFAULT_SCALE_POINT_Y.
+        ///
+        /// The default scaling value applied to the @a z coordinate is set to
+        /// ::DEFAULT_SCALE_POINT_Z.
+        ScalePoint ();
 
-      /// @addtogroup transformermodules
-      /// @{
+        virtual int GetSourceModuleCount () const
+        {
+          return 1;
+        }
 
-      /// Default scaling value applied to the @a x coordinate for the
-      /// ScalePoint noise module.
-      const double DEFAULT_SCALE_POINT_X = 1.0;
+        virtual double GetValue (double x, double y, double z) const;
 
-      /// Default scaling value applied to the @a y coordinate for the
-      /// ScalePoint noise module.
-      const double DEFAULT_SCALE_POINT_Y = 1.0;
+        /// Returns the scaling value applied to the @a x coordinate of the
+        /// input point.
+        ///
+        /// @returns The scaling value applied to the @a x coordinate.
+        double GetXScale () const
+        {
+          return m_xScale;
+        }
 
-      /// Default scaling value applied to the @a z coordinate for the
-      /// ScalePoint noise module.
-      const double DEFAULT_SCALE_POINT_Z = 1.0;
+        /// Returns the scaling value applied to the @a y coordinate of the
+        /// input point.
+        ///
+        /// @returns The scaling value applied to the @a y coordinate.
+        double GetYScale () const
+        {
+          return m_yScale;
+        }
 
-      /// Noise module that scales the input point and returns the value from the
-      /// source module at that point.
-      ///
-      /// @image html modulescalepoint.png
-      ///
-      /// This module's GetValue() method multiplies the ( @a x, @a y, @a z )
-      /// coordinates of the input point with a scaling value before returning
-      /// the value from the source module at that point.  To set the scaling
-      /// value, call the SetScale() method.  To set the scaling value of the
-      /// individual @a x, @a y, or @a z coordinate, call the SetXScale(),
-      /// SetYScale() or SetZScale() methods, respectively.
-      ///
-      /// This noise module requires one source module.
-      class ScalePoint: public Module
-	{
+        /// Returns the scaling value applied to the @a z coordinate of the
+        /// input point.
+        ///
+        /// @returns The scaling value applied to the @a z coordinate.
+        double GetZScale () const
+        {
+          return m_zScale;
+        }
 
-	public:
+        /// Sets the scaling value to apply to the ( @a x, @a y, @a z )
+        /// coordinates of the input point.
+        ///
+        /// @param scale The scaling value to apply.
+        ///
+        /// This module's GetValue() method multiplies the ( @a x, @a y,
+        /// @a z ) coordinates of the input point with a scaling value before
+        /// returning the value of the source module at that point.
+        void SetScale (double scale)
+        {
+          m_xScale = scale;
+          m_yScale = scale;
+          m_zScale = scale;
+        }
 
-	  /// Constructor.
-	  ///
-	  /// The default scaling value applied to the @a x coordinate is set
-	  /// to ::DEFAULT_SCALE_POINT_X.
-	  ///
-	  /// The default scaling value applied to the @a y coordinate is set
-	  /// to ::DEFAULT_SCALE_POINT_Y.
-	  ///
-	  /// The default scaling value applied to the @a z coordinate is set
-	  /// to ::DEFAULT_SCALE_POINT_Z.
-	  ScalePoint ();
+        /// Sets the scaling value to apply to the ( @a x, @a y, @a z )
+        /// coordinates of the input point.
+        ///
+        /// @param xScale The scaling value to apply to the @a x coordinate.
+        /// @param yScale The scaling value to apply to the @a y coordinate.
+        /// @param zScale The scaling value to apply to the @a z coordinate.
+        ///
+        /// This module's GetValue() method multiplies the ( @a x, @a y,
+        /// @a z ) coordinates of the input point with a scaling value before
+        /// returning the value of the source module at that point.
+        void SetScale (double xScale, double yScale, double zScale)
+        {
+          m_xScale = xScale;
+          m_yScale = yScale;
+          m_zScale = zScale;
+        }
 
-	  virtual int GetSourceModuleCount () const
-	    {
-	      return 1;
-	    }
+        /// Sets the scaling value to apply to the @a x coordinate of the
+        /// input point.
+        ///
+        /// @param xScale The scaling value to apply to the @a x coordinate.
+        ///
+        /// This module's GetValue() method multiplies the ( @a x, @a y,
+        /// @a z ) coordinates of the input point with a scaling value before
+        /// returning the value of the source module at that point.
+        void SetXScale (double xScale)
+        {
+          m_xScale = xScale;
+        }
 
-	  virtual double GetValue (double x, double y, double z) const;
+        /// Sets the scaling value to apply to the @a y coordinate of the
+        /// input point.
+        ///
+        /// @param yScale The scaling value to apply to the @a y coordinate.
+        ///
+        /// This module's GetValue() method multiplies the ( @a x, @a y,
+        /// @a z ) coordinates of the input point with a scaling value before
+        /// returning the value of the source module at that point.
+        void SetYScale (double yScale)
+        {
+          m_yScale = yScale;
+        }
 
-	  /// Returns the scaling value applied to the @a x coordinate of the
-	  /// input point.
-	  ///
-	  /// @returns The scaling value applied to the @a x coordinate.
-	  double GetXScale () const
-	    {
-	      return m_xScale;
-	    }
+        /// Sets the scaling value to apply to the @a z coordinate of the
+        /// input point.
+        ///
+        /// @param zScale The scaling value to apply to the @a z coordinate.
+        ///
+        /// This module's GetValue() method multiplies the ( @a x, @a y,
+        /// @a z ) coordinates of the input point with a scaling value before
+        /// returning the value of the source module at that point.
+        void SetZScale (double zScale)
+        {
+          m_zScale = zScale;
+        }
 
-	  /// Returns the scaling value applied to the @a y coordinate of the
-	  /// input point.
-	  ///
-	  /// @returns The scaling value applied to the @a y coordinate.
-	  double GetYScale () const
-	    {
-	      return m_yScale;
-	    }
+      protected:
 
-	  /// Returns the scaling value applied to the @a z coordinate of the
-	  /// input point.
-	  ///
-	  /// @returns The scaling value applied to the @a z coordinate.
-	  double GetZScale () const
-	    {
-	      return m_zScale;
-	    }
+        /// Scaling value applied to the @a x coordinate of the input point.
+        double m_xScale;
 
-	  /// Sets the scaling value to apply to the ( @a x, @a y, @a z )
-	  /// coordinates of the input point.
-	  ///
-	  /// @param scale The scaling value to apply.
-	  ///
-	  /// This module's GetValue() method multiplies the ( @a x, @a y, @a z )
-	  /// coordinates of the input point with a scaling value before returning
-	  /// the value of the source module at that point.
-	  void SetScale (double scale)
-	    {
-	      m_xScale = scale;
-	      m_yScale = scale;
-	      m_zScale = scale;
-	    }
+        /// Scaling value applied to the @a y coordinate of the input point.
+        double m_yScale;
 
-	  /// Sets the scaling value to apply to the ( @a x, @a y, @a z )
-	  /// coordinates of the input point.
-	  ///
-	  /// @param xScale The scaling value to apply to the @a x coordinate.
-	  /// @param yScale The scaling value to apply to the @a y coordinate.
-	  /// @param zScale The scaling value to apply to the @a z coordinate.
-	  ///
-	  /// This module's GetValue() method multiplies the ( @a x, @a y, @a z )
-	  /// coordinates of the input point with a scaling value before returning
-	  /// the value of the source module at that point.
-	  void SetScale (double xScale, double yScale, double zScale)
-	    {
-	      m_xScale = xScale;
-	      m_yScale = yScale;
-	      m_zScale = zScale;
-	    }
+        /// Scaling value applied to the @a z coordinate of the input point.
+        double m_zScale;
 
-	  /// Sets the scaling value to apply to the @a x coordinate of the input
-	  /// point.
-	  ///
-	  /// @param xScale The scaling value to apply to the @a x coordinate.
-	  ///
-	  /// This module's GetValue() method multiplies the ( @a x, @a y, @a z )
-	  /// coordinates of the input point with a scaling value before returning
-	  /// the value of the source module at that point.
-	  void SetXScale (double xScale)
-	    {
-	      m_xScale = xScale;
-	    }
+    };
 
-	  /// Sets the scaling value to apply to the @a y coordinate of the input
-	  /// point.
-	  ///
-	  /// @param yScale The scaling value to apply to the @a y coordinate.
-	  ///
-	  /// This module's GetValue() method multiplies the ( @a x, @a y, @a z )
-	  /// coordinates of the input point with a scaling value before returning
-	  /// the value of the source module at that point.
-	  void SetYScale (double yScale)
-	    {
-	      m_yScale = yScale;
-	    }
+    /// @}
 
-	  /// Sets the scaling value to apply to the @a z coordinate of the input
-	  /// point.
-	  ///
-	  /// @param zScale The scaling value to apply to the @a z coordinate.
-	  ///
-	  /// This module's GetValue() method multiplies the ( @a x, @a y, @a z )
-	  /// coordinates of the input point with a scaling value before returning
-	  /// the value of the source module at that point.
-	  void SetZScale (double zScale)
-	    {
-	      m_zScale = zScale;
-	    }
+    /// @}
 
-	protected:
+    /// @}
 
-	  /// Scaling value applied to the @a x coordinate of the input point.
-	  double m_xScale;
-
-	  /// Scaling value applied to the @a y coordinate of the input point.
-	  double m_yScale;
-
-	  /// Scaling value applied to the @a z coordinate of the input point.
-	  double m_zScale;
-
-	};
-
-      /// @}
-
-      /// @}
-
-      /// @}
-
-    }
+  }
 
 }
 

@@ -1,7 +1,6 @@
 // model.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Fixed incorrect filename at the top of this source file.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -27,8 +26,8 @@
 #define NOISE_MODEL_H
 
 #include "cylinder.h"
-#include "sphere.h"
 #include "line.h"
 #include "plane.h"
+#include "sphere.h"
 
 #endif

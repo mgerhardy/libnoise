@@ -1,7 +1,6 @@
 // scalebias.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -32,120 +31,118 @@ namespace noise
 {
 
   namespace module
+  {
+
+    /// @addtogroup libnoise
+    /// @{
+
+    /// @addtogroup modules
+    /// @{
+
+    /// @addtogroup modifiermodules
+    /// @{
+
+    /// Default bias for the ScaleBias noise module.
+    const double DEFAULT_BIAS = 0.0;
+
+    /// Default scale for the ScaleBias noise module.
+    const double DEFAULT_SCALE = 1.0;
+
+    /// Noise module that scales a value from the source module and applies a
+    /// bias to the scaled value.
+    ///
+    /// @image html modulescalebias.png
+    ///
+    /// This noise module multiplies the value from the source module with the
+    /// scaling value, adds the bias to the scaled value, and then outputs that
+    /// value.
+    ///
+    /// This noise module requires one source module.
+    class ScaleBias: public Module
     {
 
-      /// @addtogroup libnoise
-      /// @{
+      public:
 
-      /// @addtogroup modules
-      /// @{
+        /// Constructor.
+        ///
+        /// The default bias is set to ::DEFAULT_BIAS.
+        ///
+        /// The default scale is set to ::DEFAULT_SCALE.
+        ScaleBias ();
 
-      /// @addtogroup modifiermodules
-      /// @{
+        /// Returns the bias to apply to the scaled value from the source
+        /// module.
+        ///
+        /// @returns The bias to apply.
+        ///
+        /// The bias is a constant value that is added to a scaled value from
+        /// the source module.
+        double GetBias () const
+        {
+          return m_bias;
+        }
 
-      /// Default bias for the ScaleBias noise module.
-      const double DEFAULT_BIAS = 0.0;
+        /// Returns the scaling value to apply to the value from the source
+        /// module.
+        ///
+        /// @returns The scaling value to apply.
+        ///
+        /// The scaling value is a constant value that is multiplied with the
+        /// value from the source module.  This noise module applies the
+        /// scaling value befor applying the bias.
+        double GetScale () const
+        {
+          return m_scale;
+        }
 
-      /// Default scale for the ScaleBias noise module.
-      const double DEFAULT_SCALE = 1.0;
+        virtual int GetSourceModuleCount () const
+        {
+          return 1;
+        }
 
-      /// Noise module that scales a value from the source module and applies a
-      /// bias to the scaled value.
-      ///
-      /// @image html modulescalebias.png
-      ///
-      /// This noise module multiplies the value from the source
-      /// module with the scaling value, adds the bias to the scaled
-      /// value, and then outputs that value.
-      ///
-      /// This noise module requires one source module.
-      class ScaleBias: public Module
-	{
+        virtual double GetValue (double x, double y, double z) const;
 
-	public:
+        /// Sets the bias to apply to the scaled value from the source module.
+        ///
+        /// @param bias The bias to apply.
+        ///
+        /// The bias is a constant value that is added to a scaled value from
+        /// the source module.
+        void SetBias (double bias)
+        {
+          m_bias = bias;
+        }
 
-	  /// Constructor.
-	  ///
-	  /// The default bias is set to ::DEFAULT_BIAS.
-	  ///
-	  /// The default scale is set to ::DEFAULT_SCALE.
-	  ScaleBias ();
+        /// Sets the scaling value to apply to the value from the source
+        /// module.
+        ///
+        /// @param scale The scaling value to apply.
+        ///
+        /// The scaling value is a constant value that is multiplied with a
+        /// value from the source module.  This noise module applies the
+        /// scaling value befor applying the bias.
+        void SetScale (double scale)
+        {
+          m_scale = scale;
+        }
 
-	  /// Returns the bias to apply to the scaled value from the source
-	  /// module.
-	  ///
-	  /// @returns The bias to apply.
-	  ///
-	  /// The bias is a constant value that is added to a scaled value from
-	  /// the source module.
-	  double GetBias () const
-	    {
-	      return m_bias;
-	    }
+      protected:
 
-	  /// Returns the scaling value to apply to the value from the source
-	  /// module.
-	  ///
-	  /// @returns The scaling value to apply.
-	  ///
-	  /// The scaling value is a constant value that is multiplied
-	  /// with the value from the source module.  This noise
-	  /// module applies the scaling value befor applying the
-	  /// bias.
-	  double GetScale () const
-	    {
-	      return m_scale;
-	    }
+        /// Bias to apply to the scaled value from the source module.
+        double m_bias;
 
-	  virtual int GetSourceModuleCount () const
-	    {
-	      return 1;
-	    }
+        /// Scaling value to apply to the value from the source module.
+        double m_scale;
 
-	  virtual double GetValue (double x, double y, double z) const;
+    };
 
-	  /// Sets the bias to apply to the scaled value from the
-	  /// source module.
-	  ///
-	  /// @param bias The bias to apply.
-	  ///
-	  /// The bias is a constant value that is added to a scaled value from
-	  /// the source module.
-	  void SetBias (double bias)
-	    {
-	      m_bias = bias;
-	    }
+    /// @}
 
-	  /// Sets the scaling value to apply to the value from the
-	  /// source module.
-	  ///
-	  /// @param scale The scaling value to apply.
-	  ///
-	  /// The scaling value is a constant value that is multiplied
-	  /// with an value from the source module.  This noise module
-	  /// applies the scaling value befor applying the bias.
-	  void SetScale (double scale)
-	    {
-	      m_scale = scale;
-	    }
+    /// @}
 
-	protected:
+    /// @}
 
-	  /// Bias to apply to the scaled value from the source module.
-	  double m_bias;
-
-	  /// Scaling value to apply to the value from the source module.
-	  double m_scale;
-
-	};
-
-      /// @}
-
-      /// @}
-
-      /// @}
-
-    }
+  }
 
 }
 

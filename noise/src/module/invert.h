@@ -1,7 +1,6 @@
 // invert.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -32,46 +31,46 @@ namespace noise
 {
 
   namespace module
+  {
+
+    /// @addtogroup libnoise
+    /// @{
+
+    /// @addtogroup modules
+    /// @{
+
+    /// @addtogroup modifiermodules
+    /// @{
+
+    /// Noise module that inverts the value from the source module.
+    ///
+    /// @image html moduleinvert.png
+    ///
+    /// This noise module requires one source module.
+    class Invert: public Module
     {
 
-      /// @addtogroup libnoise
-      /// @{
+      public:
 
-      /// @addtogroup modules
-      /// @{
+        /// Constructor.
+        Invert ();
 
-      /// @addtogroup modifiermodules
-      /// @{
+        virtual int GetSourceModuleCount () const
+        {
+          return 1;
+        }
 
-      /// Noise module that inverts the value from the source module.
-      ///
-      /// @image html moduleinvert.png
-      ///
-      /// This noise module requires one source module.
-      class Invert: public Module
-	{
+        virtual double GetValue (double x, double y, double z) const;
 
-	public:
+    };
 
-	  /// Constructor.
-	  Invert ();
+    /// @}
 
-	  virtual int GetSourceModuleCount () const
-	    {
-	      return 1;
-	    }
+    /// @}
 
-	  virtual double GetValue (double x, double y, double z) const;
+    /// @}
 
-	};
-
-      /// @}
-
-      /// @}
-
-      /// @}
-
-    }
+  }
 
 }
 

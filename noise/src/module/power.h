@@ -1,6 +1,6 @@
 // power.h
 //
-// Version 0.1.2 - 2004-05-11
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2004 by Owen Jacobson
 //
@@ -29,47 +29,50 @@
 namespace noise
 {
 
-  namespace module {
+  namespace module
+  {
 
     /// @addtogroup libnoise
     /// @{
-    
+
     /// @addtogroup modules
     /// @{
-    
+
     /// @defgroup combinermodules Combiner Modules
     /// @addtogroup combinermodules
     /// @{
-    
-    /// Noise module that outputs the value from the first module raised to the power of the value from the second module
+
+    /// Noise module that outputs the value from the first module raised to
+    /// the power of the value from the second module.
     ///
     /// @image html modulepower.png
     ///
     /// This noise module requires two source modules.
     class Power: public Module
-      {
-	
+    {
+
       public:
-	
-	/// Constructor.
-	Power ();
-	
-	virtual int GetSourceModuleCount () const
-	  {
-	    return 2;
-	  }
-	
-	virtual double GetValue (double x, double y, double z) const;
-	
-      };
-    
+
+        /// Constructor.
+        Power ();
+
+        virtual int GetSourceModuleCount () const
+        {
+          return 2;
+        }
+
+        virtual double GetValue (double x, double y, double z) const;
+
+    };
+
     /// @}
-    
+
     /// @}
-    
+
     /// @}
-    
+
   }
+
 }
 
 #endif

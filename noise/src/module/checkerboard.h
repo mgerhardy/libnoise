@@ -1,7 +1,6 @@
 // checkerboard.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -32,52 +31,52 @@ namespace noise
 {
 
   namespace module
+  {
+
+    /// @addtogroup libnoise
+    /// @{
+
+    /// @addtogroup modules
+    /// @{
+
+    /// @addtogroup generatormodules
+    /// @{
+
+    /// Noise module that outputs a checkerboard pattern.
+    ///
+    /// @image html modulecheckerboard.png
+    ///
+    /// This module outputs unit-sized blocks of alternating values.  The values
+    /// of these blocks alternate between @b -1.0 and @b +1.0.
+    ///
+    /// This noise module is not really useful by itself, but it is often used
+    /// for debugging purposes.
+    ///
+    /// This noise module does not require any source modules.
+    class Checkerboard: public Module
     {
 
-      /// @addtogroup libnoise
-      /// @{
+      public:
 
-      /// @addtogroup modules
-      /// @{
+        /// Constructor.
+        Checkerboard ();
 
-      /// @addtogroup generatormodules
-      /// @{
+        virtual int GetSourceModuleCount () const
+        {
+        return 0;
+        }
 
-      /// Noise module that outputs a checkerboard pattern.
-      ///
-      /// @image html modulecheckerboard.png
-      ///
-      /// This module outputs unit-sized blocks of alternating values.  The values
-      /// of these blocks alternate between @b -1.0 and @b +1.0.
-      ///
-      /// This noise module is not really useful by itself, but it is often used
-      /// for debugging purposes.
-      ///
-      /// This noise module does not require any source modules.
-      class Checkerboard: public Module
-	{
+        virtual double GetValue (double x, double y, double z) const;
 
-	public:
+    };
 
-	  /// Constructor.
-	  Checkerboard ();
+    /// @}
 
-	  virtual int GetSourceModuleCount () const
-	    {
-	      return 0;
-	    }
+    /// @}
 
-	  virtual double GetValue (double x, double y, double z) const;
+    /// @}
 
-	};
-
-      /// @}
-
-      /// @}
-
-      /// @}
-
-    }
+  }
 
 }
 

@@ -1,7 +1,6 @@
 // multiply.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -32,47 +31,47 @@ namespace noise
 {
 
   namespace module
+  {
+
+    /// @addtogroup libnoise
+    /// @{
+
+    /// @addtogroup modules
+    /// @{
+
+    /// @addtogroup combinermodules
+    /// @{
+
+    /// Noise module that outputs the product of the values from two source
+    /// modules.
+    ///
+    /// @image html modulemultiply.png
+    ///
+    /// This noise module requires two source modules.
+    class Multiply: public Module
     {
 
-      /// @addtogroup libnoise
-      /// @{
+      public:
 
-      /// @addtogroup modules
-      /// @{
+        /// Constructor.
+        Multiply ();
 
-      /// @addtogroup combinermodules
-      /// @{
+        virtual int GetSourceModuleCount () const
+        {
+          return 2;
+        }
 
-      /// Noise module that outputs the product of the values from two source
-      /// modules.
-      ///
-      /// @image html modulemultiply.png
-      ///
-      /// This noise module requires two source modules.
-      class Multiply: public Module
-	{
+        virtual double GetValue (double x, double y, double z) const;
 
-	public:
+    };
 
-	  /// Constructor.
-	  Multiply ();
+    /// @}
 
-	  virtual int GetSourceModuleCount () const
-	    {
-	      return 2;
-	    }
+    /// @}
 
-	  virtual double GetValue (double x, double y, double z) const;
+    /// @}
 
-	};
-
-      /// @}
-
-      /// @}
-
-      /// @}
-
-    }
+  }
 
 }
 

@@ -1,8 +1,6 @@
 // perlin.cpp
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
-// - Changed m_numOctaves to m_octaveCount for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -71,5 +69,6 @@ double Perlin::GetValue (double x, double y, double z) const
     z *= m_lacunarity;
     curPersistence *= m_persistence;
   }
+
   return value;
 }

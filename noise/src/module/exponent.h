@@ -1,7 +1,6 @@
 // exponent.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -31,7 +30,8 @@
 namespace noise
 {
 
-  namespace module {
+  namespace module
+  {
 
     /// @addtogroup libnoise
     /// @{
@@ -50,64 +50,66 @@ namespace noise
     ///
     /// @image html moduleexponent.png
     ///
-    /// Because most noise modules output a value within the @b -1.0 to @b +1.0
-    /// range, this noise module first normalizes the value from the source
-    /// module (the range becomes @b 0.0 to @b +1.0 ), maps that value onto an
-    /// exponential curve, then rescales the value back to the original range.
+    /// Because most noise modules output a value within the @b -1.0 to
+    /// @b +1.0 range, this noise module first normalizes the value from the
+    /// source module (the range becomes @b 0.0 to @b +1.0 ), maps that value
+    /// onto an exponential curve, then rescales the value back to the
+    /// original range.
     ///
     /// This noise module requires one source module.
     class Exponent: public Module
-      {
+    {
 
       public:
 
-	/// Constructor.
-	///
-	/// The default exponent is set to ::DEFAULT_EXPONENT.
-	Exponent ();
+        /// Constructor.
+        ///
+        /// The default exponent is set to ::DEFAULT_EXPONENT.
+        Exponent ();
 
-	/// Returns the exponent value to apply to the value from the source
-	/// module.
-	///
-	/// @returns The exponent value.
-	///
-	/// Because most noise modules output a value within the @b -1.0 to
-	/// @b +1.0 range, this noise module first normalizes the value from the
-	/// source module (the range becomes @b 0.0 to @b +1.0 ), maps that
-	/// value onto an exponential curve, then rescales the value back to the
-	/// original range.
-	double GetExponent () const
-	  {
-	    return m_exponent;
-	  }
+        /// Returns the exponent value to apply to the value from the source
+        /// module.
+        ///
+        /// @returns The exponent value.
+        ///
+        /// Because most noise modules output a value within the @b -1.0 to
+        /// @b +1.0 range, this noise module first normalizes the value from
+        /// the source module (the range becomes @b 0.0 to @b +1.0 ), maps
+        /// that value onto an exponential curve, then rescales the value back
+        /// to the original range.
+        double GetExponent () const
+        {
+          return m_exponent;
+        }
 
-	virtual int GetSourceModuleCount () const
-	  {
-	    return 1;
-	  }
+        virtual int GetSourceModuleCount () const
+        {
+          return 1;
+        }
 
-	virtual double GetValue (double x, double y, double z) const;
+        virtual double GetValue (double x, double y, double z) const;
 
-	/// Sets the exponent value to apply to the value from the source module.
-	///
-	/// @param exponent The exponent value.
-	///
-	/// Because most noise modules output a value within the @b -1.0 to
-	/// @b +1.0 range, this noise module first normalizes the value from
-	/// the source module (the range becomes @b 0.0 to @b +1.0 ), maps that
-	/// value onto an exponential curve, then rescales the value back to the
-	/// original range.
-	void SetExponent (double exponent)
-	  {
-	    m_exponent = exponent;
-	  }
+        /// Sets the exponent value to apply to the value from the source
+        /// module.
+        ///
+        /// @param exponent The exponent value.
+        ///
+        /// Because most noise modules output a value within the @b -1.0 to
+        /// @b +1.0 range, this noise module first normalizes the value from
+        /// the source module (the range becomes @b 0.0 to @b +1.0 ), maps
+        /// that value onto an exponential curve, then rescales the value back
+        /// to the original range.
+        void SetExponent (double exponent)
+        {
+          m_exponent = exponent;
+        }
 
       protected:
 
-	/// Exponent to apply to the value from the source module.
-	double m_exponent;
+        /// Exponent to apply to the value from the source module.
+        double m_exponent;
 
-      };
+    };
 
     /// @}
 

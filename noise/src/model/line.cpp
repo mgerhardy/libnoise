@@ -1,6 +1,8 @@
 // line.cpp
 //
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Version 0.1.3 - 2004-06-03
+//
+// Copyright (C) 2004 by Keith Davies
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,21 +18,24 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
-// off every 'zig'.)
-//
 
 #include "line.h"
 
 using namespace noise::model;
 
-Line::Line ()
-  : m_pModule (NULL)
-  , m_attenuate( true)
+Line::Line ():
+  m_pModule (NULL),
+  m_attenuate (true),
+  m_x0 (0.0),
+  m_y0 (0.0),
+  m_z0 (0.0),
+  m_x1 (1.0),
+  m_y1 (1.0),
+  m_z1 (1.0)
 {
 }
 
-double Line::GetValue ( double p) const
+double Line::GetValue (double p) const
 {
   assert (m_pModule != NULL);
 

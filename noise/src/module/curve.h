@@ -1,11 +1,6 @@
 // curve.h
 //
-// Version 0.1.2 - 2004-05-28
-// - Trying out my CVS check-in privileges. (spelling mistake)
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumControlPoints() to GetControlPointCount() for consistency.
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
-// - Changed m_numControlPoints to m_controlPointCount for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -47,11 +42,11 @@ namespace noise
     struct ControlPoint
     {
 
-        /// The input value.
-        double m_inputValue;
+      /// The input value.
+      double m_inputValue;
 
-        /// The output value that is mapped from the input value.
-        double m_outputValue;
+      /// The output value that is mapped from the input value.
+      double m_outputValue;
 
     };
 

@@ -1,5 +1,7 @@
 // noisegen.cpp
 //
+// Version 0.1.3 - 2004-06-03
+//
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
 // This library is free software; you can redistribute it and/or modify it

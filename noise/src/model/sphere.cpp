@@ -25,7 +25,8 @@
 
 using namespace noise::model;
 
-Sphere::Sphere (): m_pModule (NULL)
+Sphere::Sphere ():
+  m_pModule (NULL)
 {
 }
 

@@ -1,7 +1,6 @@
 // clamp.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -31,7 +30,9 @@
 namespace noise
 {
 
-  namespace module {
+  namespace module
+  {
+
     /// @addtogroup libnoise
     /// @{
 
@@ -63,77 +64,75 @@ namespace noise
     ///
     /// This noise module requires one source module.
     class Clamp: public Module
-      {
+    {
 
       public:
 
-	/// Constructor.
-	///
-	/// The default lower bound of the clamping range is set to
-	/// ::DEFAULT_CLAMP_LOWER_BOUND.
-	///
-	/// The default upper bound of the clamping range is set to
-	/// ::DEFAULT_CLAMP_UPPER_BOUND.
-	Clamp ();
+        /// Constructor.
+        ///
+        /// The default lower bound of the clamping range is set to
+        /// ::DEFAULT_CLAMP_LOWER_BOUND.
+        ///
+        /// The default upper bound of the clamping range is set to
+        /// ::DEFAULT_CLAMP_UPPER_BOUND.
+        Clamp ();
 
-	/// Returns the lower bound of the clamping range.
-	///
-	/// @returns The lower bound.
-	///
-	/// If the value from the source module is less than the lower bound,
-	/// this noise module clamps that value to the lower bound.
-	double GetLowerBound () const
-	  {
-	    return m_lowerBound;
-	  }
+        /// Returns the lower bound of the clamping range.
+        ///
+        /// @returns The lower bound.
+        ///
+        /// If the value from the source module is less than the lower bound,
+        /// this noise module clamps that value to the lower bound.
+        double GetLowerBound () const
+        {
+          return m_lowerBound;
+        }
 
-	virtual int GetSourceModuleCount () const
-	  {
-	    return 1;
-	  }
+        virtual int GetSourceModuleCount () const
+        {
+          return 1;
+        }
 
-	/// Returns the upper bound of the clamping range.
-	///
-	/// @returns The upper bound.
-	///
-	/// If the value from the source module is greater than the
-	/// upper bound, this noise module clamps that value to the
-	/// upper bound.
-	double GetUpperBound () const
-	  {
-	    return m_upperBound;
-	  }
+        /// Returns the upper bound of the clamping range.
+        ///
+        /// @returns The upper bound.
+        ///
+        /// If the value from the source module is greater than the upper
+        /// bound, this noise module clamps that value to the upper bound.
+        double GetUpperBound () const
+        {
+          return m_upperBound;
+        }
 
-	virtual double GetValue (double x, double y, double z) const;
+        virtual double GetValue (double x, double y, double z) const;
 
-	/// Sets the lower and upper bounds of the clamping range.
-	///
-	/// @param lowerBound The lower bound.
-	/// @param upperBound The upper bound.
-	///
-	/// @pre The lower bound must be less than or equal to the
-	/// upper bound.
-	///
-	/// @throw NoiseEx
-	/// - @a EX_INVALID_PARAM: An invalid parameter was specified;
-	/// see the preconditions for more information.
-	///
-	/// If the value from the source module is less than the lower
-	/// bound, this module clamps that value to the lower bound.
-	/// If the value from the source module is greater than the
-	/// upper bound, this module clamps that value to the upper
-	/// bound.
-	void SetBounds (double lowerBound, double upperBound);
+        /// Sets the lower and upper bounds of the clamping range.
+        ///
+        /// @param lowerBound The lower bound.
+        /// @param upperBound The upper bound.
+        ///
+        /// @pre The lower bound must be less than or equal to the
+        /// upper bound.
+        ///
+        /// @throw NoiseEx
+        /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
+        /// preconditions for more information.
+        ///
+        /// If the value from the source module is less than the lower bound,
+        /// this module clamps that value to the lower bound.  If the value
+        /// from the source module is greater than the upper bound, this
+        /// module clamps that value to the upper bound.
+        void SetBounds (double lowerBound, double upperBound);
 
       protected:
 
-	/// Lower bound of the clamping range.
-	double m_lowerBound;
-    
-	/// Upper bound of the clamping range.
-	double m_upperBound;
+        /// Lower bound of the clamping range.
+        double m_lowerBound;
 
-      };
+        /// Upper bound of the clamping range.
+        double m_upperBound;
+
+    };
 
     /// @}
 
@@ -142,6 +141,7 @@ namespace noise
     /// @}
 
   }
+
 }
 
 #endif

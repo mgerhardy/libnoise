@@ -1,7 +1,6 @@
 // blend.h
 //
-// Version 0.1.1 - 2004-03-04
-// - Changed GetNumSourceModules() to GetSourceModuleCount() for consistency.
+// Version 0.1.3 - 2004-06-03
 //
 // Copyright (C) 2003, 2004 by Jason Bevins    
 //
@@ -36,14 +35,14 @@ namespace noise
 
     /// @addtogroup libnoise
     /// @{
-    
+
     /// @addtogroup modules
     /// @{
-    
+
     /// @defgroup selectormodules Selector Modules
     /// @addtogroup selectormodules
     /// @{
-    
+
     /// Noise module that outputs a value blended between two source modules
     /// given a weight supplied by another source module.
     ///
@@ -55,12 +54,12 @@ namespace noise
     ///   values to blend.
     /// - Source module @b 1 (lower left in the diagram) outputs one of the
     ///   values to blend.
-    /// - Source module @b 2 (bottom of the diagram) is known as the <i>blender
-    ///   module</i>.  This module determines the weight of the blending
-    ///   operation.  Negative values weigh the blend towards the value from
-    ///   the source module with an index value of @b 0.  Positive values weigh
-    ///   the blend towards the value from the source module with an index value
-    ///   of @b 1.
+    /// - Source module @b 2 (bottom of the diagram) is known as the
+    ///   <i>blender module</i>.  This module determines the weight of the
+    ///   blending operation.  Negative values weigh the blend towards the
+    ///   value from the source module with an index value of @b 0.  Positive
+    ///   values weigh the blend towards the value from the source module with
+    ///   an index value of @b 1.
     ///
     /// An application can pass the blender module to the SetBlenderModule()
     /// method instead of the SetSourceModule() method.  This may make the
@@ -71,74 +70,75 @@ namespace noise
     ///
     /// This noise module requires three source modules.
     class Blend: public Module
-      {
-	
+    {
+
       public:
-	
-	/// Constructor.
-	Blend ();
-	
-	/// Returns the blender module.
-	///
-	/// @returns A reference to the blender module.
-	///
-	/// @pre A blender module has been added to this module via a call to
-	/// SetSourceModule() or SetBlenderModule().
-	///
-	/// @throw NoiseEx
-	/// - @a EX_NO_MODULE: See the preconditions for more information.
-	///
-	/// The blender module determines the weight of the blending operation.
-	/// Negative values weigh the blend towards the value from the source
-	/// module with an index value of @b 0.  Positive values weigh the blend
-	/// towards the value from the source module with an index value of
-	/// @b 1.
-	const Module& GetBlenderModule () const
-	  {
-	    if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
-	      throw EX_NO_MODULE;
-	    }
-	    return *(m_pSourceModule[2]);
-	  }
-	
-	virtual int GetSourceModuleCount () const
-	  {
-	    return 3;
-	  }
-	
-	virtual double GetValue (double x, double y, double z) const;
-	
-	/// Sets the blender module.
-	///
-	/// @param blenderModule The blender module.
-	///
-	/// The blender module determines the weight of the blending operation.
-	/// Negative values weigh the blend towards the value from the source
-	/// module with an index value of @b 0.  Positive values weigh the blend
-	/// towards the value from the source module with an index value of
-	/// @b 1.
-	///
-	/// This method assigns an index value of @b 2 to the blender module.
-	/// Passing the blender module to this method produces the same results
-	/// as passing the blender module to the SetSourceModule() method while
-	/// assigning that module an index value of @b 2.
-	///
-	/// The blender module must exist throughout the lifetime of this noise
-	/// module unless another blender module replaces that blender module.
-	void SetBlenderModule (const Module& blenderModule)
-	  {
-	    assert (m_pSourceModule != NULL);
-	    m_pSourceModule[2] = &blenderModule;
-	  }
-	
-      };
-    
+
+        /// Constructor.
+        Blend ();
+
+        /// Returns the blender module.
+        ///
+        /// @returns A reference to the blender module.
+        ///
+        /// @pre A blender module has been added to this module via a call to
+        /// SetSourceModule() or SetBlenderModule().
+        ///
+        /// @throw NoiseEx
+        /// - @a EX_NO_MODULE: See the preconditions for more information.
+        ///
+        /// The blender module determines the weight of the blending
+        /// operation.  Negative values weigh the blend towards the value from
+        /// the source module with an index value of @b 0.  Positive values
+        /// weigh the blend towards the value from the source module with an
+        /// index value of @b 1.
+        const Module& GetBlenderModule () const
+        {
+          if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
+            throw EX_NO_MODULE;
+          }
+          return *(m_pSourceModule[2]);
+        }
+
+        virtual int GetSourceModuleCount () const
+        {
+          return 3;
+        }
+
+	      virtual double GetValue (double x, double y, double z) const;
+
+        /// Sets the blender module.
+        ///
+        /// @param blenderModule The blender module.
+        ///
+        /// The blender module determines the weight of the blending
+        /// operation.  Negative values weigh the blend towards the value from
+        /// the source module with an index value of @b 0.  Positive values
+        /// weigh the blend towards the value from the source module with an
+        /// index value of @b 1.
+        ///
+        /// This method assigns an index value of @b 2 to the blender module.
+        /// Passing the blender module to this method produces the same
+        /// results as passing the blender module to the SetSourceModule()
+        /// method while assigning that module an index value of @b 2.
+        ///
+        /// The blender module must exist throughout the lifetime of this
+        /// noise module unless another blender module replaces that blender
+        /// module.
+        void SetBlenderModule (const Module& blenderModule)
+        {
+          assert (m_pSourceModule != NULL);
+          m_pSourceModule[2] = &blenderModule;
+        }
+
+    };
+
     /// @}
-    
+
     /// @}
-    
+
     /// @}
-    
+
   }
 
 }
