@@ -154,10 +154,9 @@ int noise::IntValueNoise3D (int x, int y, int z, int seed)
     + Z_NOISE_GEN    * z
     + SEED_NOISE_GEN * seed)
     & 0x7fffffff;
-  n = (n << 13) ^ n;
+  n = (n >> 13) ^ n;
   return (n * (n * n * 60493 + 19990303) + 1376312589) & 0x7fffffff;
 }
-
 
 double noise::ValueCoherentNoise3D (double x, double y, double z, int seed,
   NoiseQuality noiseQuality)
