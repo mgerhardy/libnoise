@@ -1,8 +1,6 @@
 // curve.h
 //
-// Version 0.1.3 - 2004-06-03
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -61,16 +59,23 @@ namespace noise
     ///
     /// @image html modulecurve.png
     ///
-    /// The mapping curve is a spline defined by a number of <i>control
-    /// points</i>. Each control point has an <i>input value</i> and an
-    /// <i>output value</i>.  To add the control points to this module, call
-    /// the AddControlPoint() method.
+    /// This module maps the value from the source module onto an
+    /// application-defined curve.  This curve is defined by a number of
+    /// <i>control points</i>; each control point has an <i>input value</i>
+    /// that maps to an <i>output value</i>.  Refer to the following
+    /// illustration:
     ///
-    /// There is no limit to the number of control points that can be added to
-    /// the curve.  There must be a minimum of four control points on the
-    /// curve before an application can call the GetValue() method. The
-    /// control points can have any input and output value, although no two
-    /// control points can have the same input value.
+    /// @image html curve.png
+    ///
+    /// To add the control points to this curve, call the AddControlPoint()
+    /// method.
+    ///
+    /// Since this curve is a cubic spline, an application must add a minimum
+    /// of four control points onto the curve.  If this is not done, the
+    /// GetValue() method fails.  The control points can have any input and
+    /// output value, although no two control points can have the same input
+    /// value.  There is no limit to the number of control points that can be
+    /// added to the curve.  
     ///
     /// This noise module requires one source module.
     class Curve: public Module
@@ -84,7 +89,7 @@ namespace noise
         /// Destructor.
         ~Curve ();
 
-        /// Adds a control point onto the mapping curve.
+        /// Adds a control point onto the curve.
         ///
         /// @param inputValue The input value stored in the control point.
         /// @param outputValue The output value stored in the control point.
@@ -95,20 +100,15 @@ namespace noise
         /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
         ///   preconditions for more information.
         ///
-        /// The mapping curve is a spline defined by a number of <i>control
-        /// points</i>. Each control point has an <i>input value</i> and an
-        /// <i>output value</i>.
-        ///
         /// It does not matter which order these points are added.
         void AddControlPoint (double inputValue, double outputValue);
 
-        /// Deletes all the control points from the mapping curve.
+        /// Deletes all the control points on the curve.
         ///
-        /// @post All points on the mapping curve are deleted.
+        /// @post All points on the curve are deleted.
         void ClearAllControlPoints ();
 
-        /// Returns a pointer to the array of control points on the mapping
-        /// curve.
+        /// Returns a pointer to the array of control points on the curve.
         ///
         /// @returns A pointer to the array of control points.
         ///
@@ -123,9 +123,9 @@ namespace noise
           return m_pControlPoints;
         }
 
-        /// Returns the number of control points on the mapping curve.
+        /// Returns the number of control points on the curve.
         ///
-        /// @returns The number of control points on the mapping curve.
+        /// @returns The number of control points on the curve.
         int GetControlPointCount () const
         {
           return m_controlPointCount;

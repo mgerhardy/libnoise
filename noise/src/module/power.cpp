@@ -1,7 +1,5 @@
 // power.cpp
 //
-// Version 0.1.3 - 2004-06-03
-//
 // Copyright (C) 2004 by Owen Jacobson
 //
 // This library is free software; you can redistribute it and/or modify it

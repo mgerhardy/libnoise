@@ -1,8 +1,6 @@
 // perlin.cpp
 //
-// Version 0.1.4 - 2004-07-10
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by

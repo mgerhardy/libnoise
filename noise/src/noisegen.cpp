@@ -1,8 +1,6 @@
 // noisegen.cpp
 //
-// Version 0.1.4 - 2004-07-10
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -34,13 +32,12 @@ double noise::GradientNoise3D (double x, double y, double z, int ix, int iy,
   // Randomly generate a gradient vector given the input (x, y, z)
   // coordinates.  This implementation generates a random number and
   // uses it as an index into a normalized vector lookup table.
-  // jas20040710 modified
-  // There's now only 256 vectors, which makes it cache-friendly.  Also, for
-  // whatever weird reason, the lower bits of the noise are not "random"
-  // enough but the higher bits are.  XOR the high bits onto the low bits.
-  // Looks much better :-)
-  int vectorIndex = IntValueNoise3D (ix, iy, iz, seed);
-  vectorIndex ^= (vectorIndex >> 16);
+  // jas20040713 modified
+  // Gradient noise generation is much quicker now.  We don't call
+  // IntValueNoise3D() anymore because it turns out that the vectors
+  // themselves are fairly random.
+  int vectorIndex = (ix + 31337 * iy + 263 * iz + 1013 * seed) & 0xffffffff;
+  vectorIndex ^= (vectorIndex >> 13);
   vectorIndex &= 0xff;
   double xvGradient = g_randomVectors[(vectorIndex << 2)    ];
   double yvGradient = g_randomVectors[(vectorIndex << 2) + 1];

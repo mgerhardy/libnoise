@@ -99,7 +99,6 @@ EXPORTS
   ?GetSeed@Turbulence@module@noise@@QBEHXZ @ 106
   ?GetValue@Turbulence@module@noise@@UBENNNN@Z @ 107
   ?SetSeed@Turbulence@module@noise@@QAEXH@Z @ 109
-  ??1Perlin@module@noise@@QAE@XZ @ 110
   ?GetSourceModuleCount@Turbulence@module@noise@@UBEHXZ @ 115
   ??0Voronoi@module@noise@@QAE@XZ @ 116
   ?GetValue@Voronoi@module@noise@@UBENNNN@Z @ 117
@@ -144,3 +143,7 @@ EXPORTS
   ??_7Abs@module@noise@@6B@ @ 156
   ?SmoothGradientNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 157
   ?SmoothValueNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 158
+  ??0Billow@module@noise@@QAE@XZ @ 159
+  ?GetValue@Billow@module@noise@@UBENNNN@Z @ 160
+  ?GetSourceModuleCount@Billow@module@noise@@UBEHXZ @ 161
+  ??_7Billow@module@noise@@6B@ @ 163

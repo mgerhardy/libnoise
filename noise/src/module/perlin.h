@@ -1,8 +1,6 @@
 // perlin.h
 //
-// Version 0.1.4 - 2004-07-10
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -42,25 +40,25 @@ namespace noise
     /// @addtogroup generatormodules
     /// @{
 
-    /// Default frequency for the ModulePerlin noise module.
+    /// Default frequency for the Perlin noise module.
     const double DEFAULT_PERLIN_FREQUENCY = 1.0;
 
-    /// Default lacunarity for the ModulePerlin noise module.
+    /// Default lacunarity for the Perlin noise module.
     const double DEFAULT_PERLIN_LACUNARITY = 2.0;
 
-    /// Default number of octaves for the ModulePerlin noise module.
+    /// Default number of octaves for the Perlin noise module.
     const int DEFAULT_PERLIN_OCTAVE_COUNT = 6;
 
-    /// Default persistence for the ModulePerlin noise module.
+    /// Default persistence for the Perlin noise module.
     const double DEFAULT_PERLIN_PERSISTENCE = 0.5;
 
-    /// Default noise quality for the RidgedMulti noise module.
+    /// Default noise quality for the Perlin noise module.
     const noise::NoiseQuality DEFAULT_PERLIN_QUALITY = QUALITY_STD;
 
-    /// Default noise seed for the ModulePerlin noise module.
+    /// Default noise seed for the Perlin noise module.
     const int DEFAULT_PERLIN_SEED = 0;
 
-    /// Maximum number of octaves for the ModulePerlin noise module.
+    /// Maximum number of octaves for the Perlin noise module.
     const int PERLIN_MAX_OCTAVE = 30;
 
     /// Noise module that outputs 3-dimensional Perlin noise.
@@ -185,9 +183,9 @@ namespace noise
           return m_frequency;
         }
 
-        /// Returns the lacunarity of the Perlin noise function.
+        /// Returns the lacunarity of the Perlin noise.
         ///
-        /// @returns The lacunarity of the Perlin noise function.
+        /// @returns The lacunarity of the Perlin noise.
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
@@ -218,9 +216,9 @@ namespace noise
           return m_octaveCount;
         }
 
-        /// Returns the persistence of the Perlin noise function.
+        /// Returns the persistence of the Perlin noise.
         ///
-        /// @returns The persistence of the Perlin noise function.
+        /// @returns The persistence of the Perlin noise.
         ///
         /// The persistence controls the roughness of the Perlin noise.
         double GetPersistence () const
@@ -251,9 +249,9 @@ namespace noise
           m_frequency = frequency;
         }
 
-        /// Sets the lacunarity of the Perlin noise function.
+        /// Sets the lacunarity of the Perlin noise.
         ///
-        /// @param lacunarity The lacunarity of the Perlin noise function.
+        /// @param lacunarity The lacunarity of the Perlin noise.
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
@@ -301,9 +299,9 @@ namespace noise
           m_octaveCount = octaveCount;
         }
 
-        /// Sets the persistence of the Perlin noise function.
+        /// Sets the persistence of the Perlin noise.
         ///
-        /// @param persistence The persistence of the Perlin noise function.
+        /// @param persistence The persistence of the Perlin noise.
         ///
         /// The persistence controls the roughness of the Perlin noise.
         ///

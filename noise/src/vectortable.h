@@ -1,7 +1,5 @@
 // vectortable.h
 //
-// Version 0.1.4 - 2004-07-10
-//
 // Written by Jason Bevins.  Actually it's the output of a program written
 // by me.  I'm not going to copyright a bunch of random numbers (although
 // you could probably do so in the States, the way things are going down

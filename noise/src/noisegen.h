@@ -1,8 +1,6 @@
 // noisegen.h
 //
-// Version 0.1.4 - 2004-07-10
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -38,28 +36,22 @@ namespace noise
   enum NoiseQuality
   {
 
-    /// Generates noise quickly.
-    ///
-    /// When this noise type is used as a bump map source, there are
-    /// noticeable "creasing" artifacts in the resulting image.  This is
-    /// because the derivative of this noise function is discontinuous at
-    /// integer boundaries.
+    /// Generates noise quickly.  When this noise type is used as a bump
+    /// map source, there are noticeable "creasing" artifacts in the
+    /// resulting image.  This is because the derivative of this noise
+    /// function is discontinuous at integer boundaries.
     QUALITY_FAST = 0,
 
-    /// Generates standard-quality noise.
-    ///
-    /// When this noise type is used as a bump map source, there are some
-    /// minor "creasing" artifacts in the resulting image.  This is because
-    /// the second derivative of this noise function is discontinuous at
-    /// integer boundaries.
+    /// Generates standard-quality noise.  When this noise type is used
+    /// as a bump map source, there are some minor "creasing" artifacts in
+    /// the resulting image.  This is because the second derivative of this
+    /// noise function is discontinuous at integer boundaries.
     QUALITY_STD = 1,
 
-    /// Generates the best-quality noise.
-    ///
-    /// Produces no "creasing" artifacts when noise is used as a bump map
-    /// source, but it is twice as slow as standard quality.  This is because
-    /// the first and second derivatives of this noise function are continuous
-    /// at integer boundaries.
+    /// Generates the best-quality noise.  Produces no "creasing" artifacts
+    /// but it is twice as slow as standard quality.  This is because the
+    /// first and second derivatives of this noise function are continuous at
+    /// integer boundaries.
     QUALITY_BEST = 2
 
   };
@@ -148,6 +140,7 @@ namespace noise
   /// @param y The @a y coordinate of the 3D point.
   /// @param z The @a z coordinate of the 3D point.
   /// @param seed The random number seed.
+  /// @param noiseQuality The noise quality.
   ///
   /// @returns The random value.
   ///
@@ -162,6 +155,7 @@ namespace noise
   /// @param y The @a y coordinate of the 3D point.
   /// @param z The @a z coordinate of the 3D point.
   /// @param seed The random number seed.
+  /// @param noiseQuality The noise quality.
   ///
   /// @returns The random value.
   ///

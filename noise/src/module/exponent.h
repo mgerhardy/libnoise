@@ -1,8 +1,6 @@
 // exponent.h
 //
-// Version 0.1.3 - 2004-06-03
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -42,7 +40,7 @@ namespace noise
     /// @addtogroup modifiermodules
     /// @{
 
-    /// Default exponent for the ModuleExponent module.
+    /// Default exponent for the Exponent module.
     const double DEFAULT_EXPONENT = 1.0;
 
     /// Noise module that maps the value from the source module onto an

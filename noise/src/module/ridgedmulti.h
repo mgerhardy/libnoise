@@ -1,8 +1,6 @@
 // ridgedmulti.h
 //
-// Version 0.1.4 - 2004-07-10
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -146,9 +144,9 @@ namespace noise
           return m_frequency;
         }
 
-        /// Returns the lacunarity of the ridged multifractal noise function.
+        /// Returns the lacunarity of the ridged multifractal noise.
         ///
-        /// @returns The lacunarity of the ridged multifractal noise function.
+        /// @returns The lacunarity of the ridged multifractal noise.
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
@@ -157,9 +155,9 @@ namespace noise
           return m_lacunarity;
         }
 
-        /// Returns the quality of the ridged multifractal noise function.
+        /// Returns the quality of the ridged multifractal noise.
         ///
-        /// @returns The quality of the ridged multifractal noise function.
+        /// @returns The quality of the ridged multifractal noise.
         ///
         /// See noise::NoiseQuality for definitions of the various noise
         /// qualities.
@@ -204,10 +202,9 @@ namespace noise
           m_frequency = frequency;
         }
 
-        /// Sets the lacunarity of the ridged multifractal noise function.
+        /// Sets the lacunarity of the ridged multifractal noise.
         ///
-        /// @param lacunarity The lacunarity of the ridged multifractal noise
-        /// function.
+        /// @param lacunarity The lacunarity of the ridged multifractal noise.
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
@@ -219,10 +216,9 @@ namespace noise
           m_lacunarity = lacunarity;
         }
 
-        /// Sets the quality of the ridged multifractal noise function.
+        /// Sets the quality of the ridged multifractal noise.
         ///
-        /// @param noiseQuality The quality of the ridged multifractal noise
-        /// function.
+        /// @param noiseQuality The quality of the ridged multifractal noise.
         ///
         /// See noise::NoiseQuality for definitions of the various noise
         /// qualities.

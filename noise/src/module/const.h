@@ -1,8 +1,6 @@
 // const.h
 //
-// Version 0.1.3 - 2004-06-03
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -43,7 +41,7 @@ namespace noise
     /// @addtogroup generatormodules
     /// @{
 
-    /// Default constant value for the ModuleConst noise module.
+    /// Default constant value for the Const noise module.
     const double DEFAULT_CONST_VALUE = 0.0;
 
     /// Noise module that outputs a constant value.

@@ -109,6 +109,14 @@ SOURCE=.\src\module\add.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\module\billow.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\module\billow.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\module\blend.cpp
 # End Source File
 # Begin Source File

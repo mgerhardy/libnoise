@@ -1,8 +1,6 @@
 // terrace.cpp
 //
-// Version 0.1.3 - 2004-06-03
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -45,8 +43,8 @@ Terrace::~Terrace ()
 
 void Terrace::AddTerracePoint (double value)
 {
-  // Find the insertion point for the new terracing point and insert the new
-  // point at that position.  The terracing point array will remain sorted by
+  // Find the insertion point for the new terrace point and insert the new
+  // point at that position.  The terrace point array will remain sorted by
   // value.
   int insertionPos = FindInsertionPos (value);
   InsertAtPos (insertionPos, value);
@@ -64,11 +62,11 @@ int Terrace::FindInsertionPos (double value)
   int insertionPos;
   for (insertionPos = 0; insertionPos < m_terracePointCount; insertionPos++) {
     if (value < m_pTerracePoints[insertionPos]) {
-      // We found the array index in which to insert the new terracing point.
+      // We found the array index in which to insert the new terrace point.
       // Exit now.
       break;
     } else if (value == m_pTerracePoints[insertionPos]) {
-      // Each terracing point is required to contain a unique value, so throw
+      // Each terrace point is required to contain a unique value, so throw
       // an exception.
       throw EX_INVALID_PARAM;
     }
@@ -84,7 +82,7 @@ double Terrace::GetValue (double x, double y, double z) const
   // Get the value from the source module.
   double sourceModuleValue = m_pSourceModule[0]->GetValue (x, y, z);
 
-  // Find the first element in the terracing point array that has a value
+  // Find the first element in the terrace point array that has a value
   // larger than the value from the source module.
   int indexPos;
   for (indexPos = 0; indexPos < m_terracePointCount; indexPos++) {
@@ -93,15 +91,15 @@ double Terrace::GetValue (double x, double y, double z) const
     }
   }
 
-  // Find the two nearest terracing points so that we can map their values
+  // Find the two nearest terrace points so that we can map their values
   // onto a quadratic curve.
   int index0 = ClampValue (indexPos - 1, 0, m_terracePointCount - 1);
   int index1 = ClampValue (indexPos    , 0, m_terracePointCount - 1);
 
-  // If some terracing points are missing (which occurs if the value from the
+  // If some terrace points are missing (which occurs if the value from the
   // source module is greater than the largest value or less than the smallest
-  // value of the terracing point array), get the value of the nearest
-  // terracing point and exit now.
+  // value of the terrace point array), get the value of the nearest
+  // terrace point and exit now.
   if (index0 == index1) {
     return m_pTerracePoints[index1];
   }
@@ -115,7 +113,7 @@ double Terrace::GetValue (double x, double y, double z) const
     SwapValues (value0, value1);
   }
 
-  // Squaring the alpha produces the terracing effect.
+  // Squaring the alpha produces the terrace effect.
   alpha *= alpha;
 
   // Now perform the linear interpolation given the alpha value.
@@ -124,9 +122,9 @@ double Terrace::GetValue (double x, double y, double z) const
 
 void Terrace::InsertAtPos (int insertionPos, double value)
 {
-  // Make room for the new terracing point at the specified position within
-  // the terracing point array.  The position is determined by the value of
-  // the terracing point; the terracing points must be sorted by value within
+  // Make room for the new terrace point at the specified position within
+  // the terrace point array.  The position is determined by the value of
+  // the terrace point; the terrace points must be sorted by value within
   // that array.
   double* newTerracePoints = new double[m_terracePointCount + 1];
   for (int i = 0; i < m_terracePointCount; i++) {
@@ -140,7 +138,7 @@ void Terrace::InsertAtPos (int insertionPos, double value)
   m_pTerracePoints = newTerracePoints;
   ++m_terracePointCount;
 
-  // Now that we've made room for the new terracing point within the array,
+  // Now that we've made room for the new terrace point within the array,
   // add the new terracing point.
   m_pTerracePoints[insertionPos] = value;
 }

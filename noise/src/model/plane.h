@@ -38,8 +38,6 @@ namespace noise
 
     /// Model that defines a plane.
     ///
-    /// @todo Insert an image of a plane with a point selected, here
-    ///
     /// Using a noise module, this class returns values that lie on the
     /// surface of a plane passing through the origin along the @a x and
     /// @a z axes.

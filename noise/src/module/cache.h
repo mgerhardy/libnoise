@@ -1,8 +1,6 @@
 // cache.h
 //
-// Version 0.1.3 - 2004-06-03
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -60,7 +58,7 @@ namespace noise
     /// If an application passes a new source module to the SetSourceModule()
     /// method, the cache is invalidated.
     ///
-    /// Caching a noise module is useful when a module is used as an source
+    /// Caching a noise module is useful when a module is used as a source
     /// module for multiple noise modules.  If a source module is not cached,
     /// the source module will redundantly calculate the same output value
     /// once for each module in which it is included.

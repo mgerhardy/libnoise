@@ -1,8 +1,6 @@
 // clamp.h
 //
-// Version 0.1.3 - 2004-06-03
-//
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Copyright (C) 2003, 2004 by Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -42,12 +40,10 @@ namespace noise
     /// @addtogroup modifiermodules
     /// @{
 
-    /// Default lower bound of the clamping range for the ModuleClamp noise
-    /// module.
+    /// Default lower bound of the clamping range for the Clamp noise module.
     const double DEFAULT_CLAMP_LOWER_BOUND = -1.0;
 
-    /// Default upper bound of the clamping range for the ModuleClamp noise
-    /// module.
+    /// Default upper bound of the clamping range for the Clamp noise module.
     const double DEFAULT_CLAMP_UPPER_BOUND = 1.0;
 
     /// Noise module that clamps the value from the source module.
