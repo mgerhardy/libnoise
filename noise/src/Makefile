@@ -13,11 +13,11 @@ OBJECTS=$(SOURCES:.c=.o)
 # hooks for future makefiles being able to make multiple SOs, or older SOs
 libnoise: libnoise.so libnoise.a libnoise.la
 libnoise.so: libnoise.so.0
-libnoise.so.0: libnoise.so.0.1
+libnoise.so.0: libnoise.so.0.2
 
 # Real build targets
-libnoise.so.0.1: $(OBJECTS)
-	$(LIBTOOL) --mode=link $(CXX) $(LDFLAGS) -shared -Wl,-soname=libnoise.so.0 -o libnoise.so.0.1 $(OBJECTS:.o=.lo)
+libnoise.so.0.2: $(OBJECTS)
+	$(LIBTOOL) --mode=link $(CXX) $(LDFLAGS) -shared -Wl,-soname=libnoise.so.0 -o $@ $(OBJECTS:.o=.lo)
 
 libnoise.a: $(OBJECTS)
 	$(LIBTOOL) --mode=link $(CXX) $(LDFLAGS) -o $@ $(OBJECTS)
@@ -32,7 +32,7 @@ cleanobjs:
 	-rm $(OBJECTS:.o=.lo) #clean up after libtool
 	-rm -rf .libs
 cleanlib:
-	-rm libnoise.so.0.1
+	-rm libnoise.so.0.2
 	-rm libnoise.a
 	-rm libnoise.la
 

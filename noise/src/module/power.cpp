@@ -1,6 +1,8 @@
-// module.h
+// power.cpp
 //
-// Copyright (C) 2003, 2004 by Jason Bevins    
+// Version 0.1.2 - 2004-05-11
+//
+// Copyright (C) 2004 Owen Jacobson
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,38 +18,25 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
-// off every 'zig'.)
+// The developer's email is angstrom@lionsanctuary.net
 //
 
-#ifndef NOISE_MODULE_H
-#define NOISE_MODULE_H
+#include <cmath>
 
-#include "add.h"
-#include "abs.h"
-#include "blend.h"
-#include "cache.h"
-#include "checkerboard.h"
-#include "clamp.h"
-#include "const.h"
-#include "curve.h"
-#include "cylinders.h"
-#include "displace.h"
-#include "exponent.h"
-#include "invert.h"
-#include "max.h"
-#include "min.h"
-#include "multiply.h"
-#include "perlin.h"
 #include "power.h"
-#include "ridgedmulti.h"
-#include "rotatepoint.h"
-#include "scalebias.h"
-#include "scalepoint.h"
-#include "select.h"
-#include "spheres.h"
-#include "terrace.h"
-#include "turbulence.h"
-#include "voronoi.h"
 
-#endif
+using namespace noise::module;
+
+Power::Power ():
+  Module (GetSourceModuleCount ())
+{
+}
+
+double Power::GetValue (double x, double y, double z) const
+{
+  assert (m_pSourceModule[0] != NULL);
+  assert (m_pSourceModule[1] != NULL);
+
+  return std::pow (m_pSourceModule[0]->GetValue (x, y, z),
+		   m_pSourceModule[1]->GetValue (x, y, z));
+}
