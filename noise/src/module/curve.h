@@ -1,6 +1,6 @@
 // curve.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -54,12 +54,12 @@ namespace noise
     /// @addtogroup modifiermodules
     /// @{
 
-    /// Noise module that maps the value from the source module onto an
-    /// arbitrary curve.
+    /// Noise module that maps the output value from a source module onto an
+    /// arbitrary function curve.
     ///
     /// @image html modulecurve.png
     ///
-    /// This module maps the value from the source module onto an
+    /// This noise module maps the output value from the source module onto an
     /// application-defined curve.  This curve is defined by a number of
     /// <i>control points</i>; each control point has an <i>input value</i>
     /// that maps to an <i>output value</i>.  Refer to the following
@@ -71,8 +71,8 @@ namespace noise
     /// method.
     ///
     /// Since this curve is a cubic spline, an application must add a minimum
-    /// of four control points onto the curve.  If this is not done, the
-    /// GetValue() method fails.  The control points can have any input and
+    /// of four control points to the curve.  If this is not done, the
+    /// GetValue() method fails.  Each control point can have any input and
     /// output value, although no two control points can have the same input
     /// value.  There is no limit to the number of control points that can be
     /// added to the curve.  
@@ -89,7 +89,7 @@ namespace noise
         /// Destructor.
         ~Curve ();
 
-        /// Adds a control point onto the curve.
+        /// Adds a control point to the curve.
         ///
         /// @param inputValue The input value stored in the control point.
         /// @param outputValue The output value stored in the control point.
@@ -171,10 +171,10 @@ namespace noise
         /// the control point array and shifts all control points occurring
         /// after the insertion position up by one.
         ///
-        /// Because the curve mapping algorithm in this module requires that
-        /// all control points in the array must be sorted by input value, the
-        /// new control point should be inserted at the position in which the
-        /// order is still preserved.
+        /// Because the curve mapping algorithm used by this noise module
+        /// requires that all control points in the array must be sorted by
+        /// input value, the new control point should be inserted at the
+        /// position in which the order is still preserved.
         void InsertAtPos (int insertionPos, double inputValue,
           double outputValue);
 

@@ -1,6 +1,6 @@
 // billow.h
 //
-// Copyright (C) 2004 by Jason Bevins
+// Copyright (C) 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -40,36 +40,41 @@ namespace noise
     /// @addtogroup generatormodules
     /// @{
 
-    /// Default frequency for the Billow noise module.
+    /// Default frequency for the noise::module::Billow noise module.
     const double DEFAULT_BILLOW_FREQUENCY = 1.0;
 
-    /// Default lacunarity for the Billow noise module.
+    /// Default lacunarity for the the noise::module::Billow noise module.
     const double DEFAULT_BILLOW_LACUNARITY = 2.0;
 
-    /// Default number of octaves for the Billow noise module.
+    /// Default number of octaves for the the noise::module::Billow noise
+    /// module.
     const int DEFAULT_BILLOW_OCTAVE_COUNT = 6;
 
-    /// Default persistence for the Billow noise module.
+    /// Default persistence value for the the noise::module::Billow noise
+    /// module.
     const double DEFAULT_BILLOW_PERSISTENCE = 0.5;
 
-    /// Default noise quality for the Billow noise module.
+    /// Default noise quality for the the noise::module::Billow noise module.
     const noise::NoiseQuality DEFAULT_BILLOW_QUALITY = QUALITY_STD;
 
-    /// Default noise seed for the Billow noise module.
+    /// Default noise seed for the the noise::module::Billow noise module.
     const int DEFAULT_BILLOW_SEED = 0;
 
-    /// Maximum number of octaves for the Billow noise module.
+    /// Maximum number of octaves for the the noise::module::Billow noise
+    /// module.
     const int BILLOW_MAX_OCTAVE = 30;
 
-    /// Noise module that outputs "billowy" noise.
+    /// Noise module that outputs three-dimensional "billowy" noise.
     ///
     /// @image html modulebillow.png
     ///
-    /// This module creates "billowy" noise suitable for clouds and rocks.
+    /// This noise module generates "billowy" noise suitable for clouds and
+    /// rocks.
     ///
-    /// This module is nearly identical to module::Perlin except this module
-    /// modifies each octave with an absolute-value function.  See the
-    /// documentation of module::Perlin for more information.
+    /// This noise module is nearly identical to noise::module::Perlin except
+    /// this noise module modifies each octave with an absolute-value
+    /// function.  See the documentation of noise::module::Perlin for more
+    /// information.
     class Billow: public Module
     {
 
@@ -77,16 +82,20 @@ namespace noise
 
         /// Constructor.
         ///
-        /// The default frequency is set to ::DEFAULT_BILLOW_FREQUENCY.
+        /// The default frequency is set to
+        /// noise::module::DEFAULT_BILLOW_FREQUENCY.
         ///
-        /// The default lacunarity is set to ::DEFAULT_BILLOW_LACUNARITY.
+        /// The default lacunarity is set to
+        /// noise::module::DEFAULT_BILLOW_LACUNARITY.
         ///
         /// The default number of octaves is set to
-        /// ::DEFAULT_BILLOW_OCTAVE_COUNT.
+        /// noise::module::DEFAULT_BILLOW_OCTAVE_COUNT.
         ///
-        /// The default persistence is set to ::DEFAULT_BILLOW_PERSISTENCE.
+        /// The default persistence value is set to
+        /// noise::module::DEFAULT_BILLOW_PERSISTENCE.
         ///
-        /// The default seed value is set to ::DEFAULT_BILLOW_SEED.
+        /// The default seed value is set to
+        /// noise::module::DEFAULT_BILLOW_SEED.
         Billow ();
 
         /// Returns the frequency of the first octave.
@@ -112,16 +121,16 @@ namespace noise
         ///
         /// @returns The quality of the billowy noise.
         ///
-        /// See noise::NoiseQuality for definitions of the various noise
-        /// qualities.
+        /// See noise::NoiseQuality for definitions of the various
+        /// coherent-noise qualities.
         noise::NoiseQuality GetNoiseQuality () const
         {
           return m_noiseQuality;
         }
 
-        /// Returns the number of octaves used to generate the billowy noise.
+        /// Returns the number of octaves that generate the billowy noise.
         ///
-        /// @returns The number of octaves used to generate the billowy noise.
+        /// @returns The number of octaves that generate the billowy noise.
         ///
         /// The number of octaves controls the amount of detail in the billowy
         /// noise.
@@ -130,17 +139,17 @@ namespace noise
           return m_octaveCount;
         }
 
-        /// Returns the persistence of the billowy noise.
+        /// Returns the persistence value of the billowy noise.
         ///
-        /// @returns The persistence of the billowy noise.
+        /// @returns The persistence value of the billowy noise.
         ///
-        /// The persistence controls the roughness of the billowy noise.
+        /// The persistence value controls the roughness of the billowy noise.
         double GetPersistence () const
         {
           return m_persistence;
         }
 
-        /// Returns the seed value used by the smooth noise function.
+        /// Returns the seed value used by the billowy-noise function.
         ///
         /// @returns The seed value.
         int GetSeed () const
@@ -170,8 +179,8 @@ namespace noise
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
         ///
-        /// For best results, set the lacunarity to a number between @b 1.5
-        /// and @b 3.5.
+        /// For best results, set the lacunarity to a number between 1.5 and
+        /// 3.5.
         void SetLacunarity (double lacunarity)
         {
           m_lacunarity = lacunarity;
@@ -181,20 +190,20 @@ namespace noise
         ///
         /// @param noiseQuality The quality of the billowy noise.
         ///
-        /// See noise::NoiseQuality for definitions of the various noise
-        /// qualities.
+        /// See noise::NoiseQuality for definitions of the various
+        /// coherent-noise qualities.
         void SetNoiseQuality (noise::NoiseQuality noiseQuality)
         {
           m_noiseQuality = noiseQuality;
         }
 
-        /// Sets the number of octaves used to generate the billowy noise.
+        /// Sets the number of octaves that generate the billowy noise.
         ///
-        /// @param octaveCount The number of octaves used to generate the
-        /// billowy noise.
+        /// @param octaveCount The number of octaves that generate the billowy
+        /// noise.
         ///
-        /// @pre The number of octaves is between 1 and ::BILLOW_MAX_OCTAVE,
-        /// inclusive.
+        /// @pre The number of octaves ranges from 1 to
+        /// noise::module::BILLOW_MAX_OCTAVE.
         ///
         /// @throw noise::Exception
         /// - @a INVALID_PARAM: An invalid parameter was specified; see the
@@ -204,7 +213,7 @@ namespace noise
         /// noise.
         ///
         /// The larger the number of octaves, the more time required to
-        /// calculate the billowy noise.
+        /// calculate the billowy-noise value.
         void SetOctaveCount (int octaveCount)
         {
           if (octaveCount < 1 || octaveCount > BILLOW_MAX_OCTAVE) {
@@ -213,20 +222,20 @@ namespace noise
           m_octaveCount = octaveCount;
         }
 
-        /// Sets the persistence of the billowy noise.
+        /// Sets the persistence value of the billowy noise.
         ///
-        /// @param persistence The persistence of the billowy noise.
+        /// @param persistence The persistence value of the billowy noise.
         ///
-        /// The persistence controls the roughness of the billowy noise.
+        /// The persistence value controls the roughness of the billowy noise.
         ///
-        /// For best results, set the persistence to a number between @b 0.0
-        /// and @b 1.0.
+        /// For best results, set the persistence value to a number between
+        /// 0.0 and 1.0.
         void SetPersistence (double persistence)
         {
           m_persistence = persistence;
         }
 
-        /// Sets the seed value used by the smooth noise function.
+        /// Sets the seed value used by the billowy-noise function.
         ///
         /// @param seed The seed value.
         void SetSeed (int seed)
@@ -242,17 +251,16 @@ namespace noise
         /// Frequency multiplier between successive octaves.
         double m_lacunarity;
 
-        /// Quality of the noise.
+        /// Quality of the billowy noise.
         noise::NoiseQuality m_noiseQuality;
 
-        /// Total number of octaves that are used to generate the billowy
-        /// noise.
+        /// Total number of octaves that generate the billowy noise.
         int m_octaveCount;
 
-        /// Persistence of the billowy noise.
+        /// Persistence value of the billowy noise.
         double m_persistence;
 
-        /// Seed value used by the smooth noise function.
+        /// Seed value used by the billowy-noise function.
         int m_seed;
 
     };

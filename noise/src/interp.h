@@ -1,6 +1,6 @@
 // interp.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -29,7 +29,8 @@ namespace noise
   /// @addtogroup libnoise
   /// @{
 
-  /// Performs cubic interpolation between two values.
+  /// Performs cubic interpolation between two values bound between two other
+  /// values.
   ///
   /// @param n0 The value before the first value.
   /// @param n1 The first value.
@@ -39,9 +40,9 @@ namespace noise
   ///
   /// @returns The interpolated value.
   ///
-  /// The alpha value should lie between @b 0.0 and @b 1.0, inclusive.  If the
-  /// alpha value is @b 0.0, this function returns @a n1.  If the alpha value
-  /// is @b 1.0, this function returns @a n2.
+  /// The alpha value should range from 0.0 to 1.0.  If the alpha value is
+  /// 0.0, this function returns @a n1.  If the alpha value is 1.0, this
+  /// function returns @a n2.
   inline double CubicInterp (double n0, double n1, double n2, double n3,
     double a)
   {
@@ -60,9 +61,9 @@ namespace noise
   ///
   /// @returns The interpolated value.
   ///
-  /// The alpha value should lie between @b 0.0 and @b 1.0, inclusive.  If the
-  /// alpha value is @b 0.0, this function returns @a n0.  If the alpha value
-  /// is @b 1.0, this function returns @a n1.
+  /// The alpha value should range from 0.0 to 1.0.  If the alpha value is
+  /// 0.0, this function returns @a n0.  If the alpha value is 1.0, this
+  /// function returns @a n1.
   inline double LinearInterp (double n0, double n1, double a)
   {
     return ((1.0 - a) * n0) + (a * n1);
@@ -70,14 +71,14 @@ namespace noise
 
   /// Maps a value onto a cubic S-curve.
   ///
-  /// @param a The value to map onto the S-curve.
+  /// @param a The value to map onto a cubic S-curve.
   ///
   /// @returns The mapped value.
   ///
-  /// @a a should lie between @b 0.0 to @b 1.0, inclusive.
+  /// @a a should range from 0.0 to 1.0.
   ///
-  /// The derivitive of a cubic S-curve is zero at @a a = @b 0.0 and @a a =
-  /// @b 1.0
+  /// The derivitive of a cubic S-curve is zero at @a a = 0.0 and @a a =
+  /// 1.0
   inline double SCurve3 (double a)
   {
     return (a * a * (3.0 - 2.0 * a));
@@ -85,17 +86,17 @@ namespace noise
 
   /// Maps a value onto a quintic S-curve.
   ///
-  /// @param a The value to map onto the S-curve.
+  /// @param a The value to map onto a quintic S-curve.
   ///
   /// @returns The mapped value.
   ///
-  /// @a a should lie between @b 0.0 to @b 1.0, inclusive.
+  /// @a a should range from 0.0 to 1.0.
   ///
-  /// The first derivitive of a quintic S-curve is zero at @a a = @b 0.0 and
-  /// @a a = @b 1.0
+  /// The first derivitive of a quintic S-curve is zero at @a a = 0.0 and
+  /// @a a = 1.0
   ///
-  /// The second derivitive of a quintic S-curve is zero at @a a = @b 0.0 and
-  /// @a a = @b 1.0
+  /// The second derivitive of a quintic S-curve is zero at @a a = 0.0 and
+  /// @a a = 1.0
   inline double SCurve5 (double a)
   {
     double a3 = a * a * a;

@@ -1,6 +1,6 @@
 // billow.cpp
 //
-// Copyright (C) 2004 by Jason Bevins
+// Copyright (C) 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -50,15 +50,15 @@ double Billow::GetValue (double x, double y, double z) const
   for (int curOctave = 0; curOctave < m_octaveCount; curOctave++) {
 
     // Make sure that these floating-point values have the same range as a 32-
-    // bit integer so that we can pass them to the noise functions.
+    // bit integer so that we can pass them to the coherent-noise functions.
     nx = MakeInt32Range (x);
     ny = MakeInt32Range (y);
     nz = MakeInt32Range (z);
 
-    // Get the noise value from the (x, y, z) position and add it to the final
-    // result.
+    // Get the coherent-noise value from the input value and add it to the
+    // final result.
     seed = (m_seed + curOctave) & 0xffffffff;
-    signal = SmoothGradientNoise3D (nx, ny, nz, seed, m_noiseQuality);
+    signal = GradientCoherentNoise3D (nx, ny, nz, seed, m_noiseQuality);
     signal = 2.0 * fabs (signal) - 1.0;
     value += signal * curPersistence;
 

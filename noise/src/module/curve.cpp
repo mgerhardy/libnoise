@@ -1,6 +1,6 @@
 // curve.cpp
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -76,11 +76,11 @@ double Curve::GetValue (double x, double y, double z) const
   assert (m_pSourceModule[0] != NULL);
   assert (m_controlPointCount >= 4);
 
-  // Get the value from the source module.
+  // Get the output value from the source module.
   double sourceModuleValue = m_pSourceModule[0]->GetValue (x, y, z);
 
   // Find the first element in the control point array that has an input value
-  // larger than the value from the source module.
+  // larger than the output value from the source module.
   int indexPos;
   for (indexPos = 0; indexPos < m_controlPointCount; indexPos++) {
     if (sourceModuleValue < m_pControlPoints[indexPos].inputValue) {

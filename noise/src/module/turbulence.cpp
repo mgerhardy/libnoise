@@ -1,6 +1,6 @@
 // turbulence.cpp
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -30,13 +30,13 @@ Turbulence::Turbulence ():
 {
   SetSeed (DEFAULT_TURBULENCE_SEED);
   SetFrequency (DEFAULT_TURBULENCE_FREQUENCY);
-  SetRoughness (DEFAULT_TURBULENCE_ROUGHNESS); // jas20040710 added
+  SetRoughness (DEFAULT_TURBULENCE_ROUGHNESS);
 }
 
 double Turbulence::GetFrequency () const
 {
-  // Since each ModulePerlin noise module has the same frequency, it does not
-  // matter which module we use to retrieve the frequency.
+  // Since each noise::module::Perlin noise module has the same frequency, it
+  // does not matter which module we use to retrieve the frequency.
   return m_xDistortModule.GetFrequency ();
 }
 
@@ -49,14 +49,13 @@ double Turbulence::GetValue (double x, double y, double z) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  // Get the values from the three ModulePerlin noise modules and add each
-  // value to each coordinate of the input point.
-  // jas20040821 modified
-  // Added some offsets to the coordinates of the input points.  This prevents
+  // Get the values from the three noise::module::Perlin noise modules and
+  // add each value to each coordinate of the input value.  There are also
+  // some offsets added to the coordinates of the input values.  This prevents
   // the distortion modules from returning zero if the (x, y, z) coordinates,
   // when multiplied by the frequency, are near an integer boundary.  This is
-  // due to a property of gradient noise, which returns zero at integer
-  // boundaries.
+  // due to a property of gradient coherent noise, which returns zero at
+  // integer boundaries.
   double x0, y0, z0;
   double x1, y1, z1;
   double x2, y2, z2;
@@ -76,15 +75,16 @@ double Turbulence::GetValue (double x, double y, double z) const
   double zDistort = z + (m_zDistortModule.GetValue (x2, y2, z2)
     * m_power);
 
-  // Retrieve the value at the offsetted input coordinates instead of the
-  // original input coordinates
+  // Retrieve the output value at the offsetted input value instead of the
+  // original input value.
   return m_pSourceModule[0]->GetValue (xDistort, yDistort, zDistort);
 }
 
 void Turbulence::SetSeed (int seed)
 {
-  // Set the seed of each ModulePerlin noise modules.  To prevent any sort of
-  // weird artifacting, use a slightly different seed for each noise module.
+  // Set the seed of each noise::module::Perlin noise modules.  To prevent any
+  // sort of weird artifacting, use a slightly different seed for each noise
+  // module.
   m_xDistortModule.SetSeed (seed    );
   m_yDistortModule.SetSeed (seed + 1);
   m_zDistortModule.SetSeed (seed + 2);

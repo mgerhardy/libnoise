@@ -1,6 +1,6 @@
 // checkerboard.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -44,8 +44,8 @@ namespace noise
     ///
     /// @image html modulecheckerboard.png
     ///
-    /// This module outputs unit-sized blocks of alternating values.  The values
-    /// of these blocks alternate between @b -1.0 and @b +1.0.
+    /// This noise module outputs unit-sized blocks of alternating values.
+    /// The values of these blocks alternate between -1.0 and +1.0.
     ///
     /// This noise module is not really useful by itself, but it is often used
     /// for debugging purposes.

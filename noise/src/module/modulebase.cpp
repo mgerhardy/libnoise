@@ -1,6 +1,6 @@
 // modulebase.cpp
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -29,7 +29,7 @@ Module::Module (int sourceModuleCount)
   m_pSourceModule = NULL;
 
   // Create an array of pointers to all source modules required by this
-  // module.  Set these pointers to NULL.
+  // noise module.  Set these pointers to NULL.
   if (sourceModuleCount > 0) {
     m_pSourceModule = new const Module*[sourceModuleCount];
     for (int i = 0; i < sourceModuleCount; i++) {

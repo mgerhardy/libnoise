@@ -1,6 +1,6 @@
 // terrace.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -40,12 +40,12 @@ namespace noise
     /// @addtogroup modifiermodules
     /// @{
 
-    /// Noise module that maps the value from the source module onto a
+    /// Noise module that maps the output value from a source module onto a
     /// terrace-forming curve.
     ///
     /// @image html moduleterrace.png
     ///
-    /// This module maps the value from the source module onto a
+    /// This noise module maps the output value from the source module onto a
     /// terrace-forming curve.  The start of this curve has a slope of zero;
     /// its slope then smoothly increases.  This curve also contains
     /// <i>control points</i> which resets the slope to zero at that point,
@@ -56,15 +56,15 @@ namespace noise
     /// To add a control point to this noise module, call the
     /// AddControlPoint() method.
     ///
-    /// An application must add a minimum of two control points onto the
-    /// curve.  If this is not done, the GetValue() method fails.  The control
-    /// points can have any value, although no two control points can have the
-    /// same value.  There is no limit to the number of control points that
-    /// can be added to the curve.
+    /// An application must add a minimum of two control points to the curve.
+    /// If this is not done, the GetValue() method fails.  The control points
+    /// can have any value, although no two control points can have the same
+    /// value.  There is no limit to the number of control points that can be
+    /// added to the curve.
     ///
-    /// This noise module clamps the value from the source module if that
-    /// value is less than the value of the lowest control point or greater
-    /// than the value of the highest control point.
+    /// This noise module clamps the output value from the source module if
+    /// that value is less than the value of the lowest control point or
+    /// greater than the value of the highest control point.
     ///
     /// This noise module is often used to generate terrain features such as
     /// your stereotypical desert canyon.
@@ -81,7 +81,7 @@ namespace noise
 	      /// Destructor.
 	      ~Terrace ();
 
-	      /// Adds a control point onto the terrace-forming curve.
+	      /// Adds a control point to the terrace-forming curve.
 	      ///
 	      /// @param value The value of the control point to add.
 	      ///
@@ -93,7 +93,7 @@ namespace noise
 	      ///
 	      /// Two or more control points define the terrace-forming curve.  The
         /// start of this curve has a slope of zero; its slope then smoothly
-        /// increases.  At the control points, the slope resets to zero.
+        /// increases.  At the control points, its slope resets to zero.
 	      ///
 	      /// It does not matter which order these points are added.
 	      void AddControlPoint (double value);
@@ -111,7 +111,7 @@ namespace noise
 	      ///
 	      /// Two or more control points define the terrace-forming curve.  The
         /// start of this curve has a slope of zero; its slope then smoothly
-        /// increases.  At the control points, the slope resets to zero.
+        /// increases.  At the control points, its slope resets to zero.
 	      ///
         /// Before calling this method, call GetControlPointCount() to
         /// determine the number of control points in this array.
@@ -152,8 +152,8 @@ namespace noise
         /// points is inverted.
         ///
         /// @returns
-        /// - @b true if the curve between the control points is inverted.
-        /// - @b false if the curve between the control points is not
+        /// - @a true if the curve between the control points is inverted.
+        /// - @a false if the curve between the control points is not
         ///   inverted.
         bool IsTerracesInverted () const
         {
@@ -162,12 +162,13 @@ namespace noise
 
     	  virtual double GetValue (double x, double y, double z) const;
 
-	      /// Creates a number of equally-spaced control points.
+	      /// Creates a number of equally-spaced control points that range from
+        /// -1 to +1.
 	      ///
 	      /// @param controlPointCount The number of control points to generate.
 	      ///
 	      /// @pre The number of control points must be greater than or equal to
-	      /// @b 2.
+	      /// 2.
 	      ///
 	      /// @post The previous control points on the terrace-forming curve are
         /// deleted.
@@ -178,7 +179,7 @@ namespace noise
 	      ///
 	      /// Two or more control points define the terrace-forming curve.  The
         /// start of this curve has a slope of zero; its slope then smoothly
-        /// increases.  At the control points, the slope resets to zero.
+        /// increases.  At the control points, its slope resets to zero.
         void MakeControlPoints (int controlPointCount);
 
     	protected:
@@ -213,8 +214,8 @@ namespace noise
         /// the control point array and shifts all control points occurring
         /// after the insertion position up by one.
 	      ///
-	      /// Because the curve mapping algorithm in this module requires that
-        /// all control points in the array be sorted by value, the new
+	      /// Because the curve mapping algorithm in this noise module requires
+        /// that all control points in the array be sorted by value, the new
         /// control point should be inserted at the position in which the
         /// order is still preserved.
 	      void InsertAtPos (int insertionPos, double value);

@@ -1,6 +1,6 @@
 // turbulence.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -40,47 +40,46 @@ namespace noise
     /// @addtogroup transformermodules
     /// @{
 
-    /// Default frequency for the Turbulence noise module.
+    /// Default frequency for the noise::module::Turbulence noise module.
     const double DEFAULT_TURBULENCE_FREQUENCY = DEFAULT_PERLIN_FREQUENCY;
 
-    /// Default power for the Turbulence noise module.
+    /// Default power for the noise::module::Turbulence noise module.
     const double DEFAULT_TURBULENCE_POWER = 1.0;
 
-    /// Default roughness for the Turbulence noise module.
+    /// Default roughness for the noise::module::Turbulence noise module.
     const int DEFAULT_TURBULENCE_ROUGHNESS = 3;
 
-    /// Default noise seed for the Turbulence noise module.
+    /// Default noise seed for the noise::module::Turbulence noise module.
     const int DEFAULT_TURBULENCE_SEED = DEFAULT_PERLIN_SEED;
 
-    /// Noise module that randomly displaces the input point and returns the
-    /// value from the source module at that point.
+    /// Noise module that randomly displaces the input value before
+    /// returning the output value from a source module.
     ///
     /// @image html moduleturbulence.png
     ///
-    /// @a Turbulence is the pseudo-random displacement of the input point.
-    /// This noise module's GetValue() method randomly displaces the
-    /// ( @a x, @a y, @a z ) coordinates of the input point before retrieving
-    /// the value from the source module at that point.  To control the
-    /// turbulence, an application can modify its @a frequency, its @a power,
-    /// and its @a roughness.
+    /// @a Turbulence is the pseudo-random displacement of the input value.
+    /// The GetValue() method randomly displaces the ( @a x, @a y, @a z )
+    /// coordinates of the input value before retrieving the output value from
+    /// the source module.  To control the turbulence, an application can
+    /// modify its frequency, its power, and its roughness.
     ///
-    /// The @a frequency of the turbulence determines how rapidly the
+    /// The frequency of the turbulence determines how rapidly the
     /// displacement amount changes.  To specify the frequency, call the
     /// SetFrequency() method.
     ///
-    /// The @a power of the turbulence determines the scaling factor that is
+    /// The power of the turbulence determines the scaling factor that is
     /// applied to the displacement amount.  To specify the power, call the
     /// SetPower() method.
     ///
-    /// The @a roughness determines the roughness of the changes to the
-    /// displacement amount.  Low values smoothly change the displacement
-    /// amount.  High values roughly change the displacement amount, which
-    /// produce more "kinky" changes.  To specify the roughness, call the
-    /// SetRoughness() method.
+    /// The roughness of the turbulence determines the roughness of the
+    /// changes to the displacement amount.  Low values smoothly change the
+    /// displacement amount.  High values roughly change the displacement
+    /// amount, which produces more "kinky" changes.  To specify the
+    /// roughness, call the SetRoughness() method.
     ///
     /// Use of this noise module may require some trial and error.  Assuming
-    /// you are using a Perlin or Voronoi noise module as the source module,
-    /// you should first:
+    /// that you are using a generator module as the source module, you
+    /// should first:
     /// - Set the frequency to the same frequency as the source module.
     /// - Set the power to the reciprocal of the frequency.
     ///
@@ -99,16 +98,16 @@ namespace noise
     ///   initial power) produces nearly pure noise, which isn't entirely
     ///   useful.
     ///
-    /// Displacing the points results in more realistic terrain and textures.
-    /// If you are generating elevations for terrain heightmaps, you can use
-    /// this module to produce more realistic mountain ranges or terrain
-    /// features that look like flowing lava rock.  If you are generating
-    /// values for textures, you can use this module to produce realistic
-    /// marble-like or "oily" textures.
+    /// Displacing the input values result in more realistic terrain and
+    /// textures.  If you are generating elevations for terrain height maps,
+    /// you can use this noise module to produce more realistic mountain
+    /// ranges or terrain features that look like flowing lava rock.  If you
+    /// are generating values for textures, you can use this noise module to
+    /// produce realistic marble-like or "oily" textures.
     ///
-    /// Internally, this module uses three Perlin noise modules: one
-    /// module displaces the @a x coordinate, one displaces the @a y
-    /// coordinate, and one displaces the @a z coordinate.
+    /// Internally, there are three noise::module::Perlin noise modules
+    /// that displace the input value; one for the @a x, one for the @a y,
+    /// and one for the @a z coordinate.
     ///
     /// This noise module requires one source module.
     class Turbulence: public Module
@@ -118,13 +117,17 @@ namespace noise
 
         /// Constructor.
         ///
-        /// The default frequency is set to ::DEFAULT_TURBULENCE_FREQUENCY.
+        /// The default frequency is set to
+        /// noise::module::DEFAULT_TURBULENCE_FREQUENCY.
         ///    
-        /// The default power is set to ::DEFAULT_TURBULENCE_POWER.
+        /// The default power is set to
+        /// noise::module::DEFAULT_TURBULENCE_POWER.
         ///
-        /// The default roughness is set to ::DEFAULT_TURBULENCE_ROUGHNESS.
+        /// The default roughness is set to
+        /// noise::module::DEFAULT_TURBULENCE_ROUGHNESS.
         ///
-        /// The default seed value is set to ::DEFAULT_TURBULENCE_SEED.
+        /// The default seed value is set to
+        /// noise::module::DEFAULT_TURBULENCE_SEED.
         Turbulence ();
 
         /// Returns the frequency of the turbulence.
@@ -150,19 +153,23 @@ namespace noise
         ///
         /// @returns The roughness of the turbulence.
         ///
-        /// The @a roughness determines the roughness of the changes to the
-        /// displacement amount.  Low values smoothly change the displacement
-        /// amount.  High values roughly change the displacement amount, which
-        /// produce more "kinky" changes.
+        /// The roughness of the turbulence determines the roughness of the
+        /// changes to the displacement amount.  Low values smoothly change
+        /// the displacement amount.  High values roughly change the
+        /// displacement amount, which produces more "kinky" changes.
         int GetRoughnessCount () const
         {
           return m_xDistortModule.GetOctaveCount ();
         }
 
-        /// Returns the seed value of the internal noise modules used to
-        /// displace the input points.
+        /// Returns the seed value of the internal Perlin-noise modules that
+        /// are used to displace the input values.
         ///
-        /// @returns The seed.
+        /// @returns The seed value.
+        ///
+        /// Internally, there are three noise::module::Perlin noise modules
+        /// that displace the input value; one for the @a x, one for the @a y,
+        /// and one for the @a z coordinate.  
         int GetSeed () const;
 
         virtual int GetSourceModuleCount () const
@@ -180,7 +187,7 @@ namespace noise
         /// displacement amount changes.
         void SetFrequency (double frequency)
         {
-          // Set the frequency of each ModulePerlin noise modules.
+          // Set the frequency of each Perlin-noise module.
           m_xDistortModule.SetFrequency (frequency);
           m_yDistortModule.SetFrequency (frequency);
           m_zDistortModule.SetFrequency (frequency);
@@ -201,34 +208,36 @@ namespace noise
         ///
         /// @param roughness The roughness of the turbulence.
         ///
-        /// The @a roughness determines the roughness of the changes to the
-        /// displacement amount.  Low values smoothly change the displacement
-        /// amount.  High values roughly change the displacement amount, which
-        /// produce more "kinky" changes.
+        /// The roughness of the turbulence determines the roughness of the
+        /// changes to the displacement amount.  Low values smoothly change
+        /// the displacement amount.  High values roughly change the
+        /// displacement amount, which produces more "kinky" changes.
         ///
-        /// Internally, there are three Perlin modules that displace the input
-        /// point; one for the @a x, one for the @a y, and one for the @a z
-        /// coordinate.  The roughness value is equal to the number of octaves
-        /// used by the Perlin modules.
+        /// Internally, there are three noise::module::Perlin noise modules
+        /// that displace the input value; one for the @a x, one for the @a y,
+        /// and one for the @a z coordinate.  The roughness value is equal to
+        /// the number of octaves used by the noise::module::Perlin noise
+        /// modules.
         void SetRoughness (int roughness)
         {
+          // Set the octave count for each Perlin-noise module.
           m_xDistortModule.SetOctaveCount (roughness);
           m_yDistortModule.SetOctaveCount (roughness);
           m_zDistortModule.SetOctaveCount (roughness);
         }
 
-        /// Sets the seed value of the internal noise modules used to displace
-        /// the input points.
+        /// Sets the seed value of the internal noise modules that are used to
+        /// displace the input values.
         ///
-        /// @param seed The seed.
+        /// @param seed The seed value.
         ///
-        /// Internally, there are three Perlin modules that displace the input
-        /// point; one for the @a x, one for the @a y, and one for the @a z
-        /// coordinate.  This noise module assigns the following seeds to the
-        /// Perlin module:
-        /// - The module assigns the seed value to the @a x module.
-        /// - The module assigns the seed value plus one to the @a y module.
-        /// - The module assigns the seed value plus two to the @a z module.
+        /// Internally, there are three noise::module::Perlin noise modules
+        /// that displace the input value; one for the @a x, one for the @a y,
+        /// and one for the @a z coordinate.  This noise module assigns the
+        /// following seed values to the noise::module::Perlin noise modules:
+        /// - It assigns the seed value (@a seed + 0) to the @a x noise module.
+        /// - It assigns the seed value (@a seed + 1) to the @a y noise module.
+        /// - It assigns the seed value (@a seed + 2) to the @a z noise module.
         void SetSeed (int seed);
 
       protected:

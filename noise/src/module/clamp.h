@@ -1,6 +1,6 @@
 // clamp.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -40,20 +40,27 @@ namespace noise
     /// @addtogroup modifiermodules
     /// @{
 
-    /// Default lower bound of the clamping range for the Clamp noise module.
+    /// Default lower bound of the clamping range for the noise::module::Clamp
+    /// noise module.
     const double DEFAULT_CLAMP_LOWER_BOUND = -1.0;
 
-    /// Default upper bound of the clamping range for the Clamp noise module.
+    /// Default upper bound of the clamping range for the noise::module::Clamp
+    /// noise module.
     const double DEFAULT_CLAMP_UPPER_BOUND = 1.0;
 
-    /// Noise module that clamps the value from the source module.
+    /// Noise module that clamps the output value from a source module to a
+    /// range of values.
     ///
     /// @image html moduleclamp.png
     ///
-    /// If the value from the source module is less than the lower bound, this
-    /// module clamps that value to the lower bound.  If the value from the
-    /// source module is greater than the upper bound, this module clamps that
-    /// value to the upper bound.
+    /// The range of values in which to clamp the output value is called the
+    /// <i>clamping range</i>.
+    ///
+    /// If the output value from the source module is less than the lower
+    /// bound of the clamping range, this noise module clamps that value to
+    /// the lower bound.  If the output value from the source module is
+    /// greater than the upper bound of the clamping range, this noise module
+    /// clamps that value to the upper bound.
     ///
     /// To specify the upper and lower bounds of the clamping range, call the
     /// SetBounds() method.
@@ -67,18 +74,19 @@ namespace noise
         /// Constructor.
         ///
         /// The default lower bound of the clamping range is set to
-        /// ::DEFAULT_CLAMP_LOWER_BOUND.
+        /// noise::module::DEFAULT_CLAMP_LOWER_BOUND.
         ///
         /// The default upper bound of the clamping range is set to
-        /// ::DEFAULT_CLAMP_UPPER_BOUND.
+        /// noise::module::DEFAULT_CLAMP_UPPER_BOUND.
         Clamp ();
 
         /// Returns the lower bound of the clamping range.
         ///
         /// @returns The lower bound.
         ///
-        /// If the value from the source module is less than the lower bound,
-        /// this noise module clamps that value to the lower bound.
+        /// If the output value from the source module is less than the lower
+        /// bound of the clamping range, this noise module clamps that value
+        /// to the lower bound.
         double GetLowerBound () const
         {
           return m_lowerBound;
@@ -93,8 +101,9 @@ namespace noise
         ///
         /// @returns The upper bound.
         ///
-        /// If the value from the source module is greater than the upper
-        /// bound, this noise module clamps that value to the upper bound.
+        /// If the output value from the source module is greater than the
+        /// upper bound of the clamping range, this noise module clamps that
+        /// value to the upper bound.
         double GetUpperBound () const
         {
           return m_upperBound;
@@ -114,9 +123,10 @@ namespace noise
         /// - @a INVALID_PARAM: An invalid parameter was specified; see the
         /// preconditions for more information.
         ///
-        /// If the value from the source module is less than the lower bound,
-        /// this module clamps that value to the lower bound.  If the value
-        /// from the source module is greater than the upper bound, this
+        /// If the output value from the source module is less than the lower
+        /// bound of the clamping range, this noise module clamps that value
+        /// to the lower bound.  If the output value from the source module
+        /// is greater than the upper bound of the clamping range, this noise
         /// module clamps that value to the upper bound.
         void SetBounds (double lowerBound, double upperBound);
 

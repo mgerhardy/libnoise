@@ -1,6 +1,6 @@
 // scalebias.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -40,20 +40,20 @@ namespace noise
     /// @addtogroup modifiermodules
     /// @{
 
-    /// Default bias for the ScaleBias noise module.
+    /// Default bias for the noise::module::ScaleBias noise module.
     const double DEFAULT_BIAS = 0.0;
 
-    /// Default scale for the ScaleBias noise module.
+    /// Default scale for the noise::module::ScaleBias noise module.
     const double DEFAULT_SCALE = 1.0;
 
-    /// Noise module that scales a value from the source module and applies a
-    /// bias to the scaled value.
+    /// Noise module that applies a scaling factor and a bias to the output
+    /// value from a source module.
     ///
     /// @image html modulescalebias.png
     ///
-    /// This noise module multiplies the value from the source module with the
-    /// scaling value, adds the bias to the scaled value, and then outputs that
-    /// value.
+    /// The GetValue() method retrieves the output value from the source
+    /// module, multiplies it with a scaling factor, adds a bias to it, then
+    /// outputs the value.
     ///
     /// This noise module requires one source module.
     class ScaleBias: public Module
@@ -63,31 +63,32 @@ namespace noise
 
         /// Constructor.
         ///
-        /// The default bias is set to ::DEFAULT_BIAS.
+        /// The default bias is set to noise::module::DEFAULT_BIAS.
         ///
-        /// The default scale is set to ::DEFAULT_SCALE.
+        /// The default scaling factor is set to noise::module::DEFAULT_SCALE.
         ScaleBias ();
 
-        /// Returns the bias to apply to the scaled value from the source
-        /// module.
+        /// Returns the bias to apply to the scaled output value from the
+        /// source module.
         ///
         /// @returns The bias to apply.
         ///
-        /// The bias is a constant value that is added to a scaled value from
-        /// the source module.
+        /// The GetValue() method retrieves the output value from the source
+        /// module, multiplies it with the scaling factor, adds the bias to
+        /// it, then outputs the value.
         double GetBias () const
         {
           return m_bias;
         }
 
-        /// Returns the scaling value to apply to the value from the source
-        /// module.
+        /// Returns the scaling factor to apply to the output value from the
+        /// source module.
         ///
-        /// @returns The scaling value to apply.
+        /// @returns The scaling factor to apply.
         ///
-        /// The scaling value is a constant value that is multiplied with the
-        /// value from the source module.  This noise module applies the
-        /// scaling value befor applying the bias.
+        /// The GetValue() method retrieves the output value from the source
+        /// module, multiplies it with the scaling factor, adds the bias to
+        /// it, then outputs the value.
         double GetScale () const
         {
           return m_scale;
@@ -100,25 +101,27 @@ namespace noise
 
         virtual double GetValue (double x, double y, double z) const;
 
-        /// Sets the bias to apply to the scaled value from the source module.
+        /// Sets the bias to apply to the scaled output value from the source
+        /// module.
         ///
         /// @param bias The bias to apply.
         ///
-        /// The bias is a constant value that is added to a scaled value from
-        /// the source module.
+        /// The GetValue() method retrieves the output value from the source
+        /// module, multiplies it with the scaling factor, adds the bias to
+        /// it, then outputs the value.
         void SetBias (double bias)
         {
           m_bias = bias;
         }
 
-        /// Sets the scaling value to apply to the value from the source
-        /// module.
+        /// Sets the scaling factor to apply to the output value from the
+        /// source module.
         ///
-        /// @param scale The scaling value to apply.
+        /// @param scale The scaling factor to apply.
         ///
-        /// The scaling value is a constant value that is multiplied with a
-        /// value from the source module.  This noise module applies the
-        /// scaling value befor applying the bias.
+        /// The GetValue() method retrieves the output value from the source
+        /// module, multiplies it with the scaling factor, adds the bias to
+        /// it, then outputs the value.
         void SetScale (double scale)
         {
           m_scale = scale;
@@ -126,10 +129,11 @@ namespace noise
 
       protected:
 
-        /// Bias to apply to the scaled value from the source module.
+        /// Bias to apply to the scaled output value from the source module.
         double m_bias;
 
-        /// Scaling value to apply to the value from the source module.
+        /// Scaling factor to apply to the output value from the source
+        /// module.
         double m_scale;
 
     };

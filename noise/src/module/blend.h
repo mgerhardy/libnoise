@@ -1,6 +1,6 @@
 // blend.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -41,23 +41,23 @@ namespace noise
     /// @addtogroup selectormodules
     /// @{
 
-    /// Noise module that outputs a value blended between two source modules
-    /// given a weight supplied by another source module.
+    /// Noise module that outputs a weighted blend of the output values from
+    /// two source modules given the output value supplied by a control module.
     ///
     /// @image html moduleblend.png
     ///
     /// Unlike most other noise modules, the index value assigned to a source
     /// module determines its role in the blending operation:
-    /// - Source module @b 0 (upper left in the diagram) outputs one of the
+    /// - Source module 0 (upper left in the diagram) outputs one of the
     ///   values to blend.
-    /// - Source module @b 1 (lower left in the diagram) outputs one of the
+    /// - Source module 1 (lower left in the diagram) outputs one of the
     ///   values to blend.
-    /// - Source module @b 2 (bottom of the diagram) is known as the
-    ///   <i>control module</i>.  This module determines the weight of the
+    /// - Source module 2 (bottom of the diagram) is known as the <i>control
+    ///   module</i>.  The control module determines the weight of the
     ///   blending operation.  Negative values weigh the blend towards the
-    ///   value from the source module with an index value of @b 0.  Positive
-    ///   values weigh the blend towards the value from the source module with
-    ///   an index value of @b 1.
+    ///   output value from the source module with an index value of 0.
+    ///   Positive values weigh the blend towards the output value from the
+    ///   source module with an index value of 1.
     ///
     /// An application can pass the control module to the SetControlModule()
     /// method instead of the SetSourceModule() method.  This may make the
@@ -79,17 +79,17 @@ namespace noise
         ///
         /// @returns A reference to the control module.
         ///
-        /// @pre A control module has been added to this module via a call to
-        /// SetSourceModule() or SetControlModule().
+        /// @pre A control module has been added to this noise module via a
+        /// call to SetSourceModule() or SetControlModule().
         ///
         /// @throw noise::Exception
         /// - @a NO_MODULE: See the preconditions for more information.
         ///
         /// The control module determines the weight of the blending
-        /// operation.  Negative values weigh the blend towards the value from
-        /// the source module with an index value of @b 0.  Positive values
-        /// weigh the blend towards the value from the source module with an
-        /// index value of @b 1.
+        /// operation.  Negative values weigh the blend towards the output
+        /// value from the source module with an index value of 0.  Positive
+        /// values weigh the blend towards the output value from the source
+        /// module with an index value of 1.
         const Module& GetControlModule () const
         {
           if (m_pSourceModule == NULL || m_pSourceModule[2] == NULL) {
@@ -110,17 +110,17 @@ namespace noise
         /// @param controlModule The control module.
         ///
         /// The control module determines the weight of the blending
-        /// operation.  Negative values weigh the blend towards the value from
-        /// the source module with an index value of @b 0.  Positive values
-        /// weigh the blend towards the value from the source module with an
-        /// index value of @b 1.
+        /// operation.  Negative values weigh the blend towards the output
+        /// value from the source module with an index value of 0.  Positive
+        /// values weigh the blend towards the output value from the source
+        /// module with an index value of 1.
         ///
-        /// This method assigns an index value of @b 2 to the control module.
+        /// This method assigns the control module an index value of 2.
         /// Passing the control module to this method produces the same
         /// results as passing the control module to the SetSourceModule()
-        /// method while assigning that module an index value of @b 2.
+        /// method while assigning that noise module an index value of 2.
         ///
-        /// The control module must exist throughout the lifetime of this
+        /// This control module must exist throughout the lifetime of this
         /// noise module unless another control module replaces that control
         /// module.
         void SetControlModule (const Module& controlModule)

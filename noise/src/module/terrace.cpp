@@ -1,6 +1,6 @@
 // terrace.cpp
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -79,11 +79,11 @@ double Terrace::GetValue (double x, double y, double z) const
   assert (m_pSourceModule[0] != NULL);
   assert (m_controlPointCount >= 2);
 
-  // Get the value from the source module.
+  // Get the output value from the source module.
   double sourceModuleValue = m_pSourceModule[0]->GetValue (x, y, z);
 
   // Find the first element in the control point array that has a value
-  // larger than the value from the source module.
+  // larger than the output value from the source module.
   int indexPos;
   for (indexPos = 0; indexPos < m_controlPointCount; indexPos++) {
     if (sourceModuleValue < m_pControlPoints[indexPos]) {
@@ -96,9 +96,9 @@ double Terrace::GetValue (double x, double y, double z) const
   int index0 = ClampValue (indexPos - 1, 0, m_controlPointCount - 1);
   int index1 = ClampValue (indexPos    , 0, m_controlPointCount - 1);
 
-  // If some control points are missing (which occurs if the value from the
-  // source module is greater than the largest value or less than the smallest
-  // value of the control point array), get the value of the nearest
+  // If some control points are missing (which occurs if the output value from
+  // the source module is greater than the largest value or less than the
+  // smallest value of the control point array), get the value of the nearest
   // control point and exit now.
   if (index0 == index1) {
     return m_pControlPoints[index1];

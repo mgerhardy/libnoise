@@ -1,6 +1,6 @@
 // voronoi.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -40,21 +40,23 @@ namespace noise
     /// @addtogroup generatormodules
     /// @{
 
-    /// Default displacement to apply to each cell for the Voronoi noise
-    /// module.
+    /// Default displacement to apply to each cell for the
+    /// noise::module::Voronoi noise module.
     const double DEFAULT_VORONOI_DISPLACEMENT = 1.0;
 
-    /// Default frequency of the seed points for the Voronoi noise module.
+    /// Default frequency of the seed points for the noise::module::Voronoi
+    /// noise module.
     const double DEFAULT_VORONOI_FREQUENCY = 1.0;
 
-    /// Default seed of the noise function for the Voronoi noise module.
+    /// Default seed of the noise function for the noise::module::Voronoi
+    /// noise module.
     const int DEFAULT_VORONOI_SEED = 0;
 
     /// Noise module that outputs Voronoi cells.
     ///
     /// @image html modulevoronoi.png
     ///
-    /// In mathematics, a <i>Voronoi cell</i> is a region containing all
+    /// In mathematics, a <i>Voronoi cell</i> is a region containing all the
     /// points that are closer to a specific <i>seed point</i> than to any
     /// other seed point.  These cells mesh with one another, producing
     /// polygon-like formations.
@@ -67,12 +69,12 @@ namespace noise
     /// frequency of the cells, call the SetFrequency() method.
     ///
     /// This noise module assigns each Voronoi cell with a random constant
-    /// value.  The <i>displacement value</i> controls the range of random
-    /// values to assign to each cell.  The range of random values is +/- the
-    /// displacement value.  Call the SetDisplacement() method to specify the
-    /// displacement value.
+    /// value from a coherent-noise function.  The <i>displacement value</i>
+    /// controls the range of random values to assign to each cell.  The
+    /// range of random values is +/- the displacement value.  Call the
+    /// SetDisplacement() method to specify the displacement value.
     ///
-    /// To modify the random position of the seed points, call the SetSeed()
+    /// To modify the random positions of the seed points, call the SetSeed()
     /// method.
     ///
     /// This noise module can optionally add the distance from the nearest
@@ -81,7 +83,7 @@ namespace noise
     /// to increase in value the further away that point is from the nearest
     /// seed point.
     ///
-    /// Voronoi cells are often used to generate cracked mud terrain
+    /// Voronoi cells are often used to generate cracked-mud terrain
     /// formations or crystal-like textures
     ///
     /// This noise module requires no source modules.
@@ -93,11 +95,13 @@ namespace noise
         /// Constructor.
         ///
         /// The default displacement value is set to
-        /// ::DEFAULT_VORONOI_DISPLACEMENT.
+        /// noise::module::DEFAULT_VORONOI_DISPLACEMENT.
         ///
-        /// The default frequency is set to ::DEFAULT_VORONOI_FREQUENCY.
+        /// The default frequency is set to
+        /// noise::module::DEFAULT_VORONOI_FREQUENCY.
         ///
-        /// The default seed value is set to ::DEFAULT_VORONOI_SEED.
+        /// The default seed value is set to
+        /// noise::module::DEFAULT_VORONOI_SEED.
         Voronoi ();
 
         /// Enables or disables applying the distance from the nearest seed
@@ -109,7 +113,7 @@ namespace noise
         /// Applying the distance from the nearest seed point to the output
         /// value causes the points in the Voronoi cells to increase in value
         /// the further away that point is from the nearest seed point.
-        /// Setting this value to @b true (and setting the displacement to a
+        /// Setting this value to @a true (and setting the displacement to a
         /// near-zero value) causes this noise module to generate cracked mud
         /// formations.
         void EnableDistance (bool enable = true)
@@ -117,14 +121,14 @@ namespace noise
           m_enableDistance = enable;
         }
 
-        /// Returns the displacement value of this noise module.
+        /// Returns the displacement value of the Voronoi cells.
         ///
-        /// @returns The displacement value of this noise module.
+        /// @returns The displacement value of the Voronoi cells.
         ///
         /// This noise module assigns each Voronoi cell with a random constant
-        /// value.  The <i>displacement value</i> controls the range of random
-        /// values to assign to each cell.  The range of random values is +/-
-        /// the displacement value.
+        /// value from a coherent-noise function.  The <i>displacement
+        /// value</i> controls the range of random values to assign to each
+        /// cell.  The range of random values is +/- the displacement value.
         double GetDisplacement () const
         {
           return m_displacement;
@@ -134,7 +138,8 @@ namespace noise
         ///
         /// @returns The frequency of the seed points.
         ///
-        /// The frequency determines the size of the Voronoi cells.
+        /// The frequency determines the size of the Voronoi cells and the
+        /// distance between these cells.
         double GetFrequency () const
         {
           return m_frequency;
@@ -145,12 +150,13 @@ namespace noise
           return 0;
         }
 
-        /// Returns the seed value used by the noise functions.
+        /// Returns the seed value used by the Voronoi cells
         ///
         /// @returns The seed value.
         ///
-        /// The noise function is used to calculate the position of the seed
-        /// points.
+        /// The positions of the seed values are calculated by a
+        /// coherent-noise function.  By modifying the seed value, the output
+        /// of that function changes.
         int GetSeed () const
         {
           return m_seed;
@@ -160,8 +166,8 @@ namespace noise
         /// to the output value.
         ///
         /// @returns
-        /// - @b true if the distance is applied to the output value.
-        /// - @b false if not.
+        /// - @a true if the distance is applied to the output value.
+        /// - @a false if not.
         ///
         /// Applying the distance from the nearest seed point to the output
         /// value causes the points in the Voronoi cells to increase in value
@@ -173,14 +179,14 @@ namespace noise
 
         virtual double GetValue (double x, double y, double z) const;
 
-        /// Sets the displacement value of this noise module.
+        /// Sets the displacement value of the Voronoi cells.
         ///
-        /// @param displacement The displacement value of this noise module.
+        /// @param displacement The displacement value of the Voronoi cells.
         ///
         /// This noise module assigns each Voronoi cell with a random constant
-        /// value.  The <i>displacement value</i> controls the range of random
-        /// values to assign to each cell.  The range of random values is +/-
-        /// the displacement value.
+        /// value from a coherent-noise function.  The <i>displacement
+        /// value</i> controls the range of random values to assign to each
+        /// cell.  The range of random values is +/- the displacement value.
         void SetDisplacement (double displacement)
         {
           m_displacement = displacement;
@@ -190,18 +196,20 @@ namespace noise
         ///
         /// @param frequency The frequency of the seed points.
         ///
-        /// The frequency determines the size of the Voronoi cells.
+        /// The frequency determines the size of the Voronoi cells and the
+        /// distance between these cells.
         void SetFrequency (double frequency)
         {
           m_frequency = frequency;
         }
 
-        /// Sets the seed value used by the noise function.
+        /// Sets the seed value used by the Voronoi cells
         ///
         /// @param seed The seed value.
         ///
-        /// The noise function is used to calculate the position of the seed
-        /// points.
+        /// The positions of the seed values are calculated by a
+        /// coherent-noise function.  By modifying the seed value, the output
+        /// of that function changes.
         void SetSeed (int seed)
         {
           m_seed = seed;
@@ -213,14 +221,14 @@ namespace noise
         double m_displacement;
 
         /// Determines if the distance from the nearest seed point is applied to
-        /// the returned noise value.
+        /// the output value.
         bool m_enableDistance;
 
         /// Frequency of the seed points.
         double m_frequency;
 
-        /// Seed value used by the noise function to determine the position of
-        /// the seed points.
+        /// Seed value used by the coherent-noise function to determine the
+        /// positions of the seed points.
         int m_seed;
 
     };

@@ -1,6 +1,6 @@
 // noisegen.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -36,91 +36,123 @@ namespace noise
   enum NoiseQuality
   {
 
-    /// Generates noise quickly.  When this noise type is used as a bump
-    /// map source, there are noticeable "creasing" artifacts in the
-    /// resulting image.  This is because the derivative of this noise
-    /// function is discontinuous at integer boundaries.
+    /// Generates coherent noise quickly.  When a coherent-noise function with
+    /// this quality setting is used to generate a bump-map image, there are
+    /// noticeable "creasing" artifacts in the resulting image.  This is
+    /// because the derivative of that function is discontinuous at integer
+    /// boundaries.
     QUALITY_FAST = 0,
 
-    /// Generates standard-quality noise.  When this noise type is used
-    /// as a bump map source, there are some minor "creasing" artifacts in
-    /// the resulting image.  This is because the second derivative of this
-    /// noise function is discontinuous at integer boundaries.
+    /// Generates standard-quality coherent noise.  When a coherent-noise
+    /// function with this quality setting is used to generate a bump-map
+    /// image, there are some minor "creasing" artifacts in the resulting
+    /// image.  This is because the second derivative of that function is
+    /// discontinuous at integer boundaries.
     QUALITY_STD = 1,
 
-    /// Generates the best-quality noise.  Produces no "creasing" artifacts
-    /// but it is twice as slow as standard quality.  This is because the
-    /// first and second derivatives of this noise function are continuous at
-    /// integer boundaries.
+    /// Generates the best-quality coherent noise.  When a coherent-noise
+    /// function with this quality setting is used to generate a bump-map
+    /// image, there are no "creasing" artifacts in the resulting image.  This
+    /// is because the first and second derivatives of that function are
+    /// continuous at integer boundaries.
     QUALITY_BEST = 2
 
   };
 
-  /// Returns a floating-point gradient noise value.
+  /// Generates a gradient-coherent-noise value from the coordinates of a
+  /// three-dimensional input value.
   ///
-  /// @param x The floating-point @a x coordinate of the 3D point.
-  /// @param y The floating-point @a y coordinate of the 3D point.
-  /// @param z The floating-point @a z coordinate of the 3D point.
-  /// @param ix The integer @a x coordinate of a nearby 3D point.
-  /// @param iy The integer @a y coordinate of a nearby 3D point.
-  /// @param iz The integer @a z coordinate of a nearby 3D point.
+  /// @param x The @a x coordinate of the input value.
+  /// @param y The @a y coordinate of the input value.
+  /// @param z The @a z coordinate of the input value.
+  /// @param seed The random number seed.
+  /// @param noiseQuality The quality of the coherent-noise.
+  ///
+  /// @returns The generated gradient-coherent-noise value.
+  ///
+  /// The return value ranges from -1.0 to +1.0.
+  ///
+  /// For an explanation of the difference between <i>gradient</i> noise and
+  /// <i>value</i> noise, see the comments for the GradientNoise3D() function.
+  double GradientCoherentNoise3D (double x, double y, double z, int seed = 0,
+    NoiseQuality noiseQuality = QUALITY_STD);
+
+  /// Generates a gradient-noise value from the coordinates of a
+  /// three-dimensional input value and the integer coordinates of a
+  /// nearby three-dimensional value.
+  ///
+  /// @param fx The floating-point @a x coordinate of the input value.
+  /// @param fy The floating-point @a y coordinate of the input value.
+  /// @param fz The floating-point @a z coordinate of the input value.
+  /// @param ix The integer @a x coordinate of a nearby value.
+  /// @param iy The integer @a y coordinate of a nearby value.
+  /// @param iz The integer @a z coordinate of a nearby value.
   /// @param seed The random number seed.
   ///
-  /// @returns The noise value.
+  /// @returns The generated gradient-noise value.
   ///
-  /// @pre The distance from the integer coordinates of the point ( @a ix,
-  /// @a iy, @a iz ) to the corresponding floating-point coordinates of the
-  /// point ( @a x, @a y, @a z ) must be less than or equal to one.
+  /// @pre The difference between @a fx and @a ix must be less than or equal
+  /// to one.
   ///
-  /// <i>Gradient</i> noise produces more variation in the noise than the
-  /// <i>value</i> noise functions.  Most noise modules use gradient noise for
-  /// this reason, although gradient noise takes much longer to calculate than
-  /// value noise.
+  /// @pre The difference between @a fy and @a iy must be less than or equal
+  /// to one.
   ///
-  /// The returned noise value ranges from @b -1.0 to @b +1.0.
+  /// @pre The difference between @a fz and @a iz must be less than or equal
+  /// to one.
   ///
-  /// This function calculates a gradient noise value by performing the
-  /// following three steps:
-  /// - This function calculates a random normalized vector based on the
-  ///   integer point passed to this function.
-  /// - This function applies this vector to the integer point passed to this
-  ///   function.
-  /// - The function calculates the dot product of the offset point and the
-  ///   floating-point point.
+  /// A <i>gradient</i>-noise function generates better-quality noise than a
+  /// <i>value</i>-noise function.  Most noise modules use gradient noise for
+  /// this reason, although it takes much longer to calculate.
   ///
-  /// A noise function differs from a random-number generator in that the same
-  /// value is returned if you pass in the same values.
-  double GradientNoise3D (double x, double y, double z, int ix, int iy,
+  /// The return value ranges from -1.0 to +1.0.
+  ///
+  /// This function generates a gradient-noise value by performing the
+  /// following steps:
+  /// - It first calculates a random normalized vector based on the
+  ///   nearby integer value passed to this function.
+  /// - It then calculates a new value by adding this vector to the
+  ///   nearby integer value passed to this function.
+  /// - It then calculates the dot product of the above-generated value
+  ///   and the floating-point input value passed to this function.
+  ///
+  /// A noise function differs from a random-number generator because it
+  /// always returns the same output value if the same input value is passed
+  /// to it.
+  double GradientNoise3D (double fx, double fy, double fz, int ix, int iy,
     int iz, int seed = 0);
 
-  /// Returns an integer noise value.
+  /// Generates an integer-noise value from the coordinates of a
+  /// three-dimensional input value.
   ///
-  /// @param x The integer @a x coordinate of the 3D point.
-  /// @param y The integer @a y coordinate of the 3D point.
-  /// @param z The integer @a z coordinate of the 3D point.
+  /// @param x The integer @a x coordinate of the input value.
+  /// @param y The integer @a y coordinate of the input value.
+  /// @param z The integer @a z coordinate of the input value.
   /// @param seed A random number seed.
   ///
-  /// @returns The noise value.
+  /// @returns The generated integer-noise value.
   ///
-  /// The noise value ranges from @b 0 to @b 2147483647.
+  /// The return value ranges from 0 to 2147483647.
   ///
-  /// A noise function differs from a random-number generator in that the same
-  /// value is returned if you pass in the same values.
+  /// A noise function differs from a random-number generator because it
+  /// always returns the same output value if the same input value is passed
+  /// to it.
   int IntValueNoise3D (int x, int y, int z, int seed = 0);
 
-  /// Modifies a floating-point value such that the resulting value can be
-  /// stored in an ::int32 variable.
+  /// Modifies a floating-point value so that it can be stored in a
+  /// noise::int32 variable.
   ///
   /// @param n A floating-point number.
   ///
   /// @returns The modified floating-point number.
   ///
-  /// In libnoise, the noise algorithms are all integer-based using ::int32
-  /// variables.  Before calling a noise function, pass the @a x, @a y, and
-  /// @a z coordinates to this function to ensure that these coordinates can
-  /// be cast to an ::int32 value.
+  /// This function does not modify @a n.
   ///
-  /// Although you could do a straight cast from double to ::int32, the
+  /// In libnoise, the noise-generating algorithms are all integer-based;
+  /// they use variables of type noise::int32.  Before calling a noise
+  /// function, pass the @a x, @a y, and @a z coordinates to this function to
+  /// ensure that these coordinates can be cast to a noise::int32 value.
+  ///
+  /// Although you could do a straight cast from double to noise::int32, the
   /// resulting value may differ between platforms.  By using this function,
   /// you ensure that the resulting value is identical between platforms.
   inline double MakeInt32Range (double n)
@@ -134,49 +166,39 @@ namespace noise
     }
   }
 
-  /// Returns a smoothly-interpolated gradient noise value.
+  /// Generates a value-coherent-noise value from the coordinates of a
+  /// three-dimensional input value.
   ///
-  /// @param x The @a x coordinate of the 3D point.
-  /// @param y The @a y coordinate of the 3D point.
-  /// @param z The @a z coordinate of the 3D point.
+  /// @param x The @a x coordinate of the input value.
+  /// @param y The @a y coordinate of the input value.
+  /// @param z The @a z coordinate of the input value.
   /// @param seed The random number seed.
-  /// @param noiseQuality The noise quality.
+  /// @param noiseQuality The quality of the coherent-noise.
   ///
-  /// @returns The random value.
+  /// @returns The generated value-coherent-noise value.
   ///
-  /// For an explanation of the difference between gradient noise and value
-  /// noise, see the comments for the GradientNoise3D() function.
-  double SmoothGradientNoise3D (double x, double y, double z, int seed = 0,
+  /// The return value ranges from -1.0 to +1.0.
+  ///
+  /// For an explanation of the difference between <i>gradient</i> noise and
+  /// <i>value</i> noise, see the comments for the GradientNoise3D() function.
+  double ValueCoherentNoise3D (double x, double y, double z, int seed = 0,
     NoiseQuality noiseQuality = QUALITY_STD);
 
-  /// Returns a smoothly-interpolated noise value.
+  /// Generates a value-noise value from the coordinates of a
+  /// three-dimensional input value.
   ///
-  /// @param x The @a x coordinate of the 3D point.
-  /// @param y The @a y coordinate of the 3D point.
-  /// @param z The @a z coordinate of the 3D point.
-  /// @param seed The random number seed.
-  /// @param noiseQuality The noise quality.
-  ///
-  /// @returns The random value.
-  ///
-  /// For an explanation of the difference between gradient noise and value
-  /// noise, see the comments for the GradientNoise3D() function.
-  double SmoothValueNoise3D (double x, double y, double z, int seed = 0,
-    NoiseQuality noiseQuality = QUALITY_STD);
-
-  /// Returns a floating-point noise value.
-  ///
-  /// @param x The integer @a x coordinate of the 3D point.
-  /// @param y The integer @a y coordinate of the 3D point.
-  /// @param z The integer @a z coordinate of the 3D point.
+  /// @param x The @a x coordinate of the input value.
+  /// @param y The @a y coordinate of the input value.
+  /// @param z The @a z coordinate of the input value.
   /// @param seed A random number seed.
   ///
-  /// @returns The noise value.
+  /// @returns The generated value-noise value.
   ///
-  /// The returned noise value ranges from @b -1.0 to @b +1.0.
+  /// The return value ranges from -1.0 to +1.0.
   ///
-  /// A noise function differs from a random-number generator in that the same
-  /// value is returned if you pass in the same values.
+  /// A noise function differs from a random-number generator because it
+  /// always returns the same output value if the same input value is passed
+  /// to it.
   double ValueNoise3D (int x, int y, int z, int seed = 0);
 
   /// @}

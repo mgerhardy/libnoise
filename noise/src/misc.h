@@ -1,6 +1,6 @@
 // misc.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -25,6 +25,29 @@
 
 namespace noise
 {
+
+  /// Clamps a value onto a clamping range.
+  ///
+  /// @param value The value to clamp.
+  /// @param lowerBound The lower bound of the clamping range.
+  /// @param upperBound The upper bound of the clamping range.
+  ///
+  /// @returns
+  /// - @a value if @a value lies between @a lowerBound and @a upperBound.
+  /// - @a lowerBound if @a value is less than @a lowerBound.
+  /// - @a upperBound if @a value is greater than @a upperBound.
+  ///
+  /// This function does not modify any parameters.
+  inline int ClampValue (int value, int lowerBound, int upperBound)
+  {
+    if (value < lowerBound) {
+      return lowerBound;
+    } else if (value > upperBound) {
+      return upperBound;
+    } else {
+      return value;
+    }
+  }
 
   /// @addtogroup libnoise
   /// @{
@@ -51,30 +74,6 @@ namespace noise
   T GetMin (const T& a, const T& b)
   {
     return (a < b? a: b);
-  }
-
-  /// Clamps a value.
-  ///
-  /// @param value The value to clamp.
-  /// @param lowerBound The lower bound of the clamping range.
-  /// @param upperBound The upper bound of the clamping range.
-  ///
-  /// @returns
-  /// - <b><i>value</i></b> if @a value lies between @a lowerBound and
-  ///   @a upperBound.
-  /// - <b><i>lowerBound</i></b> if @a value is less than @a lowerBound.
-  /// - <b><i>upperBound</i></b> if @a value is greater than @a upperBound.
-  ///
-  /// This function does not modify any parameters.
-  inline int ClampValue (int value, int lowerBound, int upperBound)
-  {
-    if (value < lowerBound) {
-      return lowerBound;
-    } else if (value > upperBound) {
-      return upperBound;
-    } else {
-      return value;
-    }
   }
 
   /// Swaps two values.

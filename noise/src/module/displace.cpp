@@ -1,6 +1,6 @@
 // displace.cpp
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -36,13 +36,13 @@ double Displace::GetValue (double x, double y, double z) const
   assert (m_pSourceModule[2] != NULL);
   assert (m_pSourceModule[3] != NULL);
 
-  // Get the values from the three displacement modules.  Add each value to
-  // the corresponding coordinate of the input point.
+  // Get the output values from the three displacement modules.  Add each
+  // value to the corresponding coordinate in the input value.
   double xDisplace = x + (m_pSourceModule[1]->GetValue (x, y, z));
   double yDisplace = y + (m_pSourceModule[2]->GetValue (x, y, z));
   double zDisplace = z + (m_pSourceModule[3]->GetValue (x, y, z));
 
-  // Retrieve the value at the offsetted input coordinates instead of the
-  // original input coordinates
+  // Retrieve the output value using the offsetted input value instead of
+  // the original input value.
   return m_pSourceModule[0]->GetValue (xDisplace, yDisplace, zDisplace);
 }

@@ -138,8 +138,6 @@ EXPORTS
   ??_7Turbulence@module@noise@@6B@ @ 154
   ??_7Voronoi@module@noise@@6B@ @ 155
   ??_7Abs@module@noise@@6B@ @ 156
-  ?SmoothGradientNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 157
-  ?SmoothValueNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 158
   ??0Billow@module@noise@@QAE@XZ @ 159
   ?GetValue@Billow@module@noise@@UBENNNN@Z @ 160
   ?GetSourceModuleCount@Billow@module@noise@@UBEHXZ @ 161
@@ -152,3 +150,5 @@ EXPORTS
   ?AddControlPoint@Terrace@module@noise@@QAEXN@Z @ 170
   ?ClearAllControlPoints@Terrace@module@noise@@QAEXXZ @ 171
   ?MakeControlPoints@Terrace@module@noise@@QAEXH@Z @ 172
+  ?GradientCoherentNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 173
+  ?ValueCoherentNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 174

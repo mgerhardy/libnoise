@@ -1,6 +1,6 @@
 // const.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -41,7 +41,7 @@ namespace noise
     /// @addtogroup generatormodules
     /// @{
 
-    /// Default constant value for the Const noise module.
+    /// Default constant value for the noise::module::Const noise module.
     const double DEFAULT_CONST_VALUE = 0.0;
 
     /// Noise module that outputs a constant value.
@@ -61,12 +61,13 @@ namespace noise
 
         /// Constructor.
         ///
-        /// The default constant value is set to ::DEFAULT_CONST_VALUE.
+        /// The default constant value is set to
+        /// noise::module::DEFAULT_CONST_VALUE.
         Const ();
 
-        /// Returns the constant value that this noise module outputs.
+        /// Returns the constant output value for this noise module.
         ///
-        /// @returns The constant value that this noise module outputs.
+        /// @returns The constant output value for this noise module.
         double GetConstValue () const
         {
           return m_constValue;
@@ -82,10 +83,9 @@ namespace noise
           return m_constValue;
         }
 
-        /// Sets the constant value that this noise module outputs.
+        /// Sets the constant output value for this noise module.
         ///
-        /// @param constValue The constant value that this noise
-        /// module outputs.
+        /// @param constValue The constant output value for this noise module.
         void SetConstValue (double constValue)
         {
           m_constValue = constValue;

@@ -1,6 +1,6 @@
 // power.h
 //
-// Copyright (C) 2004 by Owen Jacobson
+// Copyright (C) 2004 Owen Jacobson
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -40,10 +40,14 @@ namespace noise
     /// @addtogroup combinermodules
     /// @{
 
-    /// Noise module that outputs the value from the first module raised to
-    /// the power of the value from the second module.
+    /// Noise module that raises the output value from a first source module
+    /// to the power of the output value from a second source module.
     ///
     /// @image html modulepower.png
+    ///
+    /// The first source module must have an index value of 0.
+    ///
+    /// The second source module must have an index value of 1.
     ///
     /// This noise module requires two source modules.
     class Power: public Module

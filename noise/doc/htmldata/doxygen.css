@@ -16,22 +16,6 @@ img
  border-style: none;
 }
 
-td.button
-{
- font-weight: bold;
-}
-
-ul.render
-{
- list-style: none;
- font-size: smaller;
-}
-
-ul.piclist
-{
- list-style: none;
-}
-
 span.header
 {
  font-weight: bold;
@@ -82,11 +66,7 @@ td.content
 td.footer
 {
  background-color: white;
-}
-
-table.small
-{
- font-size: smaller;
+ vertical-align: bottom;
 }
 
 ul.toc
@@ -99,51 +79,6 @@ td.content img
  padding: 4pt;
 }
 
-td.content div.section div.subsection
-{
- padding: 8pt;
- margin: 8pt;
-}
-
-td.content div.definition
-{
- border-color: #99cccc;
- border-width: 1px;
- border-style: solid;
- padding: 8pt;
- margin: 8pt;
-}
-
-td.content div.equation
-{
- font-family: serif;
- font-size: larger;
- padding: 8pt;
- margin: 8pt;
- margin-left: 24pt;
-}
-
-td.content div.algorithm
-{
- font-family: monospace;
- font-size: larger;
- padding: 8pt;
- margin: 8pt;
- margin-left: 24pt;
-}
-
-td.content span.code
-{
- font-family: monospace;
-}
-
-td.content span.control
-{
- font-weight: bold;
- color: black;
-}
-
-td.content pre.code,
 div.fragment
 {
  background-color: #ddeeee;
@@ -156,61 +91,58 @@ div.fragment
  margin-left: 24pt;
 }
 
-td.content pre.code span.changecode
-{
- color: blue;
- font-weight: bold;
-}
-
-td.content pre.output
-{
- background-color: #ddeeee;
- border-style: none;
- font-family: monospace;
- padding: 8pt;
- margin: 8pt;
- margin-left: 24pt;
+td {
+ font-size: 10pt;
 }
 
 
 
 
 
-caption {
+caption
+{
  font-weight: bold
 }
 
-a.qindex {
+a.qindex
+{
 }
 
-a.qindexRef {
+a.qindexRef
+{
 }
 
-a.el {
+a.el
+{
  text-decoration: none;
  font-weight: bold
 }
 
-a.elRef {
+a.elRef
+{
  font-weight: bold
 }
 
-a.code {
+a.code
+{
  text-decoration: none;
  font-weight: normal;
  color: #4444ee
 }
 
-a.codeRef {
+a.codeRef
+{
  font-weight: normal;
  color: #4444ee
 }
 
-dl.el {
+dl.el
+{
  margin-left: -1cm
 }
 
-div.ah {
+div.ah
+{
  background-color: black;
  font-weight: bold;
  color: #ffffff;
@@ -218,19 +150,22 @@ div.ah {
  margin-top: 3px
 }
 
-div.groupHeader {
+div.groupHeader
+{
  margin-left: 16px;
  margin-top: 12px;
  margin-bottom: 6px;
  font-weight: bold
 }
 
-div.groupText {
+div.groupText
+{
  margin-left: 16px;
  font-style: italic;
 }
 
-td.indexkey {
+td.indexkey
+{
  background-color: #ddeeee;
  font-weight: bold;
  padding-right: 10px;
@@ -243,7 +178,8 @@ td.indexkey {
  margin-bottom: 2px
 }
 
-td.indexvalue {
+td.indexvalue
+{
  background-color: #ddeeee;
  font-style: italic;
  padding-right: 10px;
@@ -256,48 +192,58 @@ td.indexvalue {
  margin-bottom: 2px
 }
 
-td.md {
+td.md
+{
  background-color: #ddeeee;
  font-weight: bold;
 }
 
-td.mdname1 {
+td.mdname1
+{
  background-color: #ddeeee;
  font-weight: bold;
  color: #602020;
 }
 
-td.mdname {
+td.mdname
+{
  background-color: #ddeeee;
  font-weight: bold;
  color: #602020;
  width: 600px;
 }
 
-span.keyword {
+span.keyword
+{
  color: #008000
 }
 
-span.keywordtype {
+span.keywordtype
+{
  color: #604020
 }
 
-span.keywordflow {
+span.keywordflow
+{
  color: #e08000
 }
 
-span.comment {
+span.comment
+{
  color: #800000
 }
 
-span.preprocessor {
+span.preprocessor
+{
  color: #806020
 }
 
-span.stringliteral {
+span.stringliteral
+{
  color: #002080
 }
 
-span.charliteral {
+span.charliteral
+{
  color: #008080
 }

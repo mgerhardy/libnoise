@@ -1,6 +1,6 @@
 // exponent.h
 //
-// Copyright (C) 2003, 2004 by Jason Bevins
+// Copyright (C) 2003, 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 // along with this library; if not, write to the Free Software Foundation,
 // Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
-// The developer's email is zigjas@greymartinzig.com (for great email, take
+// The developer's email is jlbezigvins@gmzigail.com (for great email, take
 // off every 'zig'.)
 //
 
@@ -40,19 +40,18 @@ namespace noise
     /// @addtogroup modifiermodules
     /// @{
 
-    /// Default exponent for the Exponent module.
+    /// Default exponent for the noise::module::Exponent noise module.
     const double DEFAULT_EXPONENT = 1.0;
 
-    /// Noise module that maps the value from the source module onto an
+    /// Noise module that maps the output value from a source module onto an
     /// exponential curve.
     ///
     /// @image html moduleexponent.png
     ///
-    /// Because most noise modules output a value within the @b -1.0 to
-    /// @b +1.0 range, this noise module first normalizes the value from the
-    /// source module (the range becomes @b 0.0 to @b +1.0 ), maps that value
-    /// onto an exponential curve, then rescales the value back to the
-    /// original range.
+    /// Because most noise modules will output values that range from -1.0 to
+    /// +1.0, this noise module first normalizes this output value (the range
+    /// becomes 0.0 to 1.0), maps that value onto an exponential curve, then
+    /// rescales that value back to the original range.
     ///
     /// This noise module requires one source module.
     class Exponent: public Module
@@ -62,19 +61,18 @@ namespace noise
 
         /// Constructor.
         ///
-        /// The default exponent is set to ::DEFAULT_EXPONENT.
+        /// The default exponent is set to noise::module::DEFAULT_EXPONENT.
         Exponent ();
 
-        /// Returns the exponent value to apply to the value from the source
-        /// module.
+        /// Returns the exponent value to apply to the output value from the
+        /// source module.
         ///
         /// @returns The exponent value.
         ///
-        /// Because most noise modules output a value within the @b -1.0 to
-        /// @b +1.0 range, this noise module first normalizes the value from
-        /// the source module (the range becomes @b 0.0 to @b +1.0 ), maps
-        /// that value onto an exponential curve, then rescales the value back
-        /// to the original range.
+        /// Because most noise modules will output values that range from -1.0
+        /// to +1.0, this noise module first normalizes this output value (the
+        /// range becomes 0.0 to 1.0), maps that value onto an exponential
+        /// curve, then rescales that value back to the original range.
         double GetExponent () const
         {
           return m_exponent;
@@ -87,16 +85,15 @@ namespace noise
 
         virtual double GetValue (double x, double y, double z) const;
 
-        /// Sets the exponent value to apply to the value from the source
-        /// module.
+        /// Sets the exponent value to apply to the output value from the
+        /// source module.
         ///
         /// @param exponent The exponent value.
         ///
-        /// Because most noise modules output a value within the @b -1.0 to
-        /// @b +1.0 range, this noise module first normalizes the value from
-        /// the source module (the range becomes @b 0.0 to @b +1.0 ), maps
-        /// that value onto an exponential curve, then rescales the value back
-        /// to the original range.
+        /// Because most noise modules will output values that range from -1.0
+        /// to +1.0, this noise module first normalizes this output value (the
+        /// range becomes 0.0 to 1.0), maps that value onto an exponential
+        /// curve, then rescales that value back to the original range.
         void SetExponent (double exponent)
         {
           m_exponent = exponent;
@@ -104,7 +101,7 @@ namespace noise
 
       protected:
 
-        /// Exponent to apply to the value from the source module.
+        /// Exponent to apply to the output value from the source module.
         double m_exponent;
 
     };
