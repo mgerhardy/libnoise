@@ -87,12 +87,9 @@ EXPORTS
   ?GetSourceModuleCount@Spheres@module@noise@@UBEHXZ @ 93
   ??0Terrace@module@noise@@QAE@XZ @ 94
   ??1Terrace@module@noise@@QAE@XZ @ 95
-  ?AddTerracePoint@Terrace@module@noise@@QAEXN@Z @ 96
-  ?ClearAllTerracePoints@Terrace@module@noise@@QAEXXZ @ 97
   ?FindInsertionPos@Terrace@module@noise@@IAEHN@Z @ 98
   ?GetValue@Terrace@module@noise@@UBENNNN@Z @ 99
   ?InsertAtPos@Terrace@module@noise@@IAEXHN@Z @ 100
-  ?MakeTerracePoints@Terrace@module@noise@@QAEXD@Z @ 101
   ?GetSourceModuleCount@Terrace@module@noise@@UBEHXZ @ 103
   ??0Turbulence@module@noise@@QAE@XZ @ 104
   ?GetFrequency@Turbulence@module@noise@@QBENXZ @ 105
@@ -148,3 +145,10 @@ EXPORTS
   ?GetSourceModuleCount@Billow@module@noise@@UBEHXZ @ 161
   ??_7Billow@module@noise@@6B@ @ 163
   ?CalcSpectralWeights@RidgedMulti@module@noise@@IAEXXZ @ 164
+  ??0TranslatePoint@module@noise@@QAE@XZ @ 166
+  ?GetValue@TranslatePoint@module@noise@@UBENNNN@Z @ 167
+  ?GetSourceModuleCount@TranslatePoint@module@noise@@UBEHXZ @ 168
+  ??_7TranslatePoint@module@noise@@6B@ @ 169
+  ?AddControlPoint@Terrace@module@noise@@QAEXN@Z @ 170
+  ?ClearAllControlPoints@Terrace@module@noise@@QAEXXZ @ 171
+  ?MakeControlPoints@Terrace@module@noise@@QAEXH@Z @ 172

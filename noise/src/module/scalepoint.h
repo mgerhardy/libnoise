@@ -61,7 +61,7 @@ namespace noise
     /// coordinates of the input point with a scaling value before returning
     /// the value from the source module at that point.  To set the scaling
     /// value, call the SetScale() method.  To set the scaling value of the
-    /// individual @a x, @a y, or @a z coordinate, call the SetXScale(),
+    /// individual @a x, @a y, or @a z coordinates, call the SetXScale(),
     /// SetYScale() or SetZScale() methods, respectively.
     ///
     /// This noise module requires one source module.

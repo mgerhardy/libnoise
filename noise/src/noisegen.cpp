@@ -26,6 +26,36 @@
 
 using namespace noise;
 
+// jas20041019 added
+// Specifies the noise generator algorithm.
+// - Set to 2 to use the current algorithm.
+// - Set to 1 to use the flawed algorithm from the original version of
+//   libnoise.
+// Change this constant to the appropriate value if your application requires
+// noise values that were generated from an earlier version of libnoise.
+#define NOISE_VERSION 2
+
+// jas20041019 added
+// These constants control the noise generating algorithm.
+#if (NOISE_VERSION == 1)
+// Constants for the old version of the noise generator.  Because X_NOISE_GEN
+// is not relatively prime to the other values, and Z_NOISE_GEN is close to
+// 256 (the number of random gradient vectors), patterns show up in high-
+// frequency noise.
+const int X_NOISE_GEN = 1;
+const int Y_NOISE_GEN = 31337;
+const int Z_NOISE_GEN = 263;
+const int SEED_NOISE_GEN = 1013;
+const int SHIFT_NOISE_GEN = 13;
+#else
+// Constants for the current version of the noise generator.
+const int X_NOISE_GEN = 1619;
+const int Y_NOISE_GEN = 31337;
+const int Z_NOISE_GEN = 6971;
+const int SEED_NOISE_GEN = 1013;
+const int SHIFT_NOISE_GEN = 8;
+#endif
+
 double noise::GradientNoise3D (double x, double y, double z, int ix, int iy,
   int iz, int seed)
 {
@@ -36,9 +66,17 @@ double noise::GradientNoise3D (double x, double y, double z, int ix, int iy,
   // Gradient noise generation is much quicker now.  We don't call
   // IntValueNoise3D() anymore because it turns out that the vectors
   // themselves are fairly random.
-  int vectorIndex = (ix + 31337 * iy + 263 * iz + 1013 * seed) & 0xffffffff;
-  vectorIndex ^= (vectorIndex >> 13);
+  // jas20041010 modified
+  // The multipliers are now constants.
+  int vectorIndex = (
+      X_NOISE_GEN    * ix
+    + Y_NOISE_GEN    * iy
+    + Z_NOISE_GEN    * iz
+    + SEED_NOISE_GEN * seed)
+    & 0xffffffff;
+  vectorIndex ^= (vectorIndex >> SHIFT_NOISE_GEN);
   vectorIndex &= 0xff;
+
   double xvGradient = g_randomVectors[(vectorIndex << 2)    ];
   double yvGradient = g_randomVectors[(vectorIndex << 2) + 1];
   double zvGradient = g_randomVectors[(vectorIndex << 2) + 2];
@@ -61,7 +99,14 @@ int noise::IntValueNoise3D (int x, int y, int z, int seed)
 {
   // All integer numbers you see (except the bit flags) are primes and must
   // remain prime in order for this noise function to work correctly.
-  int n = (x * 5 + y * 31337 + z * 263 + seed * 1013) & 0x7fffffff;
+  // jas20041010 modified
+  // The prime multipliers are now constants.
+  int n = (
+      X_NOISE_GEN    * x
+    + Y_NOISE_GEN    * y
+    + Z_NOISE_GEN    * z
+    + SEED_NOISE_GEN * seed)
+    & 0x7fffffff;
   n = (n << 13) ^ n;
   return (n * (n * n * 60493 + 19990303) + 1376312589) & 0x7fffffff;
 }
@@ -181,3 +226,4 @@ double noise::ValueNoise3D (int x, int y, int z, int seed)
 {
   return 1.0 - ((double)IntValueNoise3D (x, y, z, seed) / 1073741824.0);
 }
+

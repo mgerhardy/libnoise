@@ -30,6 +30,7 @@ SOURCES=../src/latlon.cpp \
 	../src/module/select.cpp \
 	../src/module/spheres.cpp \
 	../src/module/terrace.cpp \
+	../src/module/translatepoint.cpp \
 	../src/module/turbulence.cpp \
 	../src/module/voronoi.cpp 
 
@@ -74,5 +75,6 @@ HEADERS=../src/basictypes.h \
 	../src/module/select.h \
 	../src/module/spheres.h \
 	../src/module/terrace.h \
+	../src/module/translatepoint.h \
 	../src/module/turbulence.h \
 	../src/module/voronoi.h

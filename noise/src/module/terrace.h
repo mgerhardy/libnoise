@@ -48,25 +48,23 @@ namespace noise
     /// This module maps the value from the source module onto a
     /// terrace-forming curve.  The start of this curve has a slope of zero;
     /// its slope then smoothly increases.  This curve also contains
-    /// discontinuities at certain application-defined points known as
-    /// <i>terrace points</i>.  At a terrace point, the slope becomes zero
-    /// again, producing a "terracing" effect.  Refer to the following
-    /// illustration:
+    /// <i>control points</i> which resets the slope to zero at that point,
+    /// producing a "terracing" effect.  Refer to the following illustration:
     ///
     /// @image html terrace.png
     ///
-    /// To add a terrace point to this noise module, call the
-    /// AddTerracePoint() method.
+    /// To add a control point to this noise module, call the
+    /// AddControlPoint() method.
     ///
-    /// An application must add a minimum of two terrace points onto the
-    /// curve.  If this is not done, the GetValue() method fails.  The terrace
-    /// points can have any value, although no two terrace points can have the
-    /// same value.  There is no limit to the number of terrace points that
+    /// An application must add a minimum of two control points onto the
+    /// curve.  If this is not done, the GetValue() method fails.  The control
+    /// points can have any value, although no two control points can have the
+    /// same value.  There is no limit to the number of control points that
     /// can be added to the curve.
     ///
     /// This noise module clamps the value from the source module if that
-    /// value is less than the value of the lowest terrace point or greater
-    /// than the value of the highest terrace point.
+    /// value is less than the value of the lowest control point or greater
+    /// than the value of the highest control point.
     ///
     /// This noise module is often used to generate terrain features such as
     /// your stereotypical desert canyon.
@@ -83,81 +81,79 @@ namespace noise
 	      /// Destructor.
 	      ~Terrace ();
 
-	      /// Adds a terrace point onto the terrace-forming curve.
+	      /// Adds a control point onto the terrace-forming curve.
 	      ///
-	      /// @param value The value of the terrace point to add.
+	      /// @param value The value of the control point to add.
 	      ///
-	      /// @pre No two terrace points have the same value.
+	      /// @pre No two control points have the same value.
 	      ///
 	      /// @throw NoiseEx
 	      /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see
         ///   the preconditions for more information.
 	      ///
-	      /// Two or more terrace points define the terrace-forming curve.  The
+	      /// Two or more control points define the terrace-forming curve.  The
         /// start of this curve has a slope of zero; its slope then smoothly
-        /// increases.  A <i>terrace point</i> is a discontinuity on the
-        /// curve.  At a terrace point, the slope becomes zero gain.
+        /// increases.  At the control points, the slope resets to zero.
 	      ///
 	      /// It does not matter which order these points are added.
-	      void AddTerracePoint (double value);
+	      void AddControlPoint (double value);
 
-	      /// Deletes all the terrace points on the terrace-forming curve.
+	      /// Deletes all the control points on the terrace-forming curve.
 	      ///
-	      /// @post All terrace points on the terrace-forming curve are deleted.
-	      void ClearAllTerracePoints ();
+	      /// @post All control points on the terrace-forming curve are deleted.
+	      void ClearAllControlPoints ();
+
+	      /// Returns a pointer to the array of control points on the
+	      /// terrace-forming curve.
+	      ///
+	      /// @returns A pointer to the array of control points in this noise
+	      /// module.
+	      ///
+	      /// Two or more control points define the terrace-forming curve.  The
+        /// start of this curve has a slope of zero; its slope then smoothly
+        /// increases.  At the control points, the slope resets to zero.
+	      ///
+        /// Before calling this method, call GetControlPointCount() to
+        /// determine the number of control points in this array.
+	      ///
+	      /// It is recommended that an application does not store this pointer
+        /// for later use since the pointer to the array may change if the
+        /// application calls another method of this object.
+	      const double* GetControlPointArray () const
+	      {
+	        return m_pControlPoints;
+	      }
+
+	      /// Returns the number of control points on the terrace-forming curve.
+	      ///
+	      /// @returns The number of control points on the terrace-forming
+        /// curve.
+	      int GetControlPointCount () const
+	      {
+	        return m_controlPointCount;
+	      }
 
     	  virtual int GetSourceModuleCount () const
 	      {
 	        return 1;
 	      }
 
-	      /// Returns a pointer to the array of terrace points on the
-	      /// terrace-forming curve.
-	      ///
-	      /// @returns A pointer to the array of terrace points in this noise
-	      /// module.
-	      ///
-	      /// Two or more terrace points define the terrace-forming curve.  The
-        /// start of this curve has a slope of zero; its slope then smoothly
-        /// increases.  A <i>terrace point</i> is a discontinuity on the
-        /// curve.  At a terrace point, the slope becomes zero again.
-	      ///
-        /// Before calling this method, call GetTerracePointCount() to
-        /// determine the number of terrace points in this array.
-	      ///
-	      /// It is recommended that an application does not store this pointer
-        /// for later use since the pointer to the array may change if the
-        /// application calls another method of this object.
-	      const double* GetTerracePointArray () const
-	      {
-	        return m_pTerracePoints;
-	      }
-
-	      /// Returns the number of terrace points on the terrace-forming curve.
-	      ///
-	      /// @returns The number of terrace points on the terrace-forming
-        /// curve.
-	      int GetTerracePointCount () const
-	      {
-	        return m_terracePointCount;
-	      }
-
-	      /// Enables or disables the inversion of the terrace-forming curve
-        /// between all terrace points.
+        /// Enables or disables the inversion of the terrace-forming curve
+        /// between the control points.
         ///
-	      /// @param invert Specifies whether to invert the curve between all
-        /// terrace points.
+	      /// @param invert Specifies whether to invert the curve between the
+        /// control points.
 	      void InvertTerraces (bool invert = true)
 	      {
 	        m_invertTerraces = invert;
 	      }
 
-	      /// Determines if the terrace-forming curve between all terrace
+	      /// Determines if the terrace-forming curve between the control
         /// points is inverted.
         ///
         /// @returns
-        /// - @b true if the curve between the terrace points is inverted.
-        /// - @b false if the curve between the terrace points is not
+        /// - @b true if the curve between the control points is inverted.
+        /// - @b false if the curve between the control points is not
         ///   inverted.
         bool IsTerracesInverted () const
         {
@@ -166,73 +162,72 @@ namespace noise
 
     	  virtual double GetValue (double x, double y, double z) const;
 
-	      /// Creates a number of equally-spaced terrace points.
+	      /// Creates a number of equally-spaced control points.
 	      ///
-	      /// @param terracePointCount The number of terrace points to generate.
+	      /// @param controlPointCount The number of control points to generate.
 	      ///
-	      /// @pre The number of terrace points must be greater than or equal to
+	      /// @pre The number of control points must be greater than or equal to
 	      /// @b 2.
 	      ///
-	      /// @post The previous terrace points on the terrace-forming curve are
+	      /// @post The previous control points on the terrace-forming curve are
         /// deleted.
 	      ///
 	      /// @throw NoiseEx
 	      /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
 	      ///   preconditions for more information.
 	      ///
-	      /// Two or more terrace points define the terrace-forming curve.  The
+	      /// Two or more control points define the terrace-forming curve.  The
         /// start of this curve has a slope of zero; its slope then smoothly
-        /// increases.  A <i>terrace point</i> is a discontinuity on the
-        /// curve.  At a terrace point, the slope becomes zero again.
-        void MakeTerracePoints (noise::int8 terracePointCount);
+        /// increases.  At the control points, the slope resets to zero.
+        void MakeControlPoints (int controlPointCount);
 
     	protected:
 
-	      /// Determines the array index in which to insert the terrace point
-	      /// into the internal terrace point array.
+	      /// Determines the array index in which to insert the control point
+	      /// into the internal control point array.
 	      ///
-	      /// @param value The value of the terrace point.
+	      /// @param value The value of the control point.
 	      ///
-	      /// @returns The array index in which to insert the terrace point.
+	      /// @returns The array index in which to insert the control point.
 	      ///
-	      /// @pre No two terrace points have the same value.
+	      /// @pre No two control points have the same value.
 	      ///
 	      /// @throw NoiseEx
 	      /// - @a EX_INVALID_PARAM: An invalid parameter was specified; see the
 	      ///   preconditions for more information.
 	      ///
-	      /// By inserting the terrace point at the returned array index, this
-        /// class ensures that the terrace point array is sorted by value.
+	      /// By inserting the control point at the returned array index, this
+        /// class ensures that the control point array is sorted by value.
         /// The code that maps a value onto the curve requires a sorted
-        /// terrace point array.
+        /// control point array.
 	      int FindInsertionPos (double value);
 
-	      /// Inserts the terrace point at the specified position in the
-	      /// internal terrace point array.
+	      /// Inserts the control point at the specified position in the
+	      /// internal control point array.
 	      ///
 	      /// @param insertionPos The zero-based array position in which to
-        /// insert the terrace point.
-	      /// @param value The value of the terrace point.
+        /// insert the control point.
+	      /// @param value The value of the control point.
 	      ///
-	      /// To make room for this new terrace point, this method reallocates
-        /// the terrace point array and shifts all terrace points occurring
+	      /// To make room for this new control point, this method reallocates
+        /// the control point array and shifts all control points occurring
         /// after the insertion position up by one.
 	      ///
 	      /// Because the curve mapping algorithm in this module requires that
-        /// all terrace points in the array be sorted by value, the new
-        /// terrace point should be inserted at the position in which the
+        /// all control points in the array be sorted by value, the new
+        /// control point should be inserted at the position in which the
         /// order is still preserved.
 	      void InsertAtPos (int insertionPos, double value);
 
-	      /// Determines if the terrace-forming curve between all terrace points
+	      /// Number of control points stored in this noise module.
+	      int m_controlPointCount;
+
+        /// Determines if the terrace-forming curve between all control points
         /// is inverted.
 	      bool m_invertTerraces;
 
-	      /// Array that stores the terrace points.
-	      double* m_pTerracePoints;
-
-	      /// Number of terrace points stored in this noise module.
-	      int m_terracePointCount;
+	      /// Array that stores the control points.
+	      double* m_pControlPoints;
 
     };
 

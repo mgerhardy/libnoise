@@ -305,6 +305,14 @@ SOURCE=.\src\module\terrace.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\module\translatepoint.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\module\translatepoint.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\module\turbulence.cpp
 # End Source File
 # Begin Source File
@@ -370,6 +378,10 @@ SOURCE=.\src\win32\dllmain.cpp
 # Begin Source File
 
 SOURCE=.\src\win32\libnoise.def
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\win32\noise.rc
 # End Source File
 # End Group
 # Begin Source File
