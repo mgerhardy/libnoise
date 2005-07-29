@@ -1,0 +1,14 @@
+# pkg-config source file
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libnoise
+Description: libnoise is a portable C++ library that is used to generate coherent noise
+Version: @PACKAGE_VERSION@
+Requires:
+Conflicts:
+Libs: -L${libdir} -lnoise
+Cflags: -I${includedir}
