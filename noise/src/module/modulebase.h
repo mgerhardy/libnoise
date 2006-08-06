@@ -252,8 +252,16 @@ namespace noise
         virtual const Module& GetSourceModule (int index) const
         {
           assert (m_pSourceModule != NULL);
+
+          // The following fix was provided by Will Hawkins:
+          //
+          //   m_pSourceModule[index] != NULL
+          //
+          // was incorrect; it should be:
+          //
+          //   m_pSourceModule[index] == NULL
           if (index >= GetSourceModuleCount () || index < 0
-            || m_pSourceModule[index] != NULL) {
+            || m_pSourceModule[index] == NULL) {
             throw noise::ExceptionNoModule ();
           }
           return *(m_pSourceModule[index]);
