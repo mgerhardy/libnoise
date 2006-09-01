@@ -26,10 +26,10 @@ using namespace noise::module;
 
 RidgedMulti::RidgedMulti ():
   Module (GetSourceModuleCount ()),
-  m_octaveCount  (DEFAULT_RIDGED_OCTAVE_COUNT),
   m_frequency    (DEFAULT_RIDGED_FREQUENCY   ),
   m_lacunarity   (DEFAULT_RIDGED_LACUNARITY  ),
   m_noiseQuality (DEFAULT_RIDGED_QUALITY     ),
+  m_octaveCount  (DEFAULT_RIDGED_OCTAVE_COUNT),
   m_seed         (DEFAULT_RIDGED_SEED)
 {
   CalcSpectralWeights ();

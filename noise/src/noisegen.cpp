@@ -60,16 +60,16 @@ double noise::GradientCoherentNoise3D (double x, double y, double z, int seed,
 {
   // Create a unit-length cube aligned along an integer boundary.  This cube
   // surrounds the input point.
-  int x0 = (int)(floor (x));
+  int x0 = (x > 0.0? (int)x: (int)x - 1);
   int x1 = x0 + 1;
-  int y0 = (int)(floor (y));
+  int y0 = (y > 0.0? (int)y: (int)y - 1);
   int y1 = y0 + 1;
-  int z0 = (int)(floor (z));
+  int z0 = (z > 0.0? (int)z: (int)z - 1);
   int z1 = z0 + 1;
 
   // Map the difference between the coordinates of the input value and the
   // coordinates of the cube's outer-lower-left vertex onto an S-curve.
-  double xs, ys, zs;
+  double xs = 0, ys = 0, zs = 0;
   switch (noiseQuality) {
     case QUALITY_FAST:
       xs = (x - (double)x0);
@@ -163,16 +163,16 @@ double noise::ValueCoherentNoise3D (double x, double y, double z, int seed,
 {
   // Create a unit-length cube aligned along an integer boundary.  This cube
   // surrounds the input point.
-  int x0 = (int)(floor (x));
+  int x0 = (x > 0.0? (int)x: (int)x - 1);
   int x1 = x0 + 1;
-  int y0 = (int)(floor (y));
+  int y0 = (y > 0.0? (int)y: (int)y - 1);
   int y1 = y0 + 1;
-  int z0 = (int)(floor (z));
+  int z0 = (z > 0.0? (int)z: (int)z - 1);
   int z1 = z0 + 1;
 
   // Map the difference between the coordinates of the input value and the
   // coordinates of the cube's outer-lower-left vertex onto an S-curve.
-  double xs, ys, zs;
+  double xs = 0, ys = 0, zs = 0;
   switch (noiseQuality) {
     case QUALITY_FAST:
       xs = (x - (double)x0);

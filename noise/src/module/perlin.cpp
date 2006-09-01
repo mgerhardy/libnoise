@@ -26,10 +26,10 @@ using namespace noise::module;
 
 Perlin::Perlin ():
   Module (GetSourceModuleCount ()),
-  m_octaveCount  (DEFAULT_PERLIN_OCTAVE_COUNT),
   m_frequency    (DEFAULT_PERLIN_FREQUENCY   ),
   m_lacunarity   (DEFAULT_PERLIN_LACUNARITY  ),
   m_noiseQuality (DEFAULT_PERLIN_QUALITY     ),
+  m_octaveCount  (DEFAULT_PERLIN_OCTAVE_COUNT),
   m_persistence  (DEFAULT_PERLIN_PERSISTENCE ),
   m_seed         (DEFAULT_PERLIN_SEED)
 {

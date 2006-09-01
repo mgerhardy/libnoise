@@ -27,9 +27,9 @@ using namespace noise::module;
 
 Select::Select ():
   Module (GetSourceModuleCount ()),
+  m_edgeFalloff (DEFAULT_SELECT_EDGE_FALLOFF),
   m_lowerBound (DEFAULT_SELECT_LOWER_BOUND),
-  m_upperBound (DEFAULT_SELECT_UPPER_BOUND),
-  m_edgeFalloff (DEFAULT_SELECT_EDGE_FALLOFF)
+  m_upperBound (DEFAULT_SELECT_UPPER_BOUND)
 {
 }
 

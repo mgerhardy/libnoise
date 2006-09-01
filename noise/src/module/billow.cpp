@@ -26,10 +26,10 @@ using namespace noise::module;
 
 Billow::Billow ():
   Module (GetSourceModuleCount ()),
-  m_octaveCount  (DEFAULT_BILLOW_OCTAVE_COUNT),
   m_frequency    (DEFAULT_BILLOW_FREQUENCY   ),
   m_lacunarity   (DEFAULT_BILLOW_LACUNARITY  ),
   m_noiseQuality (DEFAULT_BILLOW_QUALITY     ),
+  m_octaveCount  (DEFAULT_BILLOW_OCTAVE_COUNT),
   m_persistence  (DEFAULT_BILLOW_PERSISTENCE ),
   m_seed         (DEFAULT_BILLOW_SEED)
 {

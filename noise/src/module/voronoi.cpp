@@ -28,9 +28,9 @@ using namespace noise::module;
 Voronoi::Voronoi ():
   Module (GetSourceModuleCount ()),
   m_displacement   (DEFAULT_VORONOI_DISPLACEMENT),
+  m_enableDistance (false                       ),
   m_frequency      (DEFAULT_VORONOI_FREQUENCY   ),
-  m_seed           (DEFAULT_VORONOI_SEED        ),
-  m_enableDistance (false)
+  m_seed           (DEFAULT_VORONOI_SEED        )
 {
 }
 
@@ -43,14 +43,14 @@ double Voronoi::GetValue (double x, double y, double z) const
   y *= m_frequency;
   z *= m_frequency;
 
-  int xInt = (int)(floor (x));
-  int yInt = (int)(floor (y));
-  int zInt = (int)(floor (z));
+  int xInt = (x > 0.0? (int)x: (int)x - 1);
+  int yInt = (y > 0.0? (int)y: (int)y - 1);
+  int zInt = (z > 0.0? (int)z: (int)z - 1);
 
   double minDist = 2147483647.0;
-  double xCandidate;
-  double yCandidate;
-  double zCandidate;
+  double xCandidate = 0;
+  double yCandidate = 0;
+  double zCandidate = 0;
 
   // Inside each unit cube, there is a seed point at a random position.  Go
   // through each of the nearby cubes until we find a cube with a seed point
@@ -96,6 +96,6 @@ double Voronoi::GetValue (double x, double y, double z) const
   // Return the calculated distance with the displacement value applied.
   return value + (m_displacement * (double)ValueNoise3D (
     (int)(floor (xCandidate)),
-    (int)(floor (yCandidate)), 
+    (int)(floor (yCandidate)),
     (int)(floor (zCandidate))));
 }

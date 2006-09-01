@@ -229,7 +229,7 @@ namespace noise
         Module (int sourceModuleCount);
 
         /// Destructor.
-        ~Module ();
+        virtual ~Module ();
 
         /// Returns a reference to a source module connected to this noise
         /// module.
@@ -359,7 +359,7 @@ namespace noise
 
     /// @}
 
-  } 
+  }
 
 }
 

@@ -23,25 +23,27 @@ using namespace noise;
 using namespace noise::model;
 
 Line::Line ():
-  m_pModule (NULL),
+
   m_attenuate (true),
+  m_pModule (NULL),
   m_x0 (0.0),
-  m_y0 (0.0),
-  m_z0 (0.0),
   m_x1 (1.0),
+  m_y0 (0.0),
   m_y1 (1.0),
+  m_z0 (0.0),
   m_z1 (1.0)
 {
 }
 
 Line::Line (const module::Module& module):
-  m_pModule (&module),
+
   m_attenuate (true),
+  m_pModule (&module),
   m_x0 (0.0),
-  m_y0 (0.0),
-  m_z0 (0.0),
   m_x1 (1.0),
+  m_y0 (0.0),
   m_y1 (1.0),
+  m_z0 (0.0),
   m_z1 (1.0)
 {
 }

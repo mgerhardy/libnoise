@@ -30,9 +30,9 @@ using namespace noise;
 
 Terrace::Terrace ():
   Module (GetSourceModuleCount ()),
-  m_pControlPoints (NULL),
   m_controlPointCount (0),
-  m_invertTerraces (false)
+  m_invertTerraces (false),
+  m_pControlPoints (NULL)
 {
 }
 
@@ -103,7 +103,7 @@ double Terrace::GetValue (double x, double y, double z) const
   if (index0 == index1) {
     return m_pControlPoints[index1];
   }
-  
+
   // Compute the alpha value used for linear interpolation.
   double value0 = m_pControlPoints[index0];
   double value1 = m_pControlPoints[index1];

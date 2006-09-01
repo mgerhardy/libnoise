@@ -28,13 +28,11 @@ EXPORTS
   ?GetSourceModuleCount@Const@module@noise@@UBEHXZ @ 30
   ?GetValue@Const@module@noise@@UBENNNN@Z @ 31
   ??0Curve@module@noise@@QAE@XZ @ 32
-  ??1Curve@module@noise@@QAE@XZ @ 33
   ?AddControlPoint@Curve@module@noise@@QAEXNN@Z @ 34
   ?ClearAllControlPoints@Curve@module@noise@@QAEXXZ @ 35
   ?FindInsertionPos@Curve@module@noise@@IAEHN@Z @ 36
   ?GetValue@Curve@module@noise@@UBENNNN@Z @ 37
   ?InsertAtPos@Curve@module@noise@@IAEXHNN@Z @ 38
-  ??1Module@module@noise@@QAE@XZ @ 41
   ?GetSourceModuleCount@Curve@module@noise@@UBEHXZ @ 42
   ??0Cylinders@module@noise@@QAE@XZ @ 43
   ?GetValue@Cylinders@module@noise@@UBENNNN@Z @ 44
@@ -86,7 +84,6 @@ EXPORTS
   ?GetValue@Spheres@module@noise@@UBENNNN@Z @ 92
   ?GetSourceModuleCount@Spheres@module@noise@@UBEHXZ @ 93
   ??0Terrace@module@noise@@QAE@XZ @ 94
-  ??1Terrace@module@noise@@QAE@XZ @ 95
   ?FindInsertionPos@Terrace@module@noise@@IAEHN@Z @ 98
   ?GetValue@Terrace@module@noise@@UBENNNN@Z @ 99
   ?InsertAtPos@Terrace@module@noise@@IAEXHN@Z @ 100
@@ -152,3 +149,6 @@ EXPORTS
   ?MakeControlPoints@Terrace@module@noise@@QAEXH@Z @ 172
   ?GradientCoherentNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 173
   ?ValueCoherentNoise3D@noise@@YANNNNHW4NoiseQuality@1@@Z @ 174
+  ??1Terrace@module@noise@@UAE@XZ @ 175
+  ??1Curve@module@noise@@UAE@XZ @ 176
+  ??1Module@module@noise@@UAE@XZ @ 177
