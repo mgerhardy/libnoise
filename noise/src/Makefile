@@ -17,7 +17,7 @@ libnoise.so.0: libnoise.so.0.3
 
 # Real build targets
 libnoise.so.0.3: $(OBJECTS)
-	$(LIBTOOL) --mode=link $(CXX) $(LDFLAGS) -shared -Wl,-soname=libnoise.so.0 -o $@ $(OBJECTS:.o=.lo)
+	$(LIBTOOL) --mode=link $(CXX) $(LDFLAGS) -Xcompiler -shared -Wl,-soname=libnoise.so.0 -o $@ $(OBJECTS:.o=.lo)
 
 libnoise.a: $(OBJECTS)
 	$(LIBTOOL) --mode=link $(CXX) $(LDFLAGS) -o $@ $(OBJECTS)
