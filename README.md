@@ -5,7 +5,8 @@ Useful for terrain generation and procedural texture generation. Uses a
 broad number of techniques (Perlin noise, ridged multifractal, etc.) and
 combinations of those techniques.
 
-[Libnoise website:](http://libnoise.sourceforge.net)
+- [Libnoise website](http://libnoise.sourceforge.net)
+- [Wiki](https://github.com/mgerhardy/libnoise/wiki)
 
 # Note
 
