@@ -12,3 +12,5 @@ combinations of those techniques.
 
 This git repository is a clone (full history) of the original cvs repository
 hosted on [sourceforge](http://libnoise.cvs.sourceforge.net/viewvc/libnoise/).
+
+If you are looking for e.g. cmake based version of libnoise - check out this one: https://github.com/qknight/libnoise
