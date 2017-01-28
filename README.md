@@ -13,4 +13,12 @@ combinations of those techniques.
 This git repository is a clone (full history) of the original cvs repository
 hosted on [sourceforge](http://libnoise.cvs.sourceforge.net/viewvc/libnoise/).
 
-If you are looking for e.g. cmake based version of libnoise - check out this one: https://github.com/qknight/libnoise
+# Ports
+
+There are a lot of ports available. Just to list a few of them:
+
+* Unity: https://github.com/ricardojmendez/LibNoise.Unity
+* CMake: https://github.com/qknight/libnoise
+* JavaScript: https://github.com/jmcneese/libnoise.js/
+* Java: https://github.com/andrewgp/jLibNoise
+* Haxe: https://github.com/dropechostudios/libnoise
